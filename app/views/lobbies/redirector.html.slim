@@ -1,0 +1,13 @@
+.uk-container.uk-container-center.uk-margin-top.uk-width-medium-2-3
+  .uk-panel.uk-panel-box
+    .uk-panel-title
+      | 3秒後、以下の外部サイトへ移動します
+    p.uk-text-center.uk-text-large.wrap
+      a#js-redirect-url href=@url
+        = @url
+
+- content_for(:local_js) do
+  javascript:
+    setTimeout(function () {
+      location.href = $('#js-redirect-url').attr('href');
+    }, 3000);

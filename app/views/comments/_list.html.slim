@@ -1,0 +1,33 @@
+- mode ||= :article
+- comments = comments.map { |c| c.try(:decorate) || c }
+
+ul.uk-list.comment-list
+  - comments.each do |comment|
+    li.comment-item id="comment-#{comment.id}" name="comment-#{comment.id}"
+      .comment-header class=('small' if mode == :view)
+        a.comment-avatar href=user_path(comment.user)
+          img src=comment.user.avatar_url
+        - if mode == :view
+          .comment-article
+            a href=user_path(name: comment.article.user.name)
+              = comment.article.user.name
+            | &nbsp;の投稿記事&nbsp;
+            a href=article_path(comment.article, name: comment.article.user.name)
+              = comment.article.title
+            | &nbsp;にコメント
+        - else
+          a.comment-author href=user_path(comment.user)
+            = comment.user.name
+          .comment-contribute
+            = "#{comment.user.stock_count} contribution"
+        .comment-date
+          a href="#{article_path(comment.article, name: comment.article.user.name)}#comment-#{comment.id}"
+            = l(comment.created_at, format: :short)
+          - if current_user == comment.user
+            a.uk-margin-left href=comment_path(comment) data-method='delete' data-confirm='本当に削除してもよろしいですか？' title='削除する'
+              i.fa.fa-close
+      .comment-body.markdown
+        - if mode == :view
+          = truncate(strip_tags(comment.markdown_html), length: 64)
+        - else
+          == comment.markdown_html

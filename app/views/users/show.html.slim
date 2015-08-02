@@ -1,0 +1,46 @@
+.content-header
+  .uk-container.uk-container-center
+    .uk-grid
+      .uk-width-medium-7-10
+        .user-profile
+          img src=@user.decorate.avatar_url
+          h1.user-profile-name
+            = @user.name
+          .user-profile-contribute
+            .user-profile-contribute-count
+              = @user.stock_count
+            | Contributes
+      .uk-width-medium-3-10
+        / 将来、ここにフォローボタンとか付けたい
+
+.uk-container.uk-container-center.uk-margin-top
+  ul.uk-tab
+    li class=('uk-active' if @mode == :show)
+      a href=user_path(name: @user)
+        i.uk-visible-small.fa.fa-file-o
+        span.uk-hidden-small
+          | 最近の投稿
+    - if @user == current_user
+      li class=('uk-active' if @mode == :drafts)
+        a href=drafts_user_path(name: @user)
+          i.uk-visible-small.fa.fa-pencil
+          span.uk-hidden-small
+            | 未公開の記事
+    li class=('uk-active' if @mode == :stock_articles)
+      a href=stocks_user_path(name: @user)
+        i.uk-visible-small.fa.fa-bookmark
+        span.uk-hidden-small
+          | ストックした記事
+    li class=('uk-active' if @mode == :comments)
+      a href=comments_user_path(name: @user)
+        i.uk-visible-small.fa.fa-comment-o
+        span.uk-hidden-small
+          | コメント
+  .uk-panel.uk-panel-box
+    - if @articles
+      = render('/articles/list', articles: @articles)
+    - if @comments
+      = render('/comments/list', comments: @comments.map(&:decorate), mode: :view)
+
+- content_for(:title) do
+  = @user.name

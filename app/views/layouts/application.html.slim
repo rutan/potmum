@@ -1,0 +1,68 @@
+doctype html
+html
+  head
+    = render('/commons/meta')
+  body
+    nav.global-header.uk-navbar
+      div class=(content_for?(:full_mode) ? 'uk-width-1-1' : 'uk-container uk-container-center')
+        a.uk-navbar-brand href='/'
+          img src=asset_path('potmum-logo.png') width=129 height=24 alt='Potmum'
+        .uk-navbar-content
+          form.uk-form.uk-margin-remove.uk-display-inline-block action=search_path method='get'
+            input type='search' name='q' value=@search_word placeholder='キーワードを入力'
+        .uk-navbar-flip
+          ul.uk-navbar-nav
+            - if current_user
+              li
+                a href=new_article_path(name: current_user.name)
+                  i.fa.fa-plus
+                  | &nbsp;新規作成
+              li.uk-parent data-uk-dropdown=true
+                a href='javascript: false'
+                  img src=current_user.decorate.avatar_url width=24 height=24
+                .uk-dropdown.uk-dropdown-navbar
+                  ul.uk-nav.uk-nav-navbar
+                    li
+                      a href=user_path(name: current_user.name)
+                        | マイページ
+                    li
+                      a href=setting_path
+                        | 設定
+                    li
+                      a href=session_path data-method='delete'
+                        | ログアウト
+            - else
+              li.uk-parent data-uk-dropdown=true
+                a href='javascript: false'
+                  | ログイン
+                .uk-dropdown.uk-dropdown-navbar
+                  ul.uk-nav.uk-nav-navbar
+                    - GlobalSetting.auth_methods.each do |method|
+                      li
+                        a href="/auth/#{method[:path]}"
+                          = "#{method[:name]} でログイン"
+
+    = yield
+
+    - unless content_for?(:full_mode)
+      .global-footer.uk-margin-large-top.uk-margin-large-bottom
+        .uk-text-center.uk-text-muted
+          | - Potmum -
+
+      - if global_alert
+        .global-alert = global_alert
+
+    .global-notify
+      .uk-container.uk-container-center
+        - flash.each do |key, value|
+          div class="uk-alert uk-alert-#{key}" data-uk-alert=true
+            a.uk-alert-close.uk-close
+              i.fa.fa-close
+            = value
+        - flash.clear
+
+    = javascript_include_tag 'application'
+    javascript:
+      $(".uk-alert").uk('alert');
+    - if content_for?(:local_js)
+      = yield(:local_js)

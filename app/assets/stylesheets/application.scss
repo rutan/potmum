@@ -1,0 +1,632 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require uikit.ruikit
+ *= require_self
+ */
+
+@import 'compass';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+@import 'modules/_variables';
+@import 'modules/_ruikit_override';
+
+html, body {
+  height: 100%;
+}
+
+.global-header {
+  background: $base-color-dark; // 700
+  position: relative;
+  z-index: 64;
+
+  .uk-navbar-brand {
+    padding: 0 15px 0 0;
+
+    &:hover {
+      img {
+        opacity: .5;
+      }
+    }
+  }
+
+  .uk-navbar-content {
+    @media screen and (max-width: 767px) {
+      padding: 0 15px 0 0;
+    }
+  }
+
+  .uk-navbar-nav {
+    .uk-open a,
+    a:focus,
+    a:hover {
+      background: $base-color-mid-dark; // 500
+    }
+  }
+
+  .uk-dropdown-navbar {
+    background: $base-color-mid-dark; // 500
+    a {
+      color: #fff;
+      &:focus,
+      &:hover {
+        background: $base-color-light; // 300
+      }
+    }
+  }
+}
+
+.global-alert {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background: rgba(255, 32, 32, .66);
+  color: #fff;
+  text-align: center;
+}
+
+.global-notify {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  width: 100%;
+  z-index: 128;
+}
+
+.content-header {
+  background: $base-color-mid-light; // 400
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 20px 0;
+
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.4;
+    color: #fff;
+    font-weight: normal;
+  }
+}
+
+.wrap {
+  word-wrap: break-word;
+}
+
+.markdown {
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+
+  h1, h2, h3, h4, h5, h6 {
+    position: relative;
+    a {
+      display: none;
+      position: absolute;
+      left: -1.1em;
+      padding-right: 0.4em;
+    }
+
+    &:hover {
+      a {
+        display: block;
+      }
+    }
+  }
+
+  h6 {
+    font-size: 14px;
+    color: #999;
+  }
+
+  table {
+    thead {
+      tr {
+        background: #fff;
+      }
+    }
+    tr {
+      background: #eee;
+      &:nth-child(2n) {
+        background: #fff;
+      }
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+  }
+}
+
+.article-viewer {
+  .article-header {
+    .article-title {
+    }
+
+    .article-author {
+      img {
+        width: 24px;
+        height: 24px;
+        margin-right: 4px;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .article-tags {
+      list-style: none;
+      padding: 0;
+
+      li {
+        position: relative;
+        display: inline-block;
+        flaot: left;
+        height: 20px;
+        line-height: 20px;
+        margin-right: 5px;
+        padding-left: 10px;
+
+        &:before {
+          position: absolute;
+          left: -8px;
+          top: 0;
+          display: block;
+          content: '';
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          border: 10px solid transparent;
+          border-right-width: 8px;
+          border-right-color: #fff;
+        }
+
+        a {
+          display: inline-block;
+          background: #fff;
+          padding: 0 6px;
+
+          &.tag-count {
+            background: #eee;
+          }
+        }
+      }
+    }
+
+    .article-score {
+      font-size: 24px;
+      overflow: hidden;
+      list-style: none;
+      padding: 0;
+
+      li {
+        float: left;
+        width: 33%;
+        list-style: none;
+        margin: 0;
+        padding: 0 5px;
+        border-left: 1px solid rgba(255, 255, 255, .5);
+        text-align: center;
+        @include box-sizing(border-box);
+        &:first-child {
+          border-left: 0;
+        }
+      }
+
+      .article-score-name {
+        font-size: 12px;
+      }
+    }
+  }
+
+  .article-body {
+    background: #fff;
+    padding: 15px;
+  }
+
+  .article-sidebar {
+    .article-author {
+      img {
+        float: left;
+        display: block;
+        width: 48px;
+        height: 48px;
+      }
+      .article-author-name,
+      .article-author-text {
+        margin-left: 56px;
+      }
+      .article-author-name {
+        font-size: 18px;
+        line-height: 26px;
+      }
+      .article-author-text {
+        font-size: 12px;
+        line-height: 16px;
+        color: #999;
+      }
+    }
+  }
+}
+
+.article-editor {
+  position: relative;
+  top: -40px;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  padding-top: 44px;
+  @include box-sizing(border-box);
+
+  .editor-header {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    width: 100%;
+    padding: 4px;
+    @include box-sizing(border-box);
+
+    .editor-title {
+      padding: 4px;
+      input {
+        width: 100%;
+        height: 48px;
+        font-size: 24px;
+        line-height: 48px;
+      }
+    }
+
+    .editor-tags {
+      padding: 4px;
+
+      .tag-form {
+        position: relative;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #444;
+        height: 26px;
+        padding: 0 6px;
+
+        .placeholder {
+          position: absolute;
+          left: 6px;
+          top: 1px;
+          line-height: 24px;
+          color: #999;
+        }
+
+        .tag-item {
+          display: inline-block;
+          border: 1px solid #ccc;
+          margin: 3px 5px 3px 0;
+          height: 18px;
+          line-height: 16px;
+          padding: 0 5px;
+          border-radius: 2px;
+          background-color: #eee;
+
+          .tag-item-content {
+            display: inline-block;
+          }
+          .tag-item-action {
+            display: inline-block;
+          }
+        }
+
+        input {
+          width: 100px;
+          max-width: 100%;
+          height: 24px;
+          font-size: 14px;
+          line-height: 24px;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          &:focus {
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .editor-main {
+    height: 100%;
+    padding: (92px + 4px) 4px (38px + 4px);
+    @include box-sizing(border-box);
+    overflow: hidden;
+
+    .editor-pane {
+      position: relative;
+      float: left;
+      width: 50%;
+      height: 100%;
+      border: 1px solid #ccc;
+      @include box-sizing(border-box);
+
+      .editor-pane-header {
+        position: absolute;
+        width: 100%;
+        height: 38px;
+        padding: 5px 10px;
+        font-size: 14px;
+        line-height: 28px;
+        background: #f4f4f4;
+        @include box-sizing(border-box);
+
+        .editor-pane-title {
+          color: #999;
+        }
+
+        .editor-pane-actions {
+          position: absolute;
+          right: 8px;
+          top: 4px;
+
+          button {
+            margin-left: 5px;
+          }
+        }
+      }
+
+      .editor-pane-content {
+        height: 100%;
+        padding-top: 38px;
+        @include box-sizing(border-box);
+
+        textarea {
+          display: block;
+          width: 100%;
+          height: 100%;
+          border: 0;
+          font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+          font-size: 16px;
+          line-height: 1.3;
+        }
+      }
+    }
+
+    .editor-preview {
+      border-left: 0;
+
+      .editor-preview-field {
+        background: #fff;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        @include box-sizing(border-box);
+        overflow: auto;
+      }
+    }
+  }
+
+  .editor-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 38px;
+    padding: 0 8px;
+    @include box-sizing(border-box);
+
+    button {
+      margin-left: 5px;
+    }
+  }
+}
+
+.user-profile {
+  img {
+    float: left;
+    display: block;
+    width: 80px;
+    height: 80px;
+  }
+  .user-profile-name {
+    margin-left: 95px;
+  }
+  .user-profile-contribute {
+    margin-left: 95px;
+    font-size: 14px;
+    .user-profile-contribute-count {
+      display: inline-block;
+      margin-right: 5px;
+      font-size: 20px;
+    }
+  }
+}
+
+.article-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    margin: 0;
+    padding: 15px 0;
+    border-top: 1px solid #ccc;
+
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+
+    .article-avatar {
+      display: block;
+      float: left;
+
+      img {
+        display: block;
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    .article-author,
+    .article-title,
+    .article-tags {
+      margin-left: 66px;
+    }
+    .article-author {
+      font-size: 14px;
+      line-height: 20px;
+      color: #999;
+    }
+    .article-title {
+      font-size: 20px;
+      line-height: 32px;
+    }
+    .article-tags {
+      margin-top: 5px;
+      padding: 0;
+      list-style: none;
+      overflow: hidden;
+      li {
+        position: relative;
+        left: 8px;
+        float: left;
+        display: inline-block;
+        font-size: 12px;
+        line-height: 16px;
+        height: 16px;
+        padding: 0 5px;
+        background: #eee;
+        margin: 2px 15px 2px 0;
+
+        &:before {
+          position: absolute;
+          left: -16px;
+          top: 0;
+          display: block;
+          content: '';
+          width: 0;
+          height: 0;
+          overflow: hidden;
+          border: 8px solid transparent;
+          border-right-width: 8px;
+          border-right-color: #eee;
+        }
+      }
+    }
+  }
+}
+
+.tag-cloud {
+  text-align: center;
+
+  .tag-cloud-word {
+    display: inline-block;
+    margin: 0 10px;
+
+    &.tag-cloud-word-large {
+      font-size: 200%;
+    }
+    &.tag-cloud-word-medium {
+      font-size: 150%;
+    }
+    &.tag-cloud-word-small {
+      font-size: 100%;
+    }
+  }
+}
+
+.comment-item {
+  margin-top: 20px;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .comment-header {
+    position: relative;
+    overflow: hidden;
+
+    .comment-avatar {
+      float: left;
+
+      img {
+        display: block;
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .comment-article,
+    .comment-author,
+    .comment-contribute {
+      display: block;
+      margin-left: 44px;
+    }
+
+    .comment-author {
+      font-size: 15px;
+    }
+
+    .comment-contribute {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .comment-date {
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #999;
+      font-size: 12px;
+
+      @media screen and (max-width: 767px) {
+        position: relative;
+        margin-left: 44px;
+        line-height: 16px;
+      }
+    }
+
+    &.small {
+      .comment-avatar {
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+      .comment-article,
+      .comment-author,
+      .comment-contribute {
+        margin-left: 32px;
+        line-height: 24px;
+      }
+
+      .comment-date {
+        @media screen and (max-width: 767px) {
+          margin-left: 32px;
+        }
+      }
+    }
+  }
+
+  .comment-body {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+  }
+}

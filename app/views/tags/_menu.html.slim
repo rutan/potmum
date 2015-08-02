@@ -1,0 +1,13 @@
+h4
+  | タグメニュー
+ul.uk-list.uk-list-line.tag-menu
+  - Tag.menu.each do |tag|
+    li
+      a href=tag_path(tag)
+        i.fa.fa-tag
+        | &nbsp;
+        = tag.name
+  li.uk-text-right
+    a href=tags_path
+      i.fa.fa-list
+      | &nbsp;全てのタグを見る

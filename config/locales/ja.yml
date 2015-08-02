@@ -1,0 +1,18 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザ名
+        email: メールアドレス
+      tag:
+        name: タグ名
+        content: タグ名
+    errors:
+      messages:
+        invalid: が正しく入力されていません。
+      models:
+        user:
+          attributes:
+            name:
+              invalid: に使用できない文字が含まれています。
+              taken: が既に使用されています。

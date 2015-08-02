@@ -1,0 +1,9 @@
+.uk-container.uk-container-center.uk-margin-top
+  .uk-panel.uk-panel-box
+    .tag-cloud
+      - @tags.each_with_index do |tag, i|
+        a.tag-cloud-word href=tag_path(tag) style="font-size: #{16 + ((@tags.size - i).to_f / @tags.size) * 30}px;"
+          = tag.name
+
+- content_for(:title) do
+  | タグ一覧

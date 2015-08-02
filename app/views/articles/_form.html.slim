@@ -1,0 +1,49 @@
+.js-article-editor.article-editor.uk-form data-id=(@article.new_record? ? nil : @article.id) data-tags=@article.tags_text
+  .editor-header
+    .editor-title
+      input type='text' placeholder='タイトル' value=@article.title v-model='title'
+    .editor-tags
+      .tag-form v-on='click: onClickTagForm'
+        .placeholder v-show='tags.length == 0 && !tagFocus'
+          | スペース区切りで5つまで入力できます（例: Ruby）
+        .tag-item v-repeat='tags'
+          .tag-item-content
+            | {{$value}}
+          a.tag-item-action href='#' title='削除' v-on='click: onRemoveTag($event, $value)'
+            i.fa.fa-close
+        input.js-tag-field type='text' v-on='keydown:onInputTag, keyup:onInputTag, keydown:onRemoveLastTag | key 8, blur:onBlurTag'
+
+  .editor-main
+    .editor-pane.editor-markdown
+      .editor-pane-header
+        .editor-pane-title
+          | 本文
+        .editor-pane-actions
+          button.uk-button.uk-button-small.uk-button-success.editor-markdown-upload disabled=true
+            i.fa.fa-file-image-o title='画像(未対応)'
+          button.uk-button.uk-button-small.uk-button-success.editor-markdown-upload disabled=true
+            i.fa.fa-smile-o title='絵文字パレット(未対応)'
+      .editor-pane-content
+        textarea wrap='off' placeholder='Markdownが使用できます' v-model='bodyField'
+          = @article_d.body
+    .editor-pane.editor-preview
+      .editor-pane-header
+        .editor-pane-title
+          | プレビュー
+      .editor-pane-content
+        .editor-preview-field.markdown
+          | {{{preview_html}}}
+  .editor-footer.uk-text-right
+    - if global_alert
+      span.uk-text-danger
+        = global_alert
+    - unless @article.published_at
+      button.uk-button v-on='click: onClickPrivateSave'
+        | 下書き保存する
+    button.uk-button.uk-button-primary v-on='click: onClickPublish'
+      | 公開保存する
+
+- content_for(:full_mode) { 'on' }
+- content_for(:local_js) do
+  javascript:
+    var editor = Potmum.createArtcleEditor('.js-article-editor');

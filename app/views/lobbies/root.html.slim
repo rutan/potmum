@@ -1,0 +1,21 @@
+.uk-container.uk-container-center.uk-margin-top
+  .uk-grid
+    .uk-width-medium-7-10.uk-margin-bottom
+      ul.uk-tab
+        li class=('uk-active' if @mode == :newest)
+          a href=newest_articles_path
+            | 最近の記事
+        li class=('uk-active' if @mode == :popular)
+          a href=popular_articles_path
+            | 人気の記事
+        li class=('uk-active' if @mode == :comments)
+          a href=newest_comments_path
+            | 最近のコメント
+      .uk-panel.uk-panel-box
+        - if @articles
+          = render('/articles/list', articles: @articles)
+        - if @comments
+          = render('/comments/list', comments: @comments, mode: :view)
+
+    .uk-width-medium-3-10.uk-margin-bottom
+      = render('/tags/menu')

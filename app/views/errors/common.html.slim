@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title
+      | #{@message} - Potmum
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  body
+    nav.global-header.uk-navbar
+      .uk-container.uk-container-center
+        a.uk-navbar-brand href='/'
+          img src=asset_path('potmum-logo.png') width=116 height=24 alt='Potmum'
+
+    .uk-container.uk-container-center.uk-margin-top.uk-width-medium-2-3
+      .uk-panel
+        h1.uk-text-center.uk-margin-large-top.uk-margin-large-bottom.uk-text-muted
+          = @message
+
+    .global-footer.uk-margin-large-top.uk-margin-large-bottom
+      .uk-text-center.uk-text-muted
+        | - Potmum -
+
+    - if global_alert
+      .global-alert = global_alert
+
+    = javascript_include_tag 'application'
