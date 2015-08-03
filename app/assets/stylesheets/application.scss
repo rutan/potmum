@@ -35,6 +35,12 @@ html, body {
   text-shadow: none;
 }
 
+q, blockquote {
+  font-style: normal;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .global-header {
   background: $base-color-dark; // 700
   position: relative;
@@ -119,6 +125,14 @@ html, body {
   font-size: 16px;
   line-height: 1.6;
   word-wrap: break-word;
+
+  &> {
+    p, hr, ul, ol, dl, blockquote, pre, address, fieldset, figure {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 
   h1, h2, h3, h4, h5, h6 {
     position: relative;
@@ -637,7 +651,8 @@ html, body {
 
   .comment-body {
     margin-top: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
   }
 }
