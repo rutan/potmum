@@ -21,7 +21,9 @@ class Article < ActiveRecord::Base
   has_many :link_article_tags
   has_many :tags, through: :link_article_tags
   has_many :stocks
-  has_many :comments
+  has_many :comments, -> {
+    order(created_at: :asc)
+  }
 
   scope :published, -> {
     where.not(published_at: nil).order(published_at: :desc)
