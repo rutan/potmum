@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tags, only: [:index, :show, :edit, :update], id: %r{[^/]+?}, format: /json|html/ do
+  resources :tags, only: [:index, :show, :edit, :update], id: %r{.+?}, format: /json|html/ do
     member do
       get 'popular'
     end
