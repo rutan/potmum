@@ -1,5 +1,7 @@
 # Potmum
 
+[![Build Status](https://travis-ci.org/rutan/potmum.svg)](https://travis-ci.org/rutan/potmum)
+
 ![Potmum](./logo.png)
 
 Potmum is cloud note-app.

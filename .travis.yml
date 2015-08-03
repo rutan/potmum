@@ -1,0 +1,10 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.2.2
+env:
+  - RAILS_ENV=test
+before_install:
+  - gem install bundler
+script: 'bundle exec rspec spec'
+
