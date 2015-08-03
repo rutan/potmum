@@ -66,6 +66,8 @@ module MarkdownRenderable
       processor.filters << HTML::Pipeline::NicoLinkFilter
       processor.filters << RedirectURLFilter if GlobalSetting.use_redirector?
     end
-    @processor.call(text)
+    @processor.call(text, {
+                            base_url: '/users',
+                        })
   end
 end

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resource :stock, only: [:show, :update]
     end
   end
+  get '/users/:name' => redirect('@%{name}')
 
   resources :comments, only: [:destroy] do
     collection do
