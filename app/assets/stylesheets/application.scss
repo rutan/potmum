@@ -24,6 +24,17 @@ html, body {
   height: 100%;
 }
 
+::-moz-selection {
+  background: lighten($base-color-light, 15%);
+  color: inherit;
+  text-shadow: none;
+}
+::selection {
+  background: lighten($base-color-light, 15%);
+  color: inherit;
+  text-shadow: none;
+}
+
 .global-header {
   background: $base-color-dark; // 700
   position: relative;
