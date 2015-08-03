@@ -61,7 +61,7 @@ class UsersController < ApplicationController
 
   # PUT /setting
   def update
-    @user = current_user.dup
+    @user = current_user.clone
     if @user.update(user_params)
       flash[:success] = '更新しました'
     end
