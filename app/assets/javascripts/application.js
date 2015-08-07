@@ -16,7 +16,8 @@ this.Potmum = (function (Potmum) {
                 body: '',
                 preview_html: '',
                 publish_flag: 1,
-                tagFocus: false
+                tagFocus: false,
+                sendingFlag: false
             },
             computed: {
                 bodyField: {
@@ -119,6 +120,7 @@ this.Potmum = (function (Potmum) {
 
                     // send
                     var self = this;
+                    self.$data.sendingFlag = true;
                     $.ajax({
                         url: this.$data.id ? '../' + this.$data.id + '.json' : '../items.json',
                         type: this.$data.id ? 'put' : 'post',
@@ -138,6 +140,7 @@ this.Potmum = (function (Potmum) {
                         },
                         error: function (e) {
                             console.error(e);
+                            self.$data.sendingFlag = false;
                             alert('エラーしたよ');
                         }
                     })

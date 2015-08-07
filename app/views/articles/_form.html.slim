@@ -38,9 +38,9 @@
       span.uk-text-danger
         = global_alert
     - unless @article.published_at
-      button.uk-button v-on='click: onClickPrivateSave'
+      button.uk-button v-on='click: onClickPrivateSave' disabled='{{sendingFlag}}'
         | 下書き保存する
-    button.uk-button.uk-button-primary v-on='click: onClickPublish'
+    button.uk-button.uk-button-primary v-on='click: onClickPublish' disabled='{{sendingFlag}}'
       | 公開保存する
 
 - content_for(:full_mode) { 'on' }
