@@ -35,8 +35,13 @@ class LobbiesController < ApplicationController
   # 検索結果
   def search
     @search_word = params[:q].to_s.strip[0..64]
-    @q = Article.published.ransack(title_or_newest_revision_body_or_tags_content_cont: @search_word)
-    @articles = @q.result(distinct: true).includes(:user, :newest_revision).page(@page)
+    @q = Article.published.ransack({
+                                       groupings: @search_word.split(/\p{blank}/).map { |word|
+                                         {title_or_newest_revision_body_or_tags_content_cont: word}
+                                       },
+                                       m: 'and'
+                                   })
+    @articles = @q.result(distinct: true).includes(:user, :newest_revision, :tags).page(@page)
   end
 
   # GET /redirect?url=:url
