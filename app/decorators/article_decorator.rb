@@ -23,6 +23,10 @@ class ArticleDecorator < Draper::Decorator
     newest_revision.markdown_html
   end
 
+  def summary(size = 64)
+    helpers.truncate(helpers.strip_tags(markdown_html), length: size)
+  end
+
   def url
     "#{GlobalSetting.root_url}#{helpers.article_path(id: object.id, name: object.user.name)}"
   end

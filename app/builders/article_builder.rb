@@ -1,9 +1,11 @@
 class ArticleBuilder
   def initialize(article)
     @article = article
+    @published = article.published?
     @revision = Revision.new
     @error = nil
   end
+
   attr_reader :article
   attr_reader :error
 
@@ -25,9 +27,25 @@ class ArticleBuilder
       @revision.article_id = @article.id
       @revision.save
     end
+
+    if !@published && @article.published?
+      notify(@article)
+    end
+
     true
   rescue => e
     @error = 'だめっぽ'
     false
+  end
+
+  def notify(article)
+    if GlobalSetting.notify_slack?
+      client = Notifiers::Slack.new(GlobalSetting.notify_slack_token,
+                                    channel: GlobalSetting.notify_slack_channel,
+                                    color: GlobalSetting.theme_colors.last,
+                                    icon: GlobalSetting.notify_slack_icon,
+      )
+      client.post('', article)
+    end
   end
 end

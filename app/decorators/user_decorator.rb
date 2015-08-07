@@ -8,4 +8,8 @@ class UserDecorator < Draper::Decorator
   def avatar_url
     "#{GlobalSetting.gravatar_url}/#{Digest::MD5.hexdigest(object.email.to_s)}.jpg"
   end
+
+  def url
+    "#{GlobalSetting.root_url}#{helpers.user_path(name: object.name)}"
+  end
 end

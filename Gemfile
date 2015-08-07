@@ -20,6 +20,8 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-slack'
 
+gem 'slack-api'
+
 gem 'kaminari'
 gem 'ransack'
 

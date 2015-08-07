@@ -43,6 +43,22 @@ module GlobalSetting
     end
   end
 
+  def self.notify_slack?
+    notify_slack_channel.present?
+  end
+
+  def self.notify_slack_channel
+    ENV['NOTIFY_SLACK_CHANNEL']
+  end
+
+  def self.notify_slack_icon
+    ENV['NOTIFY_SLACK_ICON']
+  end
+
+  def self.notify_slack_token
+    ENV['NOTIFY_SLACK_TOKEN']
+  end
+
   def self.theme_name
     COLOR_THEME_LIST.has_key?(ENV['COLOR_THEME']) ? ENV['COLOR_THEME'] : 'blue'
   end
