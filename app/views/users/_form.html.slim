@@ -24,6 +24,7 @@
         label.uk-form-label
           | Gravatar用メールアドレス
         .uk-form-controls
+          img.avatar-image.uk-margin-small-bottom src=@user.decorate.avatar_url
           input.uk-width-1-1 type='email' name='user[email]' value=@user.email
           .uk-text-muted.uk-margin-small-top
             | アイコン画像に使用する&nbsp;

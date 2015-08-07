@@ -3,7 +3,7 @@
     - articles.each do |article|
       li
         a.article-avatar href=user_path(name: article.user)
-          img src=article.user.decorate.avatar_url
+          img.avatar-image src=article.user.decorate.avatar_url
         .article-author
           - if article.published?
             a href=user_path(name: article.user)

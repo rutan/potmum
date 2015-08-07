@@ -19,6 +19,7 @@
 @import 'font-awesome';
 @import 'modules/_variables';
 @import 'modules/_ruikit_override';
+@import 'modules/_pygments';
 
 html, body {
   height: 100%;
@@ -45,6 +46,25 @@ q, blockquote {
   background: $base-color-dark; // 700
   position: relative;
   z-index: 64;
+
+  .uk-form {
+    input {
+      padding-left: 15px;
+      padding-right: 15px;
+      border: 0;
+      border-radius: 15px;
+      background: $base-color-mid-dark;
+      color: #fff;
+
+      @include input-placeholder {
+        color: $base-color-light;
+      }
+    }
+  }
+
+  .avatar-image {
+    display: inline-block;
+  }
 
   .uk-navbar-brand {
     padding: 0 15px 0 0;
@@ -80,6 +100,11 @@ q, blockquote {
       }
     }
   }
+}
+
+.avatar-image {
+  display: block;
+  border-radius: 100%;
 }
 
 .global-alert {
@@ -172,6 +197,16 @@ q, blockquote {
       padding: 8px;
     }
   }
+
+  em {
+    color: #444;
+    font-style: normal;
+    font-weight: bold;
+  }
+
+  strong {
+    color: #c44;
+  }
 }
 
 .article-viewer {
@@ -181,6 +216,7 @@ q, blockquote {
 
     .article-author {
       img {
+        display: inline-block;
         width: 24px;
         height: 24px;
         margin-right: 4px;
@@ -204,7 +240,7 @@ q, blockquote {
         flaot: left;
         height: 20px;
         line-height: 20px;
-        margin-right: 5px;
+        margin: 2px 5px 2px 0;
         padding-left: 10px;
 
         &:before {
@@ -556,6 +592,12 @@ q, blockquote {
   }
 }
 
+.article-index {
+  ul {
+    padding-left: 15px;
+  }
+}
+
 .tag-cloud {
   text-align: center;
 
@@ -603,6 +645,14 @@ q, blockquote {
       margin-left: 44px;
     }
 
+    .comment-article {
+      margin-right: 7em;
+
+      @media screen and (max-width: 767px) {
+        margin-right: 0;
+      }
+    }
+
     .comment-author {
       font-size: 15px;
     }
@@ -642,17 +692,24 @@ q, blockquote {
       }
 
       .comment-date {
+        line-height: 24px;
+
         @media screen and (max-width: 767px) {
+          line-height: inherit;
           margin-left: 32px;
         }
+      }
+
+      .comment-body {
+        font-size: 14px;
       }
     }
   }
 
   .comment-body {
     margin-top: 10px;
-    padding: 10px 12px;
+    padding: 15px;
     border: 1px solid #ddd;
-    border-radius: 2px;
+    border-radius: 3px;
   }
 }

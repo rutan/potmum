@@ -18,7 +18,7 @@
                 | 登録タグはありません
           .article-author
             a href=user_path(name: @article.user)
-              img src=@article_d.user.avatar_url
+              img.avatar-image src=@article_d.user.avatar_url
               = @article_d.user.name
             | &nbsp;が #{l((@article_d.published_at || @article.created_at).to_date)} に投稿
           br.uk-visible-small
@@ -94,7 +94,7 @@
           .article-sidebar.uk-margin-bottom
             .article-author.uk-margin-bottom
               a href=user_path(name: @article.user)
-                img src=@article_d.user.avatar_url
+                img.avatar-image src=@article_d.user.avatar_url
                 .article-author-name
                   = @article_d.user.name
                 .article-author-text
