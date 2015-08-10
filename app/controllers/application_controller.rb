@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :check_session
   before_action :current_user
 
+  before_action :require_login! if GlobalSetting.private_mode?
+
   private
 
   def check_session
@@ -30,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login!
-    raise Errors::Forbidden unless current_user
+    raise Errors::Unauthorized unless current_user
   end
 
   def set_page
@@ -40,6 +42,7 @@ class ApplicationController < ActionController::Base
   rescue_from Exception, with: :render_500 unless Rails.env.development?
   rescue_from Errors::BadRequest, with: :render_400
   rescue_from Errors::Forbidden, with: :render_403
+  rescue_from Errors::Unauthorized, with: :render_401
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::RoutingError, with: :render_404 unless Rails.env.development?
   rescue_from Errors::NotFound, with: :render_404
@@ -48,13 +51,17 @@ class ApplicationController < ActionController::Base
     @status = status
     @message = message
     respond_to do |format|
-      format.html { render '/errors/common', layout: nil, status: @status }
+      format.html { render '/errors/common', status: @status }
       format.json { render_json({}, status: @status, message: @message) }
     end
   end
 
   def render_400
     render_error(400, 'Bad Request')
+  end
+
+  def render_401
+    render_error(401, 'ログインしてください')
   end
 
   def render_403

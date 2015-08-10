@@ -7,7 +7,7 @@ RSpec.describe CommentsController, type: :controller do
 
     context 'not login' do
       let(:body) { 'not login' }
-      it { expect(subject.status).to eq 403 }
+      it { expect(subject.status).to eq 401 }
     end
 
     context 'login' do

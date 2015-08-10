@@ -37,6 +37,7 @@ I have assumed the use in Heroku or dokku.
 |ENV['SLACK_TEAM_ID']|String||Slack Team ID<br>ex) T0123456|
 |ENV['SLACK_TEAM_NAME']|String||Slack Team Name|
 |ENV['GLOBAL_ALERT']|String||Footer message|
+|ENV['PRIVATE_MODE']|Boolean||Members only mode|
 
 ## Color Theme
 - red

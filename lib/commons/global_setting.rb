@@ -1,4 +1,8 @@
 module GlobalSetting
+  def self.private_mode?
+    ENV['PRIVATE_MODE'].present?
+  end
+
   def self.root_url
     ENV['ROOT_URL'] || ''
   end

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login!, only: [:callback]
+
   def callback
     auth = request.env['omniauth.auth']
     redirect_to '/' unless auth
