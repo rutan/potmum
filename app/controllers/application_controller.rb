@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :check_session
   before_action :current_user
 
-  before_action :require_login! if GlobalSetting.private_mode?
+  before_action :private_mode! if GlobalSetting.private_mode?
 
   private
 
@@ -34,6 +34,8 @@ class ApplicationController < ActionController::Base
   def require_login!
     raise Errors::Unauthorized unless current_user
   end
+
+  alias_method :private_mode!, :require_login!
 
   def set_page
     @page = [params[:page].to_i, 1].max

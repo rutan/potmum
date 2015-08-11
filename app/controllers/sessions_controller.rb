@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login!, only: [:callback]
+  skip_before_action :private_mode!, only: [:callback]
 
   def callback
     auth = request.env['omniauth.auth']
