@@ -12,7 +12,7 @@ class TagsController < ApplicationController
   # タグ検索結果（新着順）
   def show
     @mode = :newest
-    @articles = @tag.articles.published.includes(:user, :tags).page(@page)
+    @articles = @tag.articles.public_or_mine(current_user).includes(:user, :tags).page(@page)
   end
 
   # GET /tags/:content/popular

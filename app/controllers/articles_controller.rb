@@ -83,7 +83,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.permit(:title, :tags_text, :body, :publish_flag)
+    params.permit(:title, :tags_text, :body, :publish_type)
   end
 
   def check_owner!

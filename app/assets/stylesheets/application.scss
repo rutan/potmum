@@ -140,6 +140,15 @@ q, blockquote {
     color: #fff;
     font-weight: normal;
   }
+
+  .content-header-alert {
+    margin: 20px 0 -20px;
+    padding: 8px;
+    background: #444;
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+  }
 }
 
 .wrap {
@@ -487,7 +496,7 @@ q, blockquote {
     @include box-sizing(border-box);
 
     button {
-      margin-left: 5px;
+      width: 140px;
     }
   }
 }
@@ -711,5 +720,15 @@ q, blockquote {
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 3px;
+  }
+}
+
+.uk-button-group {
+  .uk-dropdown {
+    width: 100%;
+  }
+
+  .uk-dropdown-up {
+    margin-bottom: 0;
   }
 }

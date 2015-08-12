@@ -3118,19 +3118,19 @@ select.uk-form-width-mini {
  * Modifier: `uk-button-success`
  */
 .uk-button-success {
-  background-color: #8BC34A;
+  background-color: #7CB342;
   color: #ffffff;
 }
 /* Hover */
 .uk-button-success:hover,
 .uk-button-success:focus {
-  background-color: #AED581;
+  background-color: #9CCC65;
   color: #ffffff;
 }
 /* Active */
 .uk-button-success:active,
 .uk-button-success.uk-active {
-  background-color: #7CB342;
+  background-color: #8BC34A;
   color: #ffffff;
 }
 /*

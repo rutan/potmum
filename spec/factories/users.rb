@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id          :integer          not null, primary key
+#  name        :string(32)       not null
+#  email       :string
+#  stock_count :integer          default(0), not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 FactoryGirl.define do
   factory :user do
     name { Faker::Lorem.characters(8) }

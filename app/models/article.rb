@@ -12,6 +12,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  published_at       :datetime
+#  publish_type       :integer          default(0)
 #
 
 class Article < ActiveRecord::Base
@@ -25,16 +26,25 @@ class Article < ActiveRecord::Base
     order(created_at: :asc)
   }
 
-  scope :published, -> {
-    where.not(published_at: nil).order(published_at: :desc)
+  enum publish_type: {draft_item: 0, private_item: 1, public_item: 2}
+
+  scope :public_items, -> {
+    where(publish_type: 2).order(published_at: :desc)
+  }
+
+  scope :public_or_mine, -> (author) {
+    return public_items unless author
+    published_articles = Article.arel_table[:publish_type].eq(2)
+    mine_articles = Article.arel_table[:user_id].eq(author.id).and(Article.arel_table[:publish_type].not_eq(0))
+    where(published_articles.or(mine_articles)).order(published_at: :desc)
   }
 
   scope :drafts, -> {
-    where(published_at: nil).order(updated_at: :desc)
+    where(publish_type: 0).order(updated_at: :desc)
   }
 
   scope :popular, -> {
-    where.not(published_at: nil).order(stock_count: :desc, view_count: :desc)
+    where(publish_type: 2).order(stock_count: :desc, view_count: :desc)
   }
 
   validates :title,

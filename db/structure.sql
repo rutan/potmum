@@ -6,7 +6,7 @@ CREATE INDEX "index_users_on_stock_count" ON "users" ("stock_count");
 CREATE TABLE "authentications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "provider" varchar(32) NOT NULL, "uid" varchar(128) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE INDEX "index_authentications_on_user_id" ON "authentications" ("user_id");
 CREATE UNIQUE INDEX "index_authentications_on_provider_and_uid" ON "authentications" ("provider", "uid");
-CREATE TABLE "articles" ("id" VARCHAR(128) PRIMARY KEY NOT NULL, "user_id" integer, "title" varchar(128), "newest_revision_id" integer, "view_count" integer DEFAULT 0 NOT NULL, "stock_count" integer DEFAULT 0 NOT NULL, "comment_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "published_at" datetime);
+CREATE TABLE "articles" ("id" VARCHAR(128) PRIMARY KEY NOT NULL, "user_id" integer, "title" varchar(128), "newest_revision_id" integer, "view_count" integer DEFAULT 0 NOT NULL, "stock_count" integer DEFAULT 0 NOT NULL, "comment_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "published_at" datetime, "publish_type" integer DEFAULT 0);
 CREATE INDEX "index_articles_on_user_id" ON "articles" ("user_id");
 CREATE UNIQUE INDEX "index_articles_on_id" ON "articles" ("id");
 CREATE INDEX "index_articles_on_view_count" ON "articles" ("view_count");
@@ -29,6 +29,7 @@ CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "artic
 CREATE INDEX "index_comments_on_user_id" ON "comments" ("user_id");
 CREATE INDEX "index_comments_on_article_id" ON "comments" ("article_id");
 CREATE INDEX "index_comments_on_created_at" ON "comments" ("created_at");
+CREATE INDEX "index_articles_on_publish_type" ON "articles" ("publish_type");
 INSERT INTO schema_migrations (version) VALUES ('20150722154057');
 
 INSERT INTO schema_migrations (version) VALUES ('20150722154204');
@@ -44,4 +45,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150722154548');
 INSERT INTO schema_migrations (version) VALUES ('20150722154606');
 
 INSERT INTO schema_migrations (version) VALUES ('20150722154631');
+
+INSERT INTO schema_migrations (version) VALUES ('20150811163448');
 

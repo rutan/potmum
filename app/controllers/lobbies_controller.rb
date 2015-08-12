@@ -11,7 +11,7 @@ class LobbiesController < ApplicationController
   # 新着順
   def newest
     @mode = :newest
-    @articles = Article.published.includes(:user, :tags).page(@page)
+    @articles = Article.public_items.includes(:user, :tags).page(@page)
     render :root
   end
 
@@ -27,7 +27,7 @@ class LobbiesController < ApplicationController
   # 新着コメント一覧
   def comments
     @mode = :comments
-    @comments = Comment.recent.includes(:user, :article).page(@page)
+    @comments = Comment.recent(current_user).includes(:user, :article).page(@page)
     render :root
   end
 
@@ -35,7 +35,7 @@ class LobbiesController < ApplicationController
   # 検索結果
   def search
     @search_word = params[:q].to_s.strip[0..64]
-    @q = Article.published.ransack({
+    @q = Article.public_or_mine(current_user).ransack({
                                        groupings: @search_word.split(/\p{blank}/).map { |word|
                                          {title_or_newest_revision_body_or_tags_content_cont: word}
                                        },

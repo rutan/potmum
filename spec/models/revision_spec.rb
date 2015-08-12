@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: revisions
+#
+#  id         :integer          not null, primary key
+#  article_id :string(128)
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe Revision, type: :model do

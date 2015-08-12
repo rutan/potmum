@@ -19,7 +19,8 @@ class ArticleBuilder
       @revision.save!
 
       @article.newest_revision_id = @revision.id
-      @article.published_at ||= Time.zone.now if params.delete(:publish_flag).to_i > 0
+      @article.publish_type = params[:publish_type] if params[:publish_type]
+      @article.published_at ||= Time.zone.now unless @article.draft_item?
       @article.save!
 
       @article.tags_text = params.delete(:tags_text).to_s

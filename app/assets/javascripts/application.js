@@ -15,7 +15,7 @@ this.Potmum = (function (Potmum) {
                 tags: [],
                 body: '',
                 preview_html: '',
-                publish_flag: 1,
+                publish_type: 'public_item',
                 tagFocus: false,
                 sendingFlag: false
             },
@@ -39,6 +39,7 @@ this.Potmum = (function (Potmum) {
                 this.$data.tags = $(this.$el).data('tags').split(/\s/).filter(function (n) {
                     return ('' + n).length > 0;
                 });
+                this.$data.publish_type = $(this.$el).data('publish_type');
             },
             methods: {
                 onRemoveTag: function (e, content) {
@@ -82,15 +83,9 @@ this.Potmum = (function (Potmum) {
                     e.preventDefault();
                     $(this.$el).find('.js-tag-field').focus();
                 },
-                onClickPrivateSave: function (e) {
+                onClickSetSaveMode: function (e, mode) {
                     e.preventDefault();
-                    this.$data.publish_flag = 0;
-                    this.submit();
-                },
-                onClickPublish: function (e) {
-                    e.preventDefault();
-                    this.$data.publish_flag = 1;
-                    this.submit();
+                    this.$data.publish_type = mode;
                 },
                 preview: function () {
                     this.editStart();
@@ -107,7 +102,9 @@ this.Potmum = (function (Potmum) {
                         }
                     });
                 },
-                submit: function () {
+                onClickSubmit: function (e) {
+                    e.preventDefault();
+
                     // validation
                     if (this.$data.title.length < 1 || this.$data.title.length > 64) {
                         alert('タイトルを1〜64文字で入力してください。');
@@ -128,11 +125,11 @@ this.Potmum = (function (Potmum) {
                             title: this.$data.title,
                             tags_text: this.$data.tags.join(' '),
                             body: this.$data.body,
-                            publish_flag: this.$data.publish_flag
+                            publish_type: this.$data.publish_type
                         },
                         success: function (resp) {
                             $(window).off('beforeunload');
-                            if (self.$data.publish_flag > 0) {
+                            if (self.$data.publish_type != 'draft_item') {
                                 location.href = resp.data.url;
                             } else {
                                 location.href = (self.$data.id ? '../' : '') + '../drafts';
@@ -143,7 +140,7 @@ this.Potmum = (function (Potmum) {
                             self.$data.sendingFlag = false;
                             alert('エラーしたよ');
                         }
-                    })
+                    });
                 },
                 editStart: function () {
                     if (!this.leftAlertFlag) {

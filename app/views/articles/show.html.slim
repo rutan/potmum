@@ -4,6 +4,9 @@
       .uk-grid
         .uk-width-medium-7-10
           h1.article-title
+            - if @article.private_item?
+              i.fa.fa-lock
+              | &nbsp;
             = @article_d.title
           ul.article-tags
             - if @article.tags.count > 0
@@ -11,8 +14,9 @@
                 li
                   a.tag-content href=tag_path(tag)
                     = tag.name
-                  a.tag-count href=tag_path(tag)
-                    = tag.article_count
+                  - if @article.public_item?
+                    a.tag-count href=tag_path(tag)
+                      = tag.article_count
             - else
               p style='opacity: .5;'
                 | 登録タグはありません
@@ -52,6 +56,11 @@
                 button.uk-button.uk-button-large.uk-width-2-3 v-show='stocked' v-on='click: onClick' style='display: none;'
                   i.fa.fa-check
                   | &nbsp;ストック済み
+    - if @article.private_item?
+      .content-header-alert
+        .uk-container.uk-container-center
+          i.fa.fa-lock
+          | &nbsp;この記事はURLを知る人だけがアクセスできる限定公開記事です
 
   .article-main
     .uk-container.uk-container-center

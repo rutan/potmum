@@ -9,10 +9,13 @@ ul.uk-list.comment-list
           img.avatar-image src=comment.user.avatar_url
         - if mode == :view
           .comment-article
-            a href=user_path(name: comment.article.user.name)
-              = comment.article.user.name
-            | &nbsp;の投稿記事&nbsp;
+            a href=user_path(name: comment.user.name)
+              = comment.user.name
+            | &nbsp;が&nbsp;
             a href=article_path(comment.article, name: comment.article.user.name)
+              - if comment.article.private_item?
+                i.fa.fa-lock
+                | &nbsp;
               = comment.article.title
             | &nbsp;にコメント
         - else

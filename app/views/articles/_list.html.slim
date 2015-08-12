@@ -9,11 +9,16 @@
             a href=user_path(name: article.user)
               = article.user.name
             | &nbsp;が #{l(article.published_at.to_date)} に投稿
+            - if article.private_item?
+              | &nbsp;[限定公開]
           - else
             .uk-text-danger
               | [編集中]
         .article-title
           a href=article_path(article, name: article.user.name)
+            - if article.private_item?
+              i.fa.fa-lock
+              | &nbsp;
             = article.title
         ul.article-tags
           - article.tags.each do |tag|

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id            :integer          not null, primary key
+#  name          :string(64)       not null
+#  content       :string(64)       not null
+#  article_count :integer          default(0), not null
+#  is_menu       :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 FactoryGirl.define do
   factory :tag do
     content { Faker::Name.first_name }

@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   # GET /@user-name
   def show
     @mode = :show
-    @articles = @user.articles.published.includes(:tags).page(@page)
+    @articles = @user.articles.public_or_mine(current_user).includes(:tags).page(@page)
   end
 
   # GET /@user-name/deafts
@@ -43,14 +43,24 @@ class UsersController < ApplicationController
   # GET /@user-name/stocks
   def stock_articles
     @mode = :stock_articles
-    @articles = @user.stock_articles.includes(:user, :tags).page(@page)
+    @articles =
+        if current_user == @user
+          @user.stock_articles.includes(:user, :tags).page(@page)
+        else
+          @user.stock_articles.public_items.includes(:user, :tags).page(@page)
+        end
     render :show
   end
 
   # GET /@user-name/comments
   def comments
     @mode = :comments
-    @comments = @user.comments.includes(:user, :article).page(@page)
+    @comments =
+        if current_user == @user
+          @user.comments.includes(:article).page(@page)
+        else
+          @user.comments.recent(current_user).includes(:article).page(@page)
+        end
     render :show
   end
 
