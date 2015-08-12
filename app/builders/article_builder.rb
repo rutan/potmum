@@ -29,7 +29,7 @@ class ArticleBuilder
       @revision.save
     end
 
-    if !@published && @article.published?
+    if !@published && @article.public_item?
       notify(@article)
     end
 
