@@ -12,6 +12,15 @@ GIT
       pygments.rb
       sanitize
 
+GIT
+  remote: git://github.com/sorentwo/carrierwave-aws.git
+  revision: 64f8d1e4af92b25b6a2e1e4bd4e97e8586174913
+  ref: 64f8d1e4af92b25b6a2e1e4bd4e97e8586174913
+  specs:
+    carrierwave-aws (1.0.0.pre.rc.1)
+      aws-sdk (~> 2.0)
+      carrierwave (~> 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -60,6 +69,12 @@ GEM
     astrolabe (1.3.1)
       parser (~> 2.2)
     awesome_print (1.6.1)
+    aws-sdk (2.1.14)
+      aws-sdk-resources (= 2.1.14)
+    aws-sdk-core (2.1.14)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.1.14)
+      aws-sdk-core (= 2.1.14)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -82,6 +97,11 @@ GEM
       uniform_notifier (~> 1.9.0)
     byebug (5.0.0)
       columnize (= 0.9.0)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     chunky_png (1.3.4)
     ci_reporter (2.0.0)
       builder (>= 2.1.2)
@@ -130,6 +150,9 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
+    fakes3 (0.2.1)
+      builder
+      thor
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.10.0)
@@ -215,6 +238,8 @@ GEM
       spring
       spring-commands-rspec
       tapp
+    jmespath (1.0.2)
+      multi_json (~> 1.0)
     jquery-rails (4.0.4)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -238,6 +263,7 @@ GEM
     mem (0.1.5)
     method_source (0.8.2)
     mime-types (2.6.1)
+    mini_magick (4.2.10)
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
@@ -467,16 +493,20 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate
+  carrierwave
+  carrierwave-aws!
   compass-rails
   dotenv-rails
   draper
   faker
+  fakes3
   font-awesome-sass
   gemoji
   html-pipeline-nico_link
   ikazuchi
   jquery-rails
   kaminari
+  mini_magick
   nokogiri (= 1.6.5)
   omniauth
   omniauth-github

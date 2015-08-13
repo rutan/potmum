@@ -21,7 +21,9 @@ this.Potmum = (function (Potmum) {
             },
             computed: {
                 bodyField: {
-                    get: function () { return this.$data.body },
+                    get: function () {
+                        return this.$data.body
+                    },
                     set: function (text) {
                         this.$data.body = text;
                         if (this._previewID) clearTimeout(this._previewID);
@@ -97,7 +99,6 @@ this.Potmum = (function (Potmum) {
                             body: this.$data.body
                         },
                         success: function (resp) {
-                            console.log(resp);
                             self.$data.preview_html = resp.data.markdown_html;
                         }
                     });
@@ -142,10 +143,34 @@ this.Potmum = (function (Potmum) {
                         }
                     });
                 },
+                onChangePictureFile: function (e) {
+                    if (e.target.files.length == 0) return;
+                    var formData = new FormData();
+                    formData.append('file', e.target.files[0]);
+                    var self = this;
+                    $.ajax({
+                        url: '/attachment_files.json',
+                        method: 'post',
+                        dataType: 'json',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (resp) {
+                            var textarea = $(self.$el).find('.js-textarea')[0];
+                            var n = textarea.selectionEnd;
+                            var str = "\n![img](" + resp.data.url + ")\n";
+                            self.bodyField = self.bodyField.slice(0, n) + str + self.bodyField.slice(n, self.bodyField - n);
+                        },
+                        error: function (err) {
+                            console.error(err);
+                            alert('エラーしたよ');
+                        }
+                    });
+                },
                 editStart: function () {
                     if (!this.leftAlertFlag) {
                         this.leftAlertFlag = true;
-                        $(window).on('beforeunload', function() {
+                        $(window).on('beforeunload', function () {
                             return "このままページを移動すると編集内容が保存されません。";
                         });
                     }
@@ -184,7 +209,6 @@ this.Potmum = (function (Potmum) {
                             body: this.$data.body
                         },
                         success: function (resp) {
-                            console.log(resp);
                             self.$data.preview_html = resp.data.markdown_html;
                         },
                         error: function (e) {
@@ -202,7 +226,6 @@ this.Potmum = (function (Potmum) {
                             body: this.$data.body
                         },
                         success: function (resp) {
-                            console.log(resp);
                             location.href = resp.data.url;
                             location.reload();
                         },

@@ -38,6 +38,15 @@ I have assumed the use in Heroku or dokku.
 |ENV['SLACK_TEAM_NAME']|String||Slack Team Name|
 |ENV['GLOBAL_ALERT']|String||Footer message|
 |ENV['PRIVATE_MODE']|Boolean||Members only mode|
+|ENV['USE_ATTACHMENT_FILE']|Boolean||Use Attachment File<br>default: false|
+|ENV['ATTACHMENT_FILE_S3_BUCKET']|Boolean||Members only mode|
+|ENV['ATTACHMENT_FILE_S3_ACL']|Boolean||s3 ACL<br>default: public-read|
+|ENV['ATTACHMENT_FILE_S3_HOST']|Boolean||s3 asset host|
+|ENV['ATTACHMENT_FILE_S3_KEY']|Boolean||s3 access key|
+|ENV['ATTACHMENT_FILE_S3_SECRET']|Boolean||s3 token secret|
+|ENV['ATTACHMENT_FILE_S3_REGION']|Boolean||s3 region|
+|ENV['ATTACHMENT_FILE_S3_ENDPOINT']|Boolean||S3 endpoint|
+|ENV['ATTACHMENT_FILE_S3_FORCE_PATH_STYLE']|Boolean||use force path style in S3|
 
 ## Color Theme
 - red

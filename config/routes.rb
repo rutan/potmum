@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :attachment_files, only: [:create]
+
   get '/register' => 'users#new', as: :register
   post '/register' => 'users#create'
   get '/setting' => 'users#edit', as: :setting

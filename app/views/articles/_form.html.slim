@@ -19,12 +19,14 @@
         .editor-pane-title
           | 本文
         .editor-pane-actions
-          button.uk-button.uk-button-small.uk-button-success.editor-markdown-upload disabled=true
-            i.fa.fa-file-image-o title='画像(未対応)'
+          - if GlobalSetting.use_attachment_file?
+            form.js-picture-form.uk-button.uk-button-small.uk-button-success action='#'
+              i.fa.fa-file-image-o title='画像'
+              input type='file' name='file' v-on='change: onChangePictureFile' data-timestamp='{{timestamp}}'
           button.uk-button.uk-button-small.uk-button-success.editor-markdown-upload disabled=true
             i.fa.fa-smile-o title='絵文字パレット(未対応)'
       .editor-pane-content
-        textarea wrap='off' placeholder='Markdownが使用できます' v-model='bodyField'
+        textarea.js-textarea wrap='off' placeholder='Markdownが使用できます' v-model='bodyField'
           = @article_d.body
     .editor-pane.editor-preview
       .editor-pane-header

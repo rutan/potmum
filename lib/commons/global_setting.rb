@@ -92,4 +92,51 @@ module GlobalSetting
       'grey' => ['#e0e0e0', '#bdbdbd', '#9e9e9e', '#616161'],
       'blue_grey' => ['#90a4ae', '#78909c', '#607d8b', '#455a64']
   }
+
+  def self.use_attachment_file?
+    ENV['USE_ATTACHMENT_FILE'].present?
+  end
+
+  def self.attachment_file_s3?
+    attachment_file_s3_bucket.present?
+  end
+
+  def self.attachment_file_s3_bucket
+    ENV['ATTACHMENT_FILE_S3_BUCKET']
+  end
+
+  def self.attachment_file_s3_acl
+    ENV['ATTACHMENT_FILE_S3_ACL'] || 'public-read'
+  end
+
+  def self.attachment_file_s3_host
+    ENV['ATTACHMENT_FILE_S3_HOST'] || begin
+      if attachment_file_s3_force_path_style
+        "https://#{attachment_file_s3_bucket}.s3.amazonaws.com"
+      else
+        "https://#{attachment_file_s3_region}.amazonaws.com/#{attachment_file_s3_bucket}"
+      end
+    end
+  end
+
+  def self.attachment_file_s3_key
+    ENV['ATTACHMENT_FILE_S3_KEY']
+  end
+
+  def self.attachment_file_s3_secret
+    ENV['ATTACHMENT_FILE_S3_SECRET']
+  end
+
+  def self.attachment_file_s3_region
+    ENV['ATTACHMENT_FILE_S3_REGION']
+  end
+
+  def self.attachment_file_s3_endpoint
+    ENV['ATTACHMENT_FILE_S3_ENDPOINT']
+  end
+
+  def self.attachment_file_s3_force_path_style
+    n = ENV['ATTACHMENT_FILE_S3_FORCE_PATH_STYLE']
+    n ? (n.to_i > 0) : nil
+  end
 end

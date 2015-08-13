@@ -1,5 +1,6 @@
 /.env
 /.env.*
+/public/attachment_files
 
 # Created by https://www.gitignore.io
 

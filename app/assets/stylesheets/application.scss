@@ -448,8 +448,23 @@ q, blockquote {
           right: 8px;
           top: 4px;
 
-          button {
+          .uk-button {
+            position: relative;
             margin-left: 5px;
+            width: 35px;
+            height: 25px;
+            overflow: hidden;
+
+            input[type='file'] {
+              position: absolute;
+              left: 0;
+              top: 0;
+              display: block;
+              width: 100px;
+              height: 100px;
+              font-size: 100px;
+              cursor: pointer;
+            }
           }
         }
       }

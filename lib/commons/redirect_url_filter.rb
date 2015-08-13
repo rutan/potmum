@@ -10,6 +10,9 @@ class RedirectURLFilter < HTML::Pipeline::Filter
         next if url.index("#{GlobalSetting.root_url}/") == 0 # OK: http://podmum-url/hoge
         next if url.index("//#{GlobalSetting.root_url.sub(/\Ahttps?:/, '')}/") == 0 # OK: //podmum-url/hoge
       end
+      if GlobalSetting.attachment_file_s3?
+        next if url.index(GlobalSetting.attachment_file_s3_host) == 0 # OK
+      end
 
       node.set_attribute('href', "/redirect?url=#{URI.escape(url)}")
     end

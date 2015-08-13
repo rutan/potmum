@@ -30,6 +30,9 @@ CREATE INDEX "index_comments_on_user_id" ON "comments" ("user_id");
 CREATE INDEX "index_comments_on_article_id" ON "comments" ("article_id");
 CREATE INDEX "index_comments_on_created_at" ON "comments" ("created_at");
 CREATE INDEX "index_articles_on_publish_type" ON "articles" ("publish_type");
+CREATE TABLE "attachment_files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "file" varchar(128), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE INDEX "index_attachment_files_on_user_id" ON "attachment_files" ("user_id");
+CREATE UNIQUE INDEX "index_attachment_files_on_file" ON "attachment_files" ("file");
 INSERT INTO schema_migrations (version) VALUES ('20150722154057');
 
 INSERT INTO schema_migrations (version) VALUES ('20150722154204');
@@ -47,4 +50,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150722154606');
 INSERT INTO schema_migrations (version) VALUES ('20150722154631');
 
 INSERT INTO schema_migrations (version) VALUES ('20150811163448');
+
+INSERT INTO schema_migrations (version) VALUES ('20150812165100');
 
