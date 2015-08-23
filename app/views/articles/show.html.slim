@@ -67,7 +67,8 @@
       .uk-grid
         .uk-width-medium-7-10.uk-margin-bottom
           .uk-panel.uk-panel-box.markdown
-            == @article_d.markdown_html
+            = cache "article-markdown--#{@article.id}--#{@article.updated_at}" do
+              == @article_d.markdown_html
 
           h3 コメント
           - comments = @article_d.comments
@@ -117,7 +118,8 @@
                       = article.title
             .article-index
               h4 見出し
-              == @article_d.newest_revision.markdown_toc_html
+              = cache "article-index--#{@article.id}--#{@article.updated_at}" do
+                == @article_d.newest_revision.markdown_toc_html
 
 - content_for(:local_js) do
   javascript:
