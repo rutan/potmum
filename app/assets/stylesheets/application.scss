@@ -207,6 +207,17 @@ q, blockquote {
     }
   }
 
+  ul li { list-style-type: disc; }
+  ol li { list-style-type: decimal; }
+  ul, ol {
+    ul li { list-style-type: circle; }
+    ol li { list-style-type: lower-roman; }
+    ul, ol, {
+      ul li { list-style-type: square; }
+      ol li { list-style-type: lower-alpha; }
+    }
+  }
+
   em {
     color: #444;
     font-style: normal;
