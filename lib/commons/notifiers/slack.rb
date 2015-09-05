@@ -15,7 +15,7 @@ module Notifiers
                                    channel: @channel_id,
                                    username: @name,
                                    text: message,
-                                   parse: 'full',
+                                   parse: 'none',
                                    unfurl_links: true,
                                    attachments: [{
                                                      fallback: article.title,

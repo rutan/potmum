@@ -36,6 +36,9 @@ I have assumed the use in Heroku or dokku.
 |ENV['SLACK_SECRET']|String||Slack API Secret Key|
 |ENV['SLACK_TEAM_ID']|String||Slack Team ID<br>ex) T0123456|
 |ENV['SLACK_TEAM_NAME']|String||Slack Team Name|
+|ENV['NOTIFY_SLACK_CHANNEL']|String||Notify channel<br>ex) #general|
+|ENV['NOTIFY_SLACK_ICON']|String||Slack icon URL or emoji|
+|ENV['NOTIFY_SLACK_TOKEN']|String||Slack API Token|
 |ENV['GLOBAL_ALERT']|String||Footer message|
 |ENV['PRIVATE_MODE']|Boolean||Members only mode|
 |ENV['USE_ATTACHMENT_FILE']|Boolean||Use Attachment File<br>default: false|
