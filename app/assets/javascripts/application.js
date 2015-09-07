@@ -159,7 +159,7 @@ this.Potmum = (function (Potmum) {
                             var textarea = $(self.$el).find('.js-textarea')[0];
                             var n = textarea.selectionEnd;
                             var str = "\n![img](" + resp.data.url + ")\n";
-                            self.bodyField = self.bodyField.slice(0, n) + str + self.bodyField.slice(n, self.bodyField - n);
+                            self.bodyField = self.bodyField.slice(0, n) + str + self.bodyField.slice(n);
                         },
                         error: function (err) {
                             console.error(err);
