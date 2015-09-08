@@ -1,6 +1,6 @@
 module GlobalSetting
   def self.private_mode?
-    ENV['PRIVATE_MODE'].present?
+    ENV['PRIVATE_MODE'].to_i != 0
   end
 
   def self.root_url
@@ -8,7 +8,7 @@ module GlobalSetting
   end
 
   def self.use_redirector?
-    ENV['USE_REDIRECTOR'].present?
+    ENV['USE_REDIRECTOR'].to_i != 0
   end
 
   def self.gravatar_url
