@@ -1,0 +1,77 @@
+{
+    "name": "Potmum",
+    "description": "Potmum is cloud note-app.",
+    "repository": "https://github.com/rutan/potmum",
+    "logo": "https://raw.githubusercontent.com/rutan/potmum/master/logo.png",
+    "keywords": ["note"],
+    "addons": ["heroku-postgresql:hobby-dev"],
+    "env": {
+        "RAILS_ENV": "production",
+        "SECRET_KEY_BASE": {
+            "description": "secret-key for generate session",
+            "generator": "secret"
+        },
+        "ROOT_URL": {
+            "description": "Application URL",
+            "value": ""
+        },
+        "COLOR_THEME": {
+            "description": "Theme color",
+            "value": "blue"
+        },
+        "PRIVATE_MODE": {
+            "description": "use member-only mode?",
+            "value": "0"
+        },
+        "USE_REDIRECTOR": {
+            "description": "use redirector with external-link",
+            "value": "0"
+        },
+        "USE_GITHUB": {
+            "description": "signup with GitHub Account?",
+            "value": "1"
+        },
+        "GITHUB_KEY": {
+            "description": "GitHub API Application Key",
+            "value": "",
+            "required": false
+        },
+        "GITHUB_SECRET": {
+            "description": "GitHub API Application SecretKey",
+            "value": "",
+            "required": false
+        },
+        "USE_SLACK": {
+            "description": "signup with Slack Account?",
+            "value": "0"
+        },
+        "SLACK_KEY": {
+            "description": "Slack Application Key",
+            "value": "",
+            "required": false
+        },
+        "SLACK_SECRET": {
+            "description": "Slack Application SecretKey",
+            "value": "",
+            "required": false
+        },
+        "SLACK_TEAM_ID": {
+            "description": "signup Slack Group ID (ex. T012345)",
+            "value": "",
+            "required": false
+        },
+        "SLACK_TEAM_ID": {
+            "description": "signup Slack Group name (ex. toripota)",
+            "value": "",
+            "required": false
+        },
+        "GLOBAL_ALERT": {
+            "description": "alert footer message",
+            "value": "",
+            "required": false
+        }
+    },
+    "scripts": {
+        "postdeploy": "bundle exec rake db:create db:migrate"
+    }
+}
