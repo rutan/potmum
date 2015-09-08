@@ -7,6 +7,8 @@
 
 Potmum is cloud note-app.
 
+Demo: https://potmum-demo.herokuapp.com/
+
 ## Usage
 
 ```bash
