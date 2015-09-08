@@ -6,7 +6,17 @@ env:
   - RAILS_ENV=test
 before_install:
   - gem install bundler
-script: 'bundle exec rspec spec'
+script: bundle exec rspec spec
 notifications:
   slack:
     secure: EPBywkl2okI3plSIYdeU0ZpONAJMabRJ6l4lkHb4ZF0ccx/dnPvLxwcN7TLbTTRCBveith20ZKiOFuq7HG/ZLRjw8v+ffdbdFYe0Vvw9u3gXCaxCqpWS7UnZ5C66x5jyOsgOpQitzJ0p+qtIzG+/lOdv5hP5lOXKWpjWw2nBsxfDzuEG+jd0hqX2hwusy4AYZq4/rCzWqNlMNgme49mpX+CnlZSQW20LFPSlhhA9VvW6ZlIwZK04uhOG5TzwAODYdP4+yFVm99BFjlNR4wKRi/jy9b33yZodK0ScdKepU58JU99e2OxxoqJX7zoCLPOyO/yCVA8S9oQXdft/Ij1OawIA+6pX5YWaUWEtdMD/ksX8SNe9OWtIaBSIjnhhStpL6/nN3oWKmhxoVBmt6KaYUaZEGTflKiFAtkrMjqKnsnJHn2x7kb0kqEJ8p1dQ5ungVn3sqkZBDlP+x2nGfp/xgQ1oSmb7HsBcIJNA93BjraKdQeJiONGrg0ywT3hYgDVDAR1JCLIP97vNT5auih3rSwQOJAhbf++2Lpm+AZXW8AYIquSnUb7epkn5kK3vajmJvaiR8WpdmnvODuFsDn4W0TghEFqA13R19nSnYa8TP4/Gauj1dZPPSXe2ylP1aAHFAAl2CTnPowfhopHt2ZcL7WPPwnsq88+Vtg/3rm+wqgs=
+deploy:
+  provider: heroku
+  api_key:
+    secure: K7AWppTZHXSl7VpnM+mDwTiteRmTorn2uyVLFlvmwabS3RvlW0z+ZPt+Z7wZpV65ZuvceXRd3vsl7ZASAWw1bjVDlC9ryjlPyqbMqdEDX8ChPaqIZqmXStyKep1CfCSZcm50B+Lh7Kyohi6BZo6sG9vMWX8MgYq2q4pA+0cd5Rvs3cbxzDUYwocrQUqIaf4VnoahKCz7Xp5lzYB7vsg3RYOprQrmlikdnlFeuiNOz8x7Oloe83xqK/EIAJQlS8qpRUAwCAgBZQTerJcb4ZH5ji2FnMjHcXxLn3FVWtCpex2q5jgC4fdgNpQyaCHXFDSxEvlrhugasaVghMYsWujHHsQQlJBzqPp60ev/5sOPIQ+qrXcMSHM2/Utqz5U3DJ8hb4/c/n0XJlz0tn7iAPb+2heI7W+he20jxyJJwO1T7KuBG27K4T6r1B/0bSm658RakHS5lEdQxi8iNgw4MZMmVPIPVfuqlbBVQp5bBNPpf+aRYctVOolgcImuXCvp1TCv/i5D6rhraU1OcHGR2RdE0Q2JBGjeXAOqqSOwl46MlHDgzXD2CQW8vDTIu4CP/dUNvJiXVq6TcqKigJvdA3hNAp2MuGVQYEHSIdpKYcrQp7p3pVDxQI3LyWyoNxeyynjkDOm+9wZM7/bgfIcmQYW+i/b6NNmiadB3dqJWr/UuwfU=
+  app:
+    master: potmum-demo
+  on:
+    repo: rutan/potmum
+  run:
+    - budnle exec rake db:migrate
