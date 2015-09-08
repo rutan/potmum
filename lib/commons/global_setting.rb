@@ -28,7 +28,7 @@ module GlobalSetting
       methods = []
 
       # GitHub
-      if ENV['USE_GITHUB']
+      if ENV['USE_GITHUB'].to_i != 0
         methods << {
             name: ENV['GITHUB_ENTERPRISE_URL'] ? 'GitHub:e' : 'GitHub',
             path: 'github',
@@ -36,7 +36,7 @@ module GlobalSetting
       end
 
       # Slack
-      if ENV['USE_SLACK']
+      if ENV['USE_SLACK'].to_i != 0
         methods << {
             name: "Slack#{ENV['SLACK_TEAM_NAME'] ? "(#{ENV['SLACK_TEAM_NAME']})" : ''}",
             path: 'slack',
