@@ -1,6 +1,7 @@
 /.env
 /.env.*
 .rbenv-version
+.ruby-version
 /public/attachment_files
 
 # Created by https://www.gitignore.io

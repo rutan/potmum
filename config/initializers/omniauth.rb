@@ -23,4 +23,9 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     }.select { |_, v| v.present? }
     provider :slack, ENV['SLACK_KEY'], ENV['SLACK_SECRET'], options
   end
+
+  # Twitter
+  if ENV['USE_TWITTER']
+    provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
+  end
 end

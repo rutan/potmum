@@ -19,6 +19,7 @@ gem 'draper'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-slack'
+gem 'omniauth-twitter'
 
 gem 'slack-api'
 

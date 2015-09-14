@@ -65,6 +65,20 @@
             "value": "",
             "required": false
         },
+        "USE_TWITTER": {
+            "description": "signup with Twitter Account?",
+            "value": "0"
+        },
+        "TWITTER_KEY": {
+            "description": "Twitter Application Key",
+            "value": "",
+            "required": false
+        },
+        "TWITTER_SECRET": {
+            "description": "Twitter Application SecretKey",
+            "value": "",
+            "required": false
+        },
         "GLOBAL_ALERT": {
             "description": "alert footer message",
             "value": "",

@@ -39,6 +39,9 @@ I have assumed the use in Heroku or dokku.
 |ENV['SLACK_SECRET']|String||Slack API Secret Key|
 |ENV['SLACK_TEAM_ID']|String||Slack Team ID<br>ex) T0123456|
 |ENV['SLACK_TEAM_NAME']|String||Slack Team Name|
+|ENV['USE_TWITTER']|Boolean||Allow login with Twitter account|
+|ENV['TWITTER_KEY']|String||Twitter API Key|
+|ENV['TWITTER_SECRET']|String||Twitter API Secret Key|
 |ENV['NOTIFY_SLACK_CHANNEL']|String||Notify channel<br>ex) #general|
 |ENV['NOTIFY_SLACK_ICON']|String||Slack icon URL or emoji|
 |ENV['NOTIFY_SLACK_TOKEN']|String||Slack API Token|

@@ -43,6 +43,14 @@ module GlobalSetting
         }
       end
 
+      # Twitter
+      if ENV['USE_TWITTER'].to_i != 0
+        methods << {
+            name: 'Twitter',
+            path: 'twitter',
+        }
+      end
+
       methods
     end
   end
