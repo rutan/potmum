@@ -220,12 +220,15 @@ q, blockquote {
 
   em {
     color: #444;
-    font-style: normal;
-    font-weight: bold;
+    font-style: italic;
+    font-weight: normal;
+    border-bottom: 1px dotted #999;
   }
 
   strong {
-    color: #c44;
+    color: #444;
+    font-style: normal;
+    font-weight: bold;
   }
 }
 
