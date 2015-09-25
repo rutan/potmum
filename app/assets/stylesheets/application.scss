@@ -217,6 +217,14 @@ q, blockquote {
       ol li { list-style-type: lower-alpha; }
     }
   }
+  li.task-list-item {
+    list-style: none;
+
+    .task-list-item-checkbox {
+      margin-left: -20px;
+      margin-right: 8px;
+    }
+  }
 
   em {
     color: #444;
@@ -229,6 +237,14 @@ q, blockquote {
     color: #444;
     font-style: normal;
     font-weight: bold;
+  }
+
+  .footnotes {
+    font-size: 14px;
+
+    p {
+      margin: 0;
+    }
   }
 }
 
@@ -523,6 +539,10 @@ q, blockquote {
     height: 38px;
     padding: 0 8px;
     @include box-sizing(border-box);
+
+    .uk-button-group {
+      margin-left: 5px;
+    }
 
     button {
       width: 140px;
