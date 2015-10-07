@@ -1,0 +1,23 @@
+{
+  "name": "potmum-frontend",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack --optimize-minimize",
+    "watch": "webpack -w",
+    "postinstall": "webpack --optimize-minimize"
+  },
+  "author": "ru_shalm",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^5.8.25",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.19.0",
+    "page": "^1.6.3",
+    "style-loader": "^0.12.4",
+    "vue": "^0.12.16",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^3.0.4",
+    "webpack": "^1.12.2"
+  }
+}

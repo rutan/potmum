@@ -87,5 +87,10 @@
     },
     "scripts": {
         "postdeploy": "bundle exec rake db:create db:migrate"
-    }
+    },
+    "buildpacks": [
+        {
+            "url": "https://github.com/ddollar/heroku-buildpack-multi.git"
+        }
+    ]
 }

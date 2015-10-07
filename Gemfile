@@ -51,5 +51,6 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'annotate'
   gem 'fakes3'
+  gem 'foreman'
 end
 

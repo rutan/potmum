@@ -3,6 +3,9 @@
 .rbenv-version
 .ruby-version
 /public/attachment_files
+/public/assets
+/vendor/assets/javascripts/bundle.*
+node_modules
 
 # Created by https://www.gitignore.io
 

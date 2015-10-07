@@ -121,10 +121,5 @@
               = cache "article-index--#{@article.id}--#{@article.updated_at}" do
                 == @article_d.newest_revision.markdown_toc_html
 
-- content_for(:local_js) do
-  javascript:
-    var commentForm = Potmum.createCommentForm('.js-comment-form');
-    var stockButton = Potmum.createStockButton('.js-stock-button');
-
 - content_for(:title) do
   == @article.title
