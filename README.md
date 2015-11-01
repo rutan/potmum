@@ -12,7 +12,6 @@ Demo: https://potmum-demo.herokuapp.com/
 ## Usage
 
 ```bash
-npm install
 bundle install --path vendor/bundle
 bundle exec rake assets:precompile assets:environment db:create db:migrate
 bundle exec puma -C config/puma.rb

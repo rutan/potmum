@@ -1,6 +1,11 @@
 namespace :npm do
+  desc 'exec `npm install`'
+  task :install do
+    puts system('npm install')
+  end
+
   desc 'exec `npm run build`'
-  task :build do
+  task build: ['install'] do
     puts system('npm run build')
   end
 end
