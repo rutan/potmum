@@ -52,5 +52,6 @@ group :development, :test do
   gem 'annotate'
   gem 'fakes3'
   gem 'foreman'
+  gem 'ruby-prof'
 end
 
