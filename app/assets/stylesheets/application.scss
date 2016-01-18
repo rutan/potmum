@@ -170,15 +170,16 @@ q, blockquote {
 
   h1, h2, h3, h4, h5, h6 {
     position: relative;
-    a {
+    a .fa-link {
       display: none;
       position: absolute;
       left: -1.1em;
       padding-right: 0.4em;
+      line-height: inherit;
     }
 
     &:hover {
-      a {
+      a .fa-link {
         display: block;
       }
     }
