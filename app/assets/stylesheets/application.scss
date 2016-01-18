@@ -13,7 +13,6 @@
  *= require uikit.ruikit
  *= require_self
  */
-
 @import 'compass';
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
@@ -30,6 +29,7 @@ html, body {
   color: inherit;
   text-shadow: none;
 }
+
 ::selection {
   background: lighten($base-color-light, 15%);
   color: inherit;
@@ -139,6 +139,7 @@ q, blockquote {
     line-height: 1.4;
     color: #fff;
     font-weight: normal;
+    -webkit-font-smoothing: antialiased;
   }
 
   .content-header-alert {
@@ -160,8 +161,8 @@ q, blockquote {
   line-height: 1.8;
   word-wrap: break-word;
 
-  &> {
-    p, hr, ul, ol, dl, blockquote, pre, address, fieldset, figure {
+  & > {
+    p, hr, ul, ol, dl, blockquote, pre, address, fieldset, figure, table {
       margin-top: 0;
       margin-bottom: 1.8em;
 
@@ -176,6 +177,9 @@ q, blockquote {
 
   h1, h2, h3, h4, h5, h6 {
     position: relative;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+
     a .fa-link {
       display: none;
       position: absolute;
@@ -191,9 +195,31 @@ q, blockquote {
     }
   }
 
+  h1, h2, h3 {
+    &:after {
+      display: block;
+      content: '';
+      width: 100%;
+      height: 1px;
+      margin-top: 4px;
+      background: rgba(0, 0, 0, .2);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    }
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: #{28 - ($i - 1) * 2}px;
+    }
+  }
+
   h6 {
-    font-size: 14px;
     color: #999;
+  }
+
+  p {
+    text-align: justify;
+    text-justify: inter-ideograph;
   }
 
   table {
@@ -214,14 +240,26 @@ q, blockquote {
     }
   }
 
-  ul li { list-style-type: disc; }
-  ol li { list-style-type: decimal; }
+  ul li {
+    list-style-type: disc;
+  }
+  ol li {
+    list-style-type: decimal;
+  }
   ul, ol {
-    ul li { list-style-type: circle; }
-    ol li { list-style-type: lower-roman; }
+    ul li {
+      list-style-type: circle;
+    }
+    ol li {
+      list-style-type: lower-roman;
+    }
     ul, ol, {
-      ul li { list-style-type: square; }
-      ol li { list-style-type: lower-alpha; }
+      ul li {
+        list-style-type: square;
+      }
+      ol li {
+        list-style-type: lower-alpha;
+      }
     }
   }
   li.task-list-item {
@@ -238,6 +276,7 @@ q, blockquote {
     font-style: italic;
     font-weight: normal;
     border-bottom: 1px dotted #999;
+    padding: 0 .25em;
   }
 
   strong {
