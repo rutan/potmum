@@ -157,11 +157,17 @@ q, blockquote {
 
 .markdown {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.8;
   word-wrap: break-word;
 
   &> {
     p, hr, ul, ol, dl, blockquote, pre, address, fieldset, figure {
+      margin-top: 0;
+      margin-bottom: 1.8em;
+
+      &:first-child {
+        margin-top: 0;
+      }
       &:last-child {
         margin-bottom: 0;
       }
