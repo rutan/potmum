@@ -285,6 +285,16 @@ q, blockquote {
     font-weight: bold;
   }
 
+  blockquote {
+    color: #888;
+    em {
+      color: #888;
+    }
+    strong {
+      color: #888;
+    }
+  }
+
   .footnotes {
     font-size: 14px;
 
