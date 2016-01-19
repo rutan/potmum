@@ -10,7 +10,7 @@ module Notifiers
       @color = color
     end
 
-    def post(message, article)
+    def post(message, target)
       @client.chat_postMessage({
                                    channel: @channel_id,
                                    username: @name,
@@ -18,15 +18,15 @@ module Notifiers
                                    parse: 'none',
                                    unfurl_links: true,
                                    attachments: [{
-                                                     fallback: article.title,
-                                                     author_name: "@#{article.user.name}",
-                                                     author_link: article.decorate.user.url,
-                                                     author_icon: article.decorate.user.avatar_url,
+                                                     fallback: target.try(:title) || target.try(:summary),
+                                                     author_name: "@#{target.user.name}",
+                                                     author_link: target.user.url,
+                                                     author_icon: target.user.avatar_url,
                                                      color: @color,
-                                                     title: article.title,
-                                                     title_link: article.decorate.url,
-                                                     text: article.decorate.summary,
-                                                 }].to_json,
+                                                     title: target.try(:title),
+                                                     title_link: target.try(:url),
+                                                     text: target.try(:summary),
+                                                 }.delete_if { |_, v| v.nil? }].to_json,
                                    icon_url: @icon.match(/\Ahttp/) ? @icon : nil,
                                    icon_emoji: @icon.match(/\A:.+:\z/) ? @icon : nil,
                                }.delete_if { |_, v| v.nil? })

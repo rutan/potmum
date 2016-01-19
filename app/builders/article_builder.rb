@@ -46,7 +46,7 @@ class ArticleBuilder
                                     color: GlobalSetting.theme_colors.last,
                                     icon: GlobalSetting.notify_slack_icon,
       )
-      client.post("『<#{article.decorate.url}|#{ERB::Util.html_escape article.title}>』が投稿されました", article)
+      client.post("『<#{article.decorate.url}|#{ERB::Util.html_escape article.title}>』が投稿されました", article.decorate)
     end
   end
 end

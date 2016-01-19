@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
+  before :each do
+    allow_any_instance_of(Notifiers::Slack).to receive(:post).and_return(true)
+  end
+
   describe 'POST :create' do
     subject { post :create, {name: article.user.name, article_id: article.id, body: body, format: 'json'}; response }
     let(:article) { create(:article_with_published_at) }

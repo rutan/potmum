@@ -5,14 +5,13 @@ class CommentsController < ApplicationController
 
   # POST /@:name/items/:article_id/comments.json
   def create
-    @comment = Comment.new(
+    @comment_builder = CommentBuilder.new(@article)
+    if @comment_builder.build(
         user: current_user,
-        article: @article,
         body: params[:body]
     )
-    if @comment.save
       @article.update_comment_count
-      render_json @comment, status: 201
+      render_json @comment_builder.comment, status: 201
     else
       render_json({}, status: 400)
     end
@@ -24,7 +23,7 @@ class CommentsController < ApplicationController
         user: current_user,
         body: params[:body]
     )
-    if @comment.valid?
+    if params[:body].blank? or @comment.valid?
       render_json @comment
     else
       render_json({}, status: 400)

@@ -13,4 +13,8 @@ class CommentDecorator < Draper::Decorator
     return nil unless object.article.try(:id)
     "#{GlobalSetting.root_url}#{helpers.article_path(id: object.article.id, name: object.article.user.name)}#comment-#{object.id}"
   end
+
+  def summary(size = 64)
+    helpers.truncate(helpers.strip_tags(markdown_html), length: size)
+  end
 end
