@@ -24,13 +24,17 @@ class CommentBuilder
   end
 
   def notify(comment)
-    if GlobalSetting.notify_slack?
-      client = Notifiers::Slack.new(GlobalSetting.notify_slack_token,
-                                    channel: GlobalSetting.notify_slack_channel,
-                                    color: GlobalSetting.theme_colors.last,
-                                    icon: GlobalSetting.notify_slack_icon,
-      )
-      client.post("『<#{comment.article.decorate.url}|#{ERB::Util.html_escape comment.article.title}>』にコメントが付きました。", comment.decorate)
-    end
+    return unless GlobalSetting.notify_slack?
+
+    client = Notifiers::Slack.new(
+      GlobalSetting.notify_slack_token,
+      channel: GlobalSetting.notify_slack_channel,
+      color: GlobalSetting.theme_colors.last,
+      icon: GlobalSetting.notify_slack_icon
+    )
+    client.post(
+      "『<#{comment.article.decorate.url}|#{ERB::Util.html_escape comment.article.title}>』にコメントが付きました。",
+      comment.decorate
+    )
   end
 end

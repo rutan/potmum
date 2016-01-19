@@ -49,7 +49,7 @@
                 a.uk-button.uk-button-large.uk-button-danger href=article_path(@article, name: @article.user.name) data-method='delete' data-confirm='削除してもよろしいでしょうか？'
                   | 削除
             - elsif current_user
-              .js-stock-button data-url=article_stock_path(article_id: @article, format: 'json') data-stocked=(current_user.has_stocked?(@article) ? 1 : 0)
+              .js-stock-button data-url=article_stock_path(article_id: @article, format: 'json') data-stocked=(current_user.stocked?(@article) ? 1 : 0)
                 button.uk-button.uk-button-large.uk-button-primary.uk-width-2-3 v-show='!stocked' v-on='click: onClick' style='display: none;'
                   i.fa.fa-folder
                   | &nbsp;ストックする

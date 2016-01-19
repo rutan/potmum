@@ -32,12 +32,12 @@ RSpec.describe Revision, type: :model do
     end
 
     context '100000 characters' do
-      before { revision.body = 'a' * 100000 }
+      before { revision.body = 'a' * 100_000 }
       it { is_expected.to be_truthy }
     end
 
     context '100001 character' do
-      before { revision.body = 'a' * 100001 }
+      before { revision.body = 'a' * 100_001 }
       it { is_expected.to be_falsey }
     end
   end

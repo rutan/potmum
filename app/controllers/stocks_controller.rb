@@ -5,7 +5,7 @@ class StocksController < ApplicationController
   # GET /items/:id/stock
   # ストック状態の取得
   def show
-    render_json({article_id: @article.id, stocked: !@stock.new_record?})
+    render_json(article_id: @article.id, stocked: !@stock.new_record?)
   end
 
   # PUT /@user-name/items/:id/stock
@@ -19,7 +19,7 @@ class StocksController < ApplicationController
       @stock.destroy
     end
     @article.update_count
-    render_json({article_id: @article.id, stocked: stocked})
+    render_json(article_id: @article.id, stocked: stocked)
   end
 
   private

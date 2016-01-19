@@ -12,7 +12,6 @@
 FactoryGirl.define do
   factory :attachment_file do
     user nil
-file "MyString"
+    file 'MyString'
   end
-
 end

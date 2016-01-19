@@ -54,4 +54,3 @@ group :development, :test do
   gem 'foreman'
   gem 'ruby-prof'
 end
-

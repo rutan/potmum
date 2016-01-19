@@ -64,7 +64,7 @@ class Article < ActiveRecord::Base
   def tags_text=(new_tags)
     ActiveRecord::Base.transaction do
       # 元々付いていたタグの削除
-      self.link_article_tags.includes(:tag).each do |link|
+      link_article_tags.includes(:tag).each do |link|
         tag = link.tag
         link.destroy
         tag.update_count
@@ -87,16 +87,16 @@ class Article < ActiveRecord::Base
   end
 
   def update_count
-    old_count = self.stock_count
-    new_count = self.stocks.count
-    if old_count != new_count
-      update_columns(stock_count: new_count)
-      user_count = self.user.stock_count + (new_count - old_count)
-      user.update_columns(stock_count: user_count) if user_count >= 0
-    end
+    old_count = stock_count
+    new_count = stocks.count
+    return if old_count == new_count
+
+    update_columns(stock_count: new_count)
+    user_count = user.stock_count + (new_count - old_count)
+    user.update_columns(stock_count: user_count) if user_count >= 0
   end
 
   def update_comment_count
-    update_columns(comment_count: self.comments.count)
+    update_columns(comment_count: comments.count)
   end
 end

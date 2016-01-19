@@ -17,9 +17,9 @@ class SessionsController < ApplicationController
       else
         # アカウント新規登録画面へ
         session[:auth] = {
-            provider: auth[:provider],
-            uid: auth[:uid],
-            info: { nickname: auth[:info][:nickname] }
+          provider: auth[:provider],
+          uid: auth[:uid],
+          info: { nickname: auth[:info][:nickname] }
         }
         redirect_to register_path
       end

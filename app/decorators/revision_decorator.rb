@@ -2,7 +2,7 @@ class RevisionDecorator < Draper::Decorator
   delegate_all
   include DecorateSerializer
   include MarkdownRenderable
-  attr :body, :markdown_html
+  define_attr :body, :markdown_html
   markdown_column :body
 
   def body

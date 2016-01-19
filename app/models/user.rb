@@ -41,10 +41,10 @@ class User < ActiveRecord::Base
   end
 
   def link_to_auth!(auth)
-    link_to_auth(auth) || raise('failed')
+    link_to_auth(auth) || fail('failed')
   end
 
-  def has_stocked?(article)
+  def stocked?(article)
     stocks.where(article_id: article.id).exists?
   end
 
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def self.create_by_name_and_auth(name, auth)
-    raise 'exist user' if find_by_auth(auth)
+    fail 'exist user' if find_by_auth(auth)
 
     user = User.create(name: name)
     Authentication.create(user: user, provider: auth['provider'], uid: auth['uid'])

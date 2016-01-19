@@ -35,12 +35,14 @@ class LobbiesController < ApplicationController
   # 検索結果
   def search
     @search_word = params[:q].to_s.strip[0..64]
-    @q = Article.public_or_mine(current_user).ransack({
-                                       groupings: @search_word.split(/\p{blank}/).map { |word|
-                                         {title_or_newest_revision_body_or_tags_content_cont: word}
-                                       },
-                                       m: 'and'
-                                   })
+    @q = Article
+         .public_or_mine(current_user)
+         .ransack(
+           groupings: @search_word.split(/\p{blank}/).map do |word|
+             {title_or_newest_revision_body_or_tags_content_cont: word}
+           end,
+           m: 'and'
+         )
     @articles = @q.result(distinct: true).includes(:user, :newest_revision, :tags).page(@page)
   end
 
@@ -48,12 +50,12 @@ class LobbiesController < ApplicationController
   # リダイレクタ
   def redirector
     @url = params[:url].to_s.strip[0, 255]
-    raise Errors::BadRequest unless @url.match(/\Ahttps?:\/\/.+/)
+    fail Errors::BadRequest unless @url.match(/\Ahttps?:\/\/.+/)
   end
 
   # GET /browserconfig.xml
   def browserconfig
-    raise Errors::NotFound unless params[:format] == 'xml'
+    fail Errors::NotFound unless params[:format] == 'xml'
     render layout: nil
   end
 end

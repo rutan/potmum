@@ -10,9 +10,7 @@ class ApplicationController < ActionController::Base
   private
 
   def check_session
-    if session[:last_update].to_i < 30.day.ago.to_i
-      session.clear
-    end
+    session.clear if session[:last_update].to_i < 30.day.ago.to_i
     session[:last_update] = Time.zone.now.to_i
   end
 
@@ -23,16 +21,16 @@ class ApplicationController < ActionController::Base
 
   def render_json(target, status: 200, message: '')
     render(json: {
-               meta: {
-                   status: status,
-                   message: message,
-               },
-               data: (target.kind_of?(Array) ? target.map { |n| n.try(:decorate) || n } : target.try(:decorate) || target)
+             meta: {
+               status: status,
+               message: message
+             },
+             data: (target.is_a?(Array) ? target.map { |n| n.try(:decorate) || n } : target.try(:decorate) || target)
            }, status: status)
   end
 
   def require_login!
-    raise Errors::Unauthorized unless current_user
+    fail Errors::Unauthorized unless current_user
   end
 
   alias_method :private_mode!, :require_login!

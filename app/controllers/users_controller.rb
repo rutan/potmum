@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     ActiveRecord::Base.transaction do
-      raise 'validation' unless @user.valid?
+      fail 'validation' unless @user.valid?
       @user.save!
       @user.link_to_auth!(session['auth'])
     end
@@ -72,9 +72,7 @@ class UsersController < ApplicationController
   # PUT /setting
   def update
     @user = current_user.clone
-    if @user.update(user_params)
-      flash[:success] = '更新しました'
-    end
+    flash[:success] = '更新しました' if @user.update(user_params)
     render 'edit'
   end
 
@@ -85,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def check_register_mode!
-    raise Errors::BadRequest unless session['auth']
+    fail Errors::BadRequest unless session['auth']
   end
 
   def user_params

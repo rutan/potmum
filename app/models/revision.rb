@@ -13,6 +13,6 @@ class Revision < ActiveRecord::Base
   belongs_to :article
 
   validates :body,
-            length: 1..100000,
+            length: 1..100_000,
             format: /[^\p{blank}\n]/
 end

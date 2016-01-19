@@ -3,20 +3,20 @@ module DecorateSerializer
     base.extend ClassMethods
     base.class_eval do
       def serializable_hash(_options = nil)
-        self.class.attr_lists.map { |n|
+        self.class.attr_lists.map do |n|
           [n, public_send(n)]
-        }.to_h
+        end.to_h
       end
     end
   end
 
   module ClassMethods
-    def attr(*args)
-      @_args = args
+    def define_attr(*args)
+      @_attrs = args
     end
 
     def attr_lists
-      @_args || []
+      @_attrs || []
     end
   end
 end

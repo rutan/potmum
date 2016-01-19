@@ -1,0 +1,42 @@
+
+AllCops:
+  Exclude:
+    - config.ru
+    - bin/**/*
+    - db/**/*
+    - out/**/*
+    - tmp/**/*
+    - vendor/**/*
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+
+AsciiComments:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+DoubleNegation:
+  Enabled: false
+
+Semicolon:
+  Exclude:
+    - spec/**/*
+
+Lambda:
+  Enabled: false
+
+RegexpLiteral:
+  Enabled: false
+
+LineLength:
+  Max: 120
+
+MethodLength:
+  Enabled: false
+
+MultilineBlockChain:
+  Enabled: false
+
+inherit_from: .rubocop_todo.yml
+

@@ -8,7 +8,7 @@ RSpec.describe LobbiesController, type: :controller do
     it { expect(subject.status).to eq 200 }
 
     context 'settable page' do
-      let(:params) { {page: 2} }
+      let(:params) { { page: 2 } }
       it do
         subject
         expect(assigns(:page)).to eq 2
@@ -32,7 +32,7 @@ RSpec.describe LobbiesController, type: :controller do
   end
 
   describe 'GET :search' do
-    subject { get :search, { q: query }; response }
+    subject { get :search, q: query; response }
     let(:query) { 'search-word' }
 
     it { expect(subject.status).to eq 200 }
@@ -43,7 +43,7 @@ RSpec.describe LobbiesController, type: :controller do
   end
 
   describe 'GET :redirector' do
-    subject { get :redirector, { url: url }; response }
+    subject { get :redirector, url: url; response }
 
     context 'valid url' do
       let(:url) { 'http://example.com/valid/path' }

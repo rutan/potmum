@@ -87,7 +87,7 @@ class ArticlesController < ApplicationController
   end
 
   def check_owner!
-    raise Errors::Forbidden unless @user == current_user
+    fail Errors::Forbidden unless @user == current_user
   end
 
   def view_countup

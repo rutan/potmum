@@ -7,8 +7,8 @@ class CommentsController < ApplicationController
   def create
     @comment_builder = CommentBuilder.new(@article)
     if @comment_builder.build(
-        user: current_user,
-        body: params[:body]
+      user: current_user,
+      body: params[:body]
     )
       @article.update_comment_count
       render_json @comment_builder.comment, status: 201
@@ -20,10 +20,10 @@ class CommentsController < ApplicationController
   # POST /comments/preview.json
   def preview
     @comment = Comment.new(
-        user: current_user,
-        body: params[:body]
+      user: current_user,
+      body: params[:body]
     )
-    if params[:body].blank? or @comment.valid?
+    if params[:body].blank? || @comment.valid?
       render_json @comment
     else
       render_json({}, status: 400)
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/:id.json
   def destroy
-    raise Errors::Forbidden unless current_user == @comment.user
+    fail Errors::Forbidden unless current_user == @comment.user
     article = @comment.article
     @comment.destroy
     article.update_comment_count

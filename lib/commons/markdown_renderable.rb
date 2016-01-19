@@ -21,7 +21,7 @@ module MarkdownRenderable
             end
 
             diff = level - old_level
-            diff.abs.times do |i|
+            diff.abs.times do |_i|
               if diff > 0
                 ul.add_child(Nokogiri::XML::Element.new('li', doc)) if ul.children.empty?
                 old_ul = ul
@@ -46,7 +46,7 @@ module MarkdownRenderable
       end
 
       def render_result
-        @render_result ||= MarkdownRenderable.render(public_send(self.class.get_markdown_column) || '')
+        @render_result ||= MarkdownRenderable.render(public_send(self.class.markdown_column_get) || '')
       end
     end
   end
@@ -56,7 +56,7 @@ module MarkdownRenderable
       @_markdown_column = column
     end
 
-    def get_markdown_column
+    def markdown_column_get
       @_markdown_column
     end
   end
@@ -66,8 +66,6 @@ module MarkdownRenderable
       processor.filters << HTML::Pipeline::NicoLinkFilter
       processor.filters << RedirectURLFilter if GlobalSetting.use_redirector?
     end
-    @processor.call(text, {
-                            base_url: '/users',
-                        })
+    @processor.call(text, base_url: '/users')
   end
 end

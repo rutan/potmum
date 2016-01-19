@@ -55,7 +55,7 @@ class Tag < ActiveRecord::Base
   end
 
   def update_count
-    self.update(article_count: self.articles.public_items.count)
+    update(article_count: articles.public_items.count)
   end
 
   def self.find_or_create_by_name(str)
