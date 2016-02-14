@@ -50,6 +50,11 @@ module.exports = (function () {
                 this.code.on('change', () => {
                     this.bodyField = this.code.getValue();
                 });
+                this.code.on('scroll', (cm) => {
+                    const previewElement = $(this.$el).find('.editor-preview-field');
+                    const per = cm.display.scroller.scrollTop / (cm.display.scroller.scrollHeight - cm.display.scroller.clientHeight);
+                    previewElement.scrollTop((previewElement[0].scrollHeight - previewElement.height()) * per);
+                });
             },
             methods: {
                 onRemoveTag: function (e, content) {
