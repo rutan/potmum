@@ -103,16 +103,22 @@ module.exports = (function () {
                     this.$data.publish_type = mode;
                 },
                 preview: function () {
-                    this.editStart();
-                    var self = this;
+                    if (this.$data.body.length == 0) {
+                        this.$data.preview_html = '';
+                        return;
+                    }
+
                     $.ajax({
                         url: this.$data.id ? '../preview.json' : '../items/preview.json',
                         type: 'post',
                         data: {
                             body: this.$data.body
                         },
-                        success: function (resp) {
-                            self.$data.preview_html = resp.data.markdown_html;
+                        success: (resp) => {
+                            if (this.$data.preview_html.length > 0 && this.$data.preview_html != resp.data.markdown_html) {
+                                this.editStart();
+                            }
+                            this.$data.preview_html = resp.data.markdown_html;
                         }
                     });
                 },
