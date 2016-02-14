@@ -1,6 +1,9 @@
+import { default as Vue } from 'vue';
+import { default as CodeMirror } from 'codemirror';
+require('codemirror/mode/gfm/gfm');
+
 module.exports = (function () {
     let Potmum = {};
-    const Vue = require('vue');
 
     Potmum.createArtcleEditor = function (element) {
         return new Vue({
@@ -38,6 +41,15 @@ module.exports = (function () {
                     return ('' + n).length > 0;
                 });
                 this.$data.publish_type = $(this.$el).data('publish_type');
+
+                // codemirror
+                this.code = CodeMirror.fromTextArea($(this.$el).find('.js-textarea')[0], {
+                    lineNumbers: true,
+                    mode: 'gfm'
+                });
+                this.code.on('change', () => {
+                    this.bodyField = this.code.getValue();
+                });
             },
             methods: {
                 onRemoveTag: function (e, content) {
