@@ -4,6 +4,7 @@
 .ruby-version
 /public/attachment_files
 /public/assets
+/public/js
 /vendor/assets/javascripts/bundle.*
 node_modules
 

@@ -61,6 +61,24 @@ html
             = value
         - flash.clear
 
+    / mathjax
+    script src='/js/mathjax/MathJax.js'
+    javascript:
+      MathJax.Hub.Config({
+        skipStartupTypeset: true,
+        "HTML-CSS": {
+          availableFonts: ['TeX']
+        },
+        extensions: ['tex2jax.js', 'Safe.js'],
+        jax: ['input/TeX', 'output/HTML-CSS', 'output/PreviewHTML'],
+        tex2jax: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+        }
+      });
+
+    / js
     = javascript_include_tag 'application'
     javascript:
       $(".uk-alert").uk('alert');

@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
+    "bower": "bower install",
     "build": "webpack --optimize-minimize",
     "watch": "webpack -w",
-    "postinstall": "webpack --optimize-minimize"
+    "postinstall": "bower install && webpack --optimize-minimize"
   },
   "author": "ru_shalm",
   "license": "MIT",
@@ -20,5 +21,8 @@
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^3.0.4",
     "webpack": "^1.12.2"
+  },
+  "devDependencies": {
+    "bower": "^1.7.7"
   }
 }

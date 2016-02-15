@@ -303,6 +303,20 @@ q, blockquote {
       margin: 0;
     }
   }
+
+  .MathJax {
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .code-frame {
+    .MathJax {
+      display: block;
+      text-align: center;
+      margin: 1em auto;
+    }
+  }
 }
 
 .article-viewer {

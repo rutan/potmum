@@ -1,5 +1,6 @@
 import { default as Vue } from 'vue';
 import { default as CodeMirror } from 'codemirror';
+import { renderMathjax } from './libs/mathjax.js';
 require('codemirror/mode/gfm/gfm');
 
 module.exports = (function () {
@@ -119,6 +120,11 @@ module.exports = (function () {
                                 this.editStart();
                             }
                             this.$data.preview_html = resp.data.markdown_html;
+
+                            // bad method
+                            setTimeout(() => {
+                                renderMathjax($(this.$el).find('.markdown'));
+                            }, 100);
                         }
                     });
                 },
