@@ -38,7 +38,7 @@ module.exports = (function () {
             ready: function () {
                 this.leftAlertFlag = false;
                 this.$data.id = $(this.$el).data('id');
-                this.$data.tags = $(this.$el).data('tags').split(/\s/).filter(function (n) {
+                this.$data.tags = $(this.$el).find('.js-tags-text').val().split(/\s/).filter(function (n) {
                     return ('' + n).length > 0;
                 });
                 this.$data.publish_type = $(this.$el).data('publish_type');
@@ -56,6 +56,10 @@ module.exports = (function () {
                     const per = cm.display.scroller.scrollTop / (cm.display.scroller.scrollHeight - cm.display.scroller.clientHeight);
                     previewElement.scrollTop((previewElement[0].scrollHeight - previewElement.height()) * per);
                 });
+
+                // assign
+                this.title = $(this.$el).find('.js-title-text').val();
+                this.bodyField = this.code.getValue();
             },
             methods: {
                 onRemoveTag: function (e, content) {

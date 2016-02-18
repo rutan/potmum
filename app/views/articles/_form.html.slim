@@ -1,7 +1,9 @@
-.js-article-editor.article-editor.uk-form data-id=(@article.new_record? ? nil : @article.id) data-tags=@article.tags_text data-publish_type=(@article.new_record? ? 'public_item' : @article.publish_type)
+.js-article-editor.article-editor.uk-form data-id=(@article.new_record? ? nil : @article.id) data-publish_type=(@article.new_record? ? 'public_item' : @article.publish_type)
+  input.js-title-text type='hidden' value=@article.title v-pre=true
+  input.js-tags-text type='hidden' value=@article.tags_text v-pre=true
   .editor-header
     .editor-title
-      input type='text' placeholder='タイトル' value=@article.title v-model='title'
+      input type='text' placeholder='タイトル' v-model='title'
     .editor-tags
       .tag-form v-on='click: onClickTagForm'
         .placeholder v-show='tags.length == 0 && !tagFocus'
@@ -26,7 +28,7 @@
           button.uk-button.uk-button-small.uk-button-success.editor-markdown-upload disabled=true
             i.fa.fa-smile-o title='絵文字パレット(未対応)'
       .editor-pane-content
-        textarea.js-textarea wrap='off' placeholder='Markdownが使用できます' v-model='bodyField'
+        textarea.js-textarea wrap='off' placeholder='Markdownが使用できます' v-model='bodyField' v-pre=true
           = @article_d.body
     .editor-pane.editor-preview
       .editor-pane-header
