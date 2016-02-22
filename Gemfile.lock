@@ -20,6 +20,17 @@ GIT
       aws-sdk (~> 2.0)
       carrierwave (~> 0.7)
 
+GIT
+  remote: git://github.com/zquestz/omniauth-google-oauth2.git
+  revision: 69c3e91f158337a3804e5d69291085125aa55a7e
+  ref: 69c3e91f158337a3804e5d69291085125aa55a7e
+  specs:
+    omniauth-google-oauth2 (0.3.1)
+      jwt (~> 1.0)
+      multi_json (~> 1.3)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -529,6 +540,7 @@ DEPENDENCIES
   nokogiri (= 1.6.5)
   omniauth
   omniauth-github
+  omniauth-google-oauth2!
   omniauth-slack
   omniauth-twitter
   pg

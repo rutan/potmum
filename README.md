@@ -32,9 +32,14 @@ I have assumed the use in Heroku or dokku.
 |ENV['ROOT_URL']|String|x|Root page URL.<br>ex) http://example.com|
 |ENV['COLOR_THEME']|String||default: 'blue'|
 |ENV['USE_REDIRECTOR']|Boolean||Use redirector with external link|
+|ENV['USE_GOOGLE']|Boolean||Allow login with Google OAuth 2|
+|ENV['GOOGLE_KEY']|String||Google OAuth2 API Key|
+|ENV['GOOGLE_SECRET']|String||Google OAuth2 Secret Key|
+|ENV['GOOGLE_APPS_DOMAIN']|String||*only use Google Apps Account*<br>Google Apps Domains<br>(ex. `hazimu.com, example.com`)|
 |ENV['USE_GITHUB']|Boolean||Allow login with GitHub account|
 |ENV['GITHUB_KEY']|String||GitHub API Key|
 |ENV['GITHUB_SECRET']|String||GitHub API Secret Key|
+|ENV['GITHUB_ENTERPRISE_URL']|String|*only use github:e*<br>GitHub Enterprise URL|
 |ENV['USE_SLACK']|Boolean||Allow login with Slack account|
 |ENV['SLACK_KEY']|String||Slack API Key|
 |ENV['SLACK_SECRET']|String||Slack API Secret Key|

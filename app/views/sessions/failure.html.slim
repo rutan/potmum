@@ -1,0 +1,11 @@
+.uk-container.uk-container-center.uk-margin-top.uk-width-medium-2-3
+  .uk-panel
+    h1.uk-text-center.uk-margin-large-top.uk-margin-large-bottom.uk-text-muted
+      | ログインに失敗しました
+
+    p.uk-text-center
+      - case params[:message]
+      - when 'invalid_credentials'
+        | 認証情報が取得できませんでした
+      - else
+        | エラーが発生しました

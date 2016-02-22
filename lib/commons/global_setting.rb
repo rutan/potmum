@@ -27,6 +27,14 @@ module GlobalSetting
     @auth_methods ||= begin
       methods = []
 
+      # Google OAuth
+      if ENV['USE_GOOGLE'].to_i != 0
+        methods << {
+            name: ENV['GOOGLE_APPS_DOMAIN'].present? ? ENV['GOOGLE_APPS_DOMAIN'] : 'Google',
+            path: 'google_oauth2'
+        }
+      end
+
       # GitHub
       if ENV['USE_GITHUB'].to_i != 0
         methods << {

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :private_mode!, only: [:callback]
+  skip_before_action :private_mode!, only: [:callback, :failure]
 
   def callback
     auth = request.env['omniauth.auth']
@@ -24,6 +24,9 @@ class SessionsController < ApplicationController
         redirect_to register_path
       end
     end
+  end
+
+  def failure
   end
 
   def destroy
