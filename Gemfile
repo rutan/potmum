@@ -17,7 +17,8 @@ gem 'active_model_serializers'
 gem 'draper'
 
 gem 'omniauth'
-gem 'omniauth-google-oauth2', github: 'zquestz/omniauth-google-oauth2', ref: '69c3e91f158337a3804e5d69291085125aa55a7e' # multi domains
+gem 'omniauth-google-oauth2',
+    github: 'zquestz/omniauth-google-oauth2', ref: '69c3e91f158337a3804e5d69291085125aa55a7e' # multi domains
 gem 'omniauth-github'
 gem 'omniauth-slack'
 gem 'omniauth-twitter'
