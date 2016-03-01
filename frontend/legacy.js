@@ -216,7 +216,20 @@ module.exports = (function () {
                 body: '',
                 url: '',
                 modePreview: false,
-                preview_html: ''
+                preview_html: '',
+                count: 2048,
+                sendingFlag: false,
+            },
+            computed: {
+                bodyField: {
+                    get: function () {
+                        return this.$data.body
+                    },
+                    set: function (text) {
+                        this.$data.body = text;
+                        this.$data.count = 2048 - text.length;
+                    }
+                }
             },
             ready: function () {
                 this.$data.url = $(this.$el).data('url');
@@ -230,10 +243,7 @@ module.exports = (function () {
                     e.preventDefault();
                     if (this.$data.modePreview) return;
                     this.$data.modePreview = true;
-                    if (this.$data.body.length > 2048) {
-                        this.$data.preview_html = '2048文字以内で入力してください';
-                        return;
-                    }
+
                     var self = this;
                     $.ajax({
                         url: '/comments/preview.json',
@@ -252,6 +262,7 @@ module.exports = (function () {
                 },
                 onSubmit: function (e) {
                     e.preventDefault();
+                    this.$data.sendingFlag = true;
                     $.ajax({
                         url: this.$data.url,
                         type: 'post',
@@ -265,6 +276,7 @@ module.exports = (function () {
                         error: function (e) {
                             console.error(e);
                             alert('エラーが発生しました');
+                            this.$data.sendingFlag = false;
                         }
                     });
                 }

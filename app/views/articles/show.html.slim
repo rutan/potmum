@@ -88,14 +88,19 @@
               .uk-panel.uk-panel-box
                 form.uk-form action='#' v-on='submit: onSubmit'
                   .comment-input-area v-show='!modePreview'
-                    textarea.uk-width-1-1 style='min-height: 8em;' name='body' v-model='body'
+                    textarea.uk-width-1-1 style='min-height: 8em;' name='body' v-model='bodyField'
                   .comment-preview-area v-show='modePreview'
                     .markdown
                       | {{{preview_html}}}
-                  .uk-text-right.uk-margin-top
-                    button.uk-button.uk-button-primary type='submit'
-                      i.fa.fa-pencil
-                      | &nbsp;コメント投稿
+                  .uk-grid.uk-margin-top
+                    .uk-width-1-4.uk-text-large
+                      span class="{{count < 0 ? 'uk-text-danger' : 'uk-text-muted'}}"
+                        | {{count}}
+                    .uk-width-3-4.uk-text-right
+                      button.uk-button.uk-button-primary type='submit' disabled="{{(sendingFlag || count < 0 || body.length == 0) ? 'disabled' : null}}"
+                        i.fa.fa-pencil
+                        | &nbsp;コメント投稿
+
           - else
             p
               | コメントを投稿するためにはログインが必要です。
