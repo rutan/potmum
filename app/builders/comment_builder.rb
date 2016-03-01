@@ -15,7 +15,7 @@ class CommentBuilder
 
     if @comment.valid?
       @comment.save
-      notify(@comment) if !@article.public_item?
+      notify(@comment) if @article.public_item?
       true
     else
       @error = @comment.errors
