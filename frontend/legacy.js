@@ -230,6 +230,10 @@ module.exports = (function () {
                     e.preventDefault();
                     if (this.$data.modePreview) return;
                     this.$data.modePreview = true;
+                    if (this.$data.body.length > 2048) {
+                        this.$data.preview_html = '2048文字以内で入力してください';
+                        return;
+                    }
                     var self = this;
                     $.ajax({
                         url: '/comments/preview.json',
