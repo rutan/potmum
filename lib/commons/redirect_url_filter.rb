@@ -1,3 +1,5 @@
+require 'cgi'
+
 class RedirectURLFilter < HTML::Pipeline::Filter
   def call
     doc.search('a').each do |node|
@@ -14,7 +16,7 @@ class RedirectURLFilter < HTML::Pipeline::Filter
         next if url.index(GlobalSetting.attachment_file_s3_host) == 0 # OK
       end
 
-      node.set_attribute('href', "/redirect?url=#{URI.escape(url)}")
+      node.set_attribute('href', "/redirect?url=#{CGI.escape(url)}")
     end
     doc
   end
