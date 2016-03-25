@@ -2,6 +2,7 @@ import { default as Vue } from 'vue';
 import { default as CodeMirror } from 'codemirror';
 import { renderMathjax } from './libs/mathjax.js';
 require('codemirror/mode/gfm/gfm');
+require('codemirror/addon/edit/closetag');
 
 module.exports = (function () {
     let Potmum = {};
@@ -45,8 +46,19 @@ module.exports = (function () {
 
                 // codemirror
                 this.code = CodeMirror.fromTextArea($(this.$el).find('.js-textarea')[0], {
+                    mode: 'gfm',
+                    autoCloseTags: true,
                     lineNumbers: true,
-                    mode: 'gfm'
+                    lineWrapping: true,
+                    indentUnit: 4,
+                    extraKeys: {
+                        Tab: (cm) => {
+                            cm.execCommand('insertSoftTab');
+                        },
+                        'Shift-Tab': (cm) => {
+                            cm.indentSelection('subtract');
+                        }
+                    }
                 });
                 this.code.on('change', () => {
                     this.bodyField = this.code.getValue();
