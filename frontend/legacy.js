@@ -186,8 +186,16 @@ module.exports = (function () {
                 },
                 onChangePictureFile: function (e) {
                     if (e.target.files.length == 0) return;
+                    this.uploadPicture(e.target.files[0]);
+                },
+                onDropFile: function (e) {
+                    if (e.dataTransfer.files.length == 0) return;
+                    e.preventDefault();
+                    this.uploadPicture(e.dataTransfer.files[0]);
+                },
+                uploadPicture: function (file) {
                     var formData = new FormData();
-                    formData.append('file', e.target.files[0]);
+                    formData.append('file', file);
                     var self = this;
                     $.ajax({
                         url: '/attachment_files.json',
@@ -197,10 +205,13 @@ module.exports = (function () {
                         processData: false,
                         contentType: false,
                         success: function (resp) {
+                            var doc = self.code.getDoc();
                             var textarea = $(self.$el).find('.js-textarea')[0];
                             var n = textarea.selectionEnd;
-                            var str = "\n![img](" + resp.data.url + ")\n";
-                            self.bodyField = self.bodyField.slice(0, n) + str + self.bodyField.slice(n);
+                            var text = doc.getSelections()[0];
+                            if (text.length == 0) text = 'img';
+                            var str = `\n![${text}](${resp.data.url})\n`;
+                            doc.replaceSelection(str);
                         },
                         error: function (err) {
                             console.error(err);
