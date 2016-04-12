@@ -1,17 +1,23 @@
-const Potmum = require('../legacy');
-const renderMathjax = require('../libs/mathjax.js').renderMathjax;
+import { renderMathjax } from '../libs/mathjax.js';
+import { default as Potmum } from '../legacy';
 
-export function newAction() {
+function newAction() {
     Potmum.createArtcleEditor('.js-article-editor')
 }
 
-export function editAction() {
+function editAction() {
     Potmum.createArtcleEditor('.js-article-editor')
 }
 
-export function showAction() {
+function showAction() {
     Potmum.createCommentForm('.js-comment-form');
     Potmum.createStockButton('.js-stock-button');
 
     renderMathjax($('.markdown'));
+}
+
+export default {
+    newAction: newAction,
+    editAction: editAction,
+    showAction: showAction
 }

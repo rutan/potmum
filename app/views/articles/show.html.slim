@@ -50,10 +50,10 @@
                   | 削除
             - elsif current_user
               .js-stock-button data-url=article_stock_path(article_id: @article, format: 'json') data-stocked=(current_user.stocked?(@article) ? 1 : 0)
-                button.uk-button.uk-button-large.uk-button-primary.uk-width-2-3 v-show='!stocked' v-on='click: onClick' style='display: none;'
+                button.uk-button.uk-button-large.uk-button-primary.uk-width-2-3 v-show='!stocked' v-on:click='onClick' style='display: none;'
                   i.fa.fa-folder
                   | &nbsp;ストックする
-                button.uk-button.uk-button-large.uk-width-2-3 v-show='stocked' v-on='click: onClick' style='display: none;'
+                button.uk-button.uk-button-large.uk-width-2-3 v-show='stocked' v-on:click='onClick' style='display: none;'
                   i.fa.fa-check
                   | &nbsp;ストック済み
     - if @article.private_item?
@@ -79,14 +79,14 @@
           - if current_user
             .js-comment-form.uk-margin-top data-url=article_comments_path(article_id: @article, name: @article.user.name, format: 'json')
               ul.uk-tab
-                li v-class='uk-active: !modePreview'
-                  a href='#' v-on='click: changeToForm'
+                li v-bind:class='{"uk-active": !modePreview}'
+                  a href='#' v-on:click='changeToForm'
                     | コメント
-                li v-class='uk-active: modePreview'
-                  a href='#' v-on='click: changeToPreview'
+                li v-bind:class='{"uk-active": modePreview}'
+                  a href='#' v-on:click='changeToPreview'
                     | プレビュー
               .uk-panel.uk-panel-box
-                form.uk-form action='#' v-on='submit: onSubmit'
+                form.uk-form action='#' v-on:submit='onSubmit'
                   .comment-input-area v-show='!modePreview'
                     textarea.uk-width-1-1 style='min-height: 8em;' name='body' v-model='bodyField'
                   .comment-preview-area v-show='modePreview'

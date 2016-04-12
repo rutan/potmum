@@ -5,7 +5,7 @@ require('codemirror/mode/gfm/gfm');
 require('codemirror/addon/edit/closetag');
 
 module.exports = (function () {
-    let Potmum = {};
+    const Potmum = {};
 
     Potmum.createArtcleEditor = function (element) {
         return new Vue({
@@ -79,7 +79,7 @@ module.exports = (function () {
                     e.preventDefault();
                     var i = this.$data.tags.indexOf(content);
                     if (i != -1) {
-                        this.$data.tags.$remove(i);
+                        this.$data.tags.splice(i, 1);
                     }
                 },
                 onBlurTag: function (e) {
@@ -108,7 +108,7 @@ module.exports = (function () {
                     this.editStart();
                     var target = $(e.target);
                     if (this.$data.tags.length > 0 && target.val() == '') {
-                        this.$data.tags.$remove(this.$data.tags.length - 1);
+                        this.$data.tags.splice(this.$data.tags.length - 1, 1);
                     }
                 },
                 onClickTagForm: function (e) {

@@ -5,15 +5,15 @@
     .editor-title
       input type='text' placeholder='タイトル' v-model='title'
     .editor-tags
-      .tag-form v-on='click: onClickTagForm'
+      .tag-form v-on:click='onClickTagForm'
         .placeholder v-show='tags.length == 0 && !tagFocus'
           | スペース区切りで5つまで入力できます（例: Ruby）
-        .tag-item v-repeat='tags'
+        .tag-item v-for='value in tags'
           .tag-item-content
-            | {{$value}}
-          a.tag-item-action href='#' title='削除' v-on='click: onRemoveTag($event, $value)'
+            | {{value}}
+          a.tag-item-action href='#' title='削除' v-on:click='onRemoveTag($event, value)'
             i.fa.fa-close
-        input.js-tag-field type='text' v-on='keydown:onInputTag, keyup:onInputTag, keydown:onRemoveLastTag | key 8, blur:onBlurTag'
+        input.js-tag-field type='text' v-on:keydown='onInputTag' v-on:keydown.delete='onRemoveLastTag' v-on:keyup='onInputTag' v-on:blur='onBlurTag'
 
   .editor-main
     .editor-pane.editor-markdown
@@ -24,10 +24,10 @@
           - if GlobalSetting.use_attachment_file?
             form.js-picture-form.uk-button.uk-button-small.uk-button-success action='#'
               i.fa.fa-file-image-o title='画像'
-              input type='file' name='file' v-on='change: onChangePictureFile' data-timestamp='{{timestamp}}'
+              input type='file' name='file' v-on:change='onChangePictureFile' data-timestamp='{{timestamp}}'
           button.uk-button.uk-button-small.uk-button-success.editor-markdown-upload disabled=true
             i.fa.fa-smile-o title='絵文字パレット(未対応)'
-      .editor-pane-content v-on='drop: onDropFile'
+      .editor-pane-content v-on:drop='onDropFile'
         textarea.js-textarea wrap='soft' placeholder='Markdownが使用できます' v-model='bodyField' v-pre=true
           = @article_d.body
     .editor-pane.editor-preview
@@ -43,7 +43,7 @@
         = global_alert
 
     .uk-button-group
-      button.uk-button v-on='click: onClickSubmit' disabled='{{sendingFlag}}' class='{{publish_type == "public_item" ? "uk-button-primary" : publish_type == "private_item" ? "uk-button-success" : ""}}'
+      button.uk-button v-on:click='onClickSubmit' disabled='{{sendingFlag}}' class='{{publish_type == "public_item" ? "uk-button-primary" : publish_type == "private_item" ? "uk-button-success" : ""}}'
         span v-show='publish_type == "public_item"'
           | 全体公開で保存
         span v-show='publish_type == "private_item"'
@@ -56,14 +56,14 @@
         .uk-dropdown.uk-dropdown-up
           ul.uk-nav.uk-nav-dropdown
             li
-              a href='#' v-on='click: onClickSetSaveMode($event, "public_item")'
+              a href='#' v-on:click='onClickSetSaveMode($event, "public_item")'
                 | 全体公開で保存
             li
-              a href='#' v-on='click: onClickSetSaveMode($event, "private_item")'
+              a href='#' v-on:click='onClickSetSaveMode($event, "private_item")'
                 | 限定公開で保存
             - unless @article.published_at
               li
-                a href='#' v-on='click: onClickSetSaveMode($event, "draft_item")'
+                a href='#' v-on:click='onClickSetSaveMode($event, "draft_item")'
                   | 下書き保存
 
 

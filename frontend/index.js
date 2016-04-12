@@ -1,26 +1,26 @@
+import { default as articleController } from './pages/article';
 
 (function () {
     const page = require('page');
-    const articleController = require('./pages/article');
 
     // new edit
-    page('/@:name/items/new', function () {
+    page('/@:name/items/new', () => {
         articleController.newAction();
     });
 
     // edit
-    page('/@:name/items/:article_id/edit', function () {
+    page('/@:name/items/:article_id/edit', () => {
         articleController.editAction();
     });
 
     // show
-    page('/@:name/items/:article_id', function () {
+    page('/@:name/items/:article_id', () => {
         articleController.showAction();
     });
 
     // redirector
-    page('/redirect', function () {
-        let url = $('#js-redirect-url').attr('href');
+    page('/redirect', () => {
+        const url = $('#js-redirect-url').attr('href');
         if (url) {
             setTimeout(() => {
                 location.href = url;
