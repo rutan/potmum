@@ -50,12 +50,12 @@ class LobbiesController < ApplicationController
   # リダイレクタ
   def redirector
     @url = params[:url].to_s.strip[0, 255]
-    fail Errors::BadRequest unless @url.match(/\Ahttps?:\/\/.+/)
+    raise Errors::BadRequest unless @url =~ /\Ahttps?:\/\/.+/
   end
 
   # GET /browserconfig.xml
   def browserconfig
-    fail Errors::NotFound unless params[:format] == 'xml'
+    raise Errors::NotFound unless params[:format] == 'xml'
     render layout: nil
   end
 end

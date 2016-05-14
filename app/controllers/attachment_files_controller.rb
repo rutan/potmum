@@ -3,7 +3,7 @@ class AttachmentFilesController < ApplicationController
 
   # POST /attachment_files.json
   def create
-    fail Errors::NotFound unless GlobalSetting.use_attachment_file?
+    raise Errors::NotFound unless GlobalSetting.use_attachment_file?
 
     @attachment_file = AttachmentFile.new(
       user: current_user,

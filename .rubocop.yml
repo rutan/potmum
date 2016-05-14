@@ -4,6 +4,7 @@ AllCops:
     - config.ru
     - bin/**/*
     - db/**/*
+    - node_modules/**/*
     - out/**/*
     - tmp/**/*
     - vendor/**/*

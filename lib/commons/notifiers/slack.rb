@@ -27,8 +27,8 @@ module Notifiers
           title_link: target.try(:url),
           text: target.try(:summary)
         }.delete_if { |_, v| v.nil? }].to_json,
-        icon_url: @icon.match(/\Ahttp/) ? @icon : nil,
-        icon_emoji: @icon.match(/\A:.+:\z/) ? @icon : nil
+        icon_url: @icon.start_with?('http') ? @icon : nil,
+        icon_emoji: @icon =~ /\A:.+:\z/ ? @icon : nil
       }.delete_if { |_, v| v.nil? })
     end
 
@@ -36,7 +36,7 @@ module Notifiers
       channel_name = name.sub(/\A#/, '')
       @channel_list = (client.channels_list['channels'] || [])
       channel = @channel_list.find { |n| n['name'] == channel_name }
-      channel.try(:[], 'id') || fail('not found channel')
+      channel.try(:[], 'id') || raise('not found channel')
     end
   end
 end

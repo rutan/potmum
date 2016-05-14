@@ -107,7 +107,7 @@ module GlobalSetting
     'brown' => ['#a1887f', '#8d6e63', '#795548', '#5d4037'],
     'grey' => ['#e0e0e0', '#bdbdbd', '#9e9e9e', '#616161'],
     'blue_grey' => ['#90a4ae', '#78909c', '#607d8b', '#455a64']
-  }
+  }.freeze
 
   def self.use_attachment_file?
     ENV['USE_ATTACHMENT_FILE'].present?

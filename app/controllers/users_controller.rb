@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     ActiveRecord::Base.transaction do
-      fail 'validation' unless @user.valid?
+      raise 'validation' unless @user.valid?
       @user.save!
       @user.link_to_auth!(session['auth'])
     end
@@ -44,11 +44,11 @@ class UsersController < ApplicationController
   def stock_articles
     @mode = :stock_articles
     @articles =
-        if current_user == @user
-          @user.stock_articles.includes(:user, :tags).page(@page)
-        else
-          @user.stock_articles.public_items.includes(:user, :tags).page(@page)
-        end
+      if current_user == @user
+        @user.stock_articles.includes(:user, :tags).page(@page)
+      else
+        @user.stock_articles.public_items.includes(:user, :tags).page(@page)
+      end
     render :show
   end
 
@@ -56,11 +56,11 @@ class UsersController < ApplicationController
   def comments
     @mode = :comments
     @comments =
-        if current_user == @user
-          @user.comments.includes(:article).page(@page)
-        else
-          @user.comments.recent(current_user).includes(:article).page(@page)
-        end
+      if current_user == @user
+        @user.comments.includes(:article).page(@page)
+      else
+        @user.comments.recent(current_user).includes(:article).page(@page)
+      end
     render :show
   end
 
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   end
 
   def check_register_mode!
-    fail Errors::BadRequest unless session['auth']
+    raise Errors::BadRequest unless session['auth']
   end
 
   def user_params

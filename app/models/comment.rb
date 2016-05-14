@@ -21,12 +21,12 @@ class Comment < ActiveRecord::Base
   scope :recent, -> (author = nil) {
     published_articles = Article.arel_table[:publish_type].eq(2)
     recent_scope =
-        if author
-          mine_articles = Article.arel_table[:user_id].eq(author.id).and(Article.arel_table[:publish_type].not_eq(0))
-          published_articles.or(mine_articles)
-        else
-          published_articles
-        end
+      if author
+        mine_articles = Article.arel_table[:user_id].eq(author.id).and(Article.arel_table[:publish_type].not_eq(0))
+        published_articles.or(mine_articles)
+      else
+        published_articles
+      end
     joins(:article).where(recent_scope).order(created_at: :desc)
   }
 end

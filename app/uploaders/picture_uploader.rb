@@ -2,7 +2,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   def store_dir
-    "#{model.class.to_s.pluralize.underscore}"
+    model.class.to_s.pluralize.underscore.to_s
   end
 
   def extension_white_list

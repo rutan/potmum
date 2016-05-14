@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/:id.json
   def destroy
-    fail Errors::Forbidden unless current_user == @comment.user
+    raise Errors::Forbidden unless current_user == @comment.user
     article = @comment.article
     @comment.destroy
     article.update_comment_count

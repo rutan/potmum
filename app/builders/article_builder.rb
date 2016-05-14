@@ -12,10 +12,10 @@ class ArticleBuilder
   def build(params)
     ActiveRecord::Base.transaction do
       @article.title = params.delete(:title)
-      fail Errors::BadRequest unless @article.valid?
+      raise Errors::BadRequest unless @article.valid?
 
       @revision.body = params.delete(:body)
-      fail Errors::BadRequest unless @revision.valid?
+      raise Errors::BadRequest unless @revision.valid?
       @revision.save!
 
       @article.newest_revision_id = @revision.id

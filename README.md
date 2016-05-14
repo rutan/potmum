@@ -19,7 +19,7 @@ bundle exec puma -C config/puma.rb
 
 ## Requirement
 
-- Ruby 2.2.2
+- Ruby 2.3.1
 - PostgreSQL
 
 I have assumed the use in Heroku or dokku.

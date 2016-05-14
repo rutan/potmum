@@ -30,10 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login!
-    fail Errors::Unauthorized unless current_user
+    raise Errors::Unauthorized unless current_user
   end
 
-  alias_method :private_mode!, :require_login!
+  alias private_mode! require_login!
 
   def set_page
     @page = [params[:page].to_i, 1].max

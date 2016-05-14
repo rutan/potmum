@@ -7,7 +7,7 @@ class RedirectURLFilter < HTML::Pipeline::Filter
       next unless url
 
       next if url.index('#') == 0 # OK: #hoge
-      next if url.match(/\A\/[^\/]/) # OK: /hoge
+      next if url =~ /\A\/[^\/]/ # OK: /hoge
       if GlobalSetting.root_url.present?
         next if url.index("#{GlobalSetting.root_url}/") == 0 # OK: http://podmum-url/hoge
         next if url.index("//#{GlobalSetting.root_url.sub(/\Ahttps?:/, '')}/") == 0 # OK: //podmum-url/hoge
