@@ -27,6 +27,7 @@ gem 'slack-api'
 
 gem 'kaminari'
 gem 'ransack'
+gem 'diffy'
 
 gem 'mini_magick'
 gem 'carrierwave'

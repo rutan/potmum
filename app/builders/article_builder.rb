@@ -2,38 +2,56 @@ class ArticleBuilder
   def initialize(article)
     @article = article
     @published = article.published?
-    @revision = Revision.new
-    @error = nil
+    @revision = @article.revisions.drafts.first || Revision.new
+    @errors = nil
   end
 
   attr_reader :article
-  attr_reader :error
+  attr_reader :errors
 
   def build(params)
-    ActiveRecord::Base.transaction do
-      @article.title = params.delete(:title)
-      raise Errors::BadRequest unless @article.valid?
+    @revision.user_id = params.delete(:user_id)
+    @article.user_id ||= @revision.user_id
 
-      @revision.body = params.delete(:body)
-      raise Errors::BadRequest unless @revision.valid?
+    @revision.title = params.delete(:title)
+    @revision.body = params.delete(:body)
+    @revision.note = params.delete(:note).to_s
+    @revision.published_at = Time.zone.now
+    @revision.revision_type =
+      case params[:publish_type]
+      when 'private_item', 'public_item'
+        Revision.revision_types[:published]
+      else
+        Revision.revision_types[:draft]
+      end
+
+    unless @revision.valid?
+      @errors = @revision.errors
+      puts @error.inspect
+      raise Errors::BadRequest
+    end
+
+    ActiveRecord::Base.transaction do
       @revision.save!
 
+      @article.user_id ||= @revision.user_id
+      @article.title = @revision.title
       @article.newest_revision_id = @revision.id
-      @article.publish_type = params[:publish_type] if params[:publish_type]
-      @article.published_at ||= Time.zone.now unless @article.draft_item?
+      @article.publish_type = params[:publish_type]
+      @article.published_at ||= Time.zone.now if @revision.published?
       @article.save!
 
       @article.tags_text = params.delete(:tags_text).to_s
-
       @revision.article_id = @article.id
-      @revision.save
+      @revision.tags_text = params.delete(:tags_text).to_s
+      @revision.save!
     end
 
     notify(@article) if !@published && @article.public_item?
 
     true
-  rescue => _e
-    @error = 'だめっぽ'
+  rescue ActiveRecord::RecordInvalid => e
+    @errors = e.record.errors
     false
   end
 

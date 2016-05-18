@@ -1,0 +1,34 @@
+.article-viewer
+  .content-header.article-header
+    .uk-container.uk-container-center
+      .uk-grid
+        .uk-width-medium-7-10
+          h1.article-title
+            - if @article.private_item?
+              i.fa.fa-lock
+              | &nbsp;
+            a href=article_path(@article, name: @article.user.name)
+              = @article_d.title
+            | &nbsp;の編集履歴
+
+    - if @article.private_item?
+      .content-header-alert
+        .uk-container.uk-container-center
+          i.fa.fa-lock
+          | &nbsp;この記事はURLを知る人だけがアクセスできる限定公開記事です
+
+  .article-main
+    .uk-container.uk-container-center
+      .uk-width-medium-7-10.uk-margin-bottom.uk-container-center
+        ul.uk-tab
+          li class=('uk-active' if @mode == :show)
+            a href=article_revision_path(@revision, name: @article.user.name, article_id: @article)
+              | diff
+          li class=('uk-active' if @mode == :preview)
+            a href=preview_article_revision_path(@revision, name: @article.user.name, article_id: @article.id)
+              | プレビュー
+        - case @mode
+        - when :show
+          = render('diff')
+        - when :preview
+          = render('preview')

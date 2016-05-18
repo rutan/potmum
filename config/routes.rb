@@ -16,6 +16,11 @@ Rails.application.routes.draw do
       collection do
         post 'preview'
       end
+      resources :revisions, only: [:index, :show] do
+        member do
+          get 'preview'
+        end
+      end
       resources :comments, only: [:create]
       resource :stock, only: [:show, :update]
     end

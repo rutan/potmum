@@ -1,0 +1,35 @@
+.article-viewer
+  .content-header.article-header
+    .uk-container.uk-container-center
+      .uk-grid
+        .uk-width-medium-7-10
+          h1.article-title
+            - if @article.private_item?
+              i.fa.fa-lock
+              | &nbsp;
+            a href=article_path(@article, name: @article.user.name)
+              = @article_d.title
+            | &nbsp;の編集履歴
+
+    - if @article.private_item?
+      .content-header-alert
+        .uk-container.uk-container-center
+          i.fa.fa-lock
+          | &nbsp;この記事はURLを知る人だけがアクセスできる限定公開記事です
+
+  .article-main
+    .uk-container.uk-container-center
+      .uk-width-medium-7-10.uk-margin-bottom.uk-container-center
+        .uk-panel.uk-panel-box
+          ul.article-list
+            - @article.revisions.published.each do |revision|
+              li
+                a.article-avatar href=user_path(name: revision.user)
+                  img.avatar-image src=revision.user.decorate.avatar_url
+                .article-author
+                  a href=user_path(name: revision.user)
+                    = revision.user.name
+                  | &nbsp;が #{l(revision.published_at)} に投稿
+                .article-title
+                  a href=article_revision_path(revision, name: revision.article.user.name, article_id: revision.article)
+                    = (revision.note.present? ? revision.note : 'コメントなし')

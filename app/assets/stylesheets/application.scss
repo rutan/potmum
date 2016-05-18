@@ -142,6 +142,15 @@ q, blockquote {
     color: #fff;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   .content-header-alert {
@@ -317,6 +326,15 @@ q, blockquote {
       text-align: center;
       margin: 1em auto;
     }
+  }
+}
+
+.diff {
+  line-height: 1.7;
+
+  ul {
+    list-style: none;
+    padding: 0;
   }
 }
 

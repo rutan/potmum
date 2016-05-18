@@ -10,13 +10,13 @@ class ArticlesController < ApplicationController
 
   # GET /@:name/items/new
   def new
-    @article = Article.new(user: current_user)
+    @article = Article.new
     @article_d = @article.decorate
   end
 
   # POST /@:name/items
   def create
-    @article = Article.new(user: current_user)
+    @article = Article.new
     article_builder = ArticleBuilder.new(@article)
     if article_builder.build(article_params)
       render_json @article
@@ -63,7 +63,13 @@ class ArticlesController < ApplicationController
 
   # POST /@:name/items/preview.json
   def preview
-    revision = Revision.new(body: params[:body])
+    revision = Revision.new(
+      user_id: current_user.id,
+      title: 'preview',
+      body: params[:body],
+      revision_type: 1,
+      note: ''
+    )
     if revision.valid?
       render_json revision
     else
@@ -83,7 +89,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.permit(:title, :tags_text, :body, :publish_type)
+    params.permit(:title, :tags_text, :body, :note, :publish_type).merge(user_id: current_user.id)
   end
 
   def check_owner!

@@ -1,6 +1,6 @@
 CREATE TABLE "schema_migrations" ("version" varchar NOT NULL);
 CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
-CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(32) NOT NULL, "email" varchar, "stock_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(32) NOT NULL, "email" varchar, "stock_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "role" integer DEFAULT 0);
 CREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name");
 CREATE INDEX "index_users_on_stock_count" ON "users" ("stock_count");
 CREATE TABLE "authentications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "provider" varchar(32) NOT NULL, "uid" varchar(128) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
@@ -14,7 +14,7 @@ CREATE INDEX "index_articles_on_stock_count" ON "articles" ("stock_count");
 CREATE INDEX "index_articles_on_comment_count" ON "articles" ("comment_count");
 CREATE INDEX "index_articles_on_created_at" ON "articles" ("created_at");
 CREATE INDEX "index_articles_on_published_at" ON "articles" ("published_at");
-CREATE TABLE "revisions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" varchar(128), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE TABLE "revisions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" varchar(128), "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "title" varchar DEFAULT '', "tags_text" text DEFAULT '', "user_id" integer, "published_at" datetime, "revision_type" integer DEFAULT 0, "note" text);
 CREATE INDEX "index_revisions_on_article_id" ON "revisions" ("article_id");
 CREATE TABLE "tags" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(64) NOT NULL, "content" varchar(64) NOT NULL, "article_count" integer DEFAULT 0 NOT NULL, "is_menu" boolean DEFAULT 'f', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE UNIQUE INDEX "index_tags_on_content" ON "tags" ("content");
@@ -33,6 +33,9 @@ CREATE INDEX "index_articles_on_publish_type" ON "articles" ("publish_type");
 CREATE TABLE "attachment_files" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "file" varchar(128), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE INDEX "index_attachment_files_on_user_id" ON "attachment_files" ("user_id");
 CREATE UNIQUE INDEX "index_attachment_files_on_file" ON "attachment_files" ("file");
+CREATE INDEX "index_revisions_on_user_id" ON "revisions" ("user_id");
+CREATE INDEX "index_revisions_on_published_at" ON "revisions" ("published_at");
+CREATE INDEX "index_revisions_on_revision_type" ON "revisions" ("revision_type");
 INSERT INTO schema_migrations (version) VALUES ('20150722154057');
 
 INSERT INTO schema_migrations (version) VALUES ('20150722154204');
@@ -52,4 +55,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150722154631');
 INSERT INTO schema_migrations (version) VALUES ('20150811163448');
 
 INSERT INTO schema_migrations (version) VALUES ('20150812165100');
+
+INSERT INTO schema_migrations (version) VALUES ('20150925174706');
+
+INSERT INTO schema_migrations (version) VALUES ('20160426162535');
 

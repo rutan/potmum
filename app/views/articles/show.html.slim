@@ -24,7 +24,9 @@
             a href=user_path(name: @article.user)
               img.avatar-image src=@article_d.user.avatar_url
               = @article_d.user.name
-            | &nbsp;が #{l((@article_d.published_at || @article.created_at).to_date)} に投稿
+            | &nbsp;が #{l((@article_d.published_at || @article.created_at).to_date)} に投稿&nbsp;-&nbsp;
+            a href=article_revisions_path(article_id: @article)
+              | 編集履歴(#{@article.revisions.published.count})
           br.uk-visible-small
         .uk-width-medium-3-10
           ul.article-score

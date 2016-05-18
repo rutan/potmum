@@ -37,34 +37,37 @@
       .editor-pane-content
         .editor-preview-field.markdown
           | {{{preview_html}}}
-  .editor-footer.uk-text-right
-    - if global_alert
-      span.uk-text-danger
-        = global_alert
+  .editor-footer
+    .uk-grid
+      .uk-width-small-1-2
+        input.uk-width-1-1 type='text' placeholder='何を変更しましたか？（省略可）' v-model='note'
+      .uk-width-small-1-2.uk-text-right
+        - if global_alert
+          span.uk-text-danger
+            = global_alert
 
-    .uk-button-group
-      button.uk-button v-on:click='onClickSubmit' disabled='{{sendingFlag}}' class='{{publish_type == "public_item" ? "uk-button-primary" : publish_type == "private_item" ? "uk-button-success" : ""}}'
-        span v-show='publish_type == "public_item"'
-          | 全体公開で保存
-        span v-show='publish_type == "private_item"'
-          | 限定公開で保存
-        span v-show='publish_type == "draft_item"'
-          | 下書き保存
-      div data-uk-dropdown='{mode: "click"}'
-        a.uk-button href='#' class='{{publish_type == "public_item" ? "uk-button-primary" : publish_type == "private_item" ? "uk-button-success" : ""}}'
-          i.fa.fa-caret-up
-        .uk-dropdown.uk-dropdown-up
-          ul.uk-nav.uk-nav-dropdown
-            li
-              a href='#' v-on:click='onClickSetSaveMode($event, "public_item")'
-                | 全体公開で保存
-            li
-              a href='#' v-on:click='onClickSetSaveMode($event, "private_item")'
-                | 限定公開で保存
-            - unless @article.published_at
-              li
-                a href='#' v-on:click='onClickSetSaveMode($event, "draft_item")'
-                  | 下書き保存
-
+        .uk-button-group
+          button.uk-button v-on:click='onClickSubmit' disabled='{{sendingFlag}}' class='{{publish_type == "public_item" ? "uk-button-primary" : publish_type == "private_item" ? "uk-button-success" : ""}}'
+            span v-show='publish_type == "public_item"'
+              | 全体公開で保存
+            span v-show='publish_type == "private_item"'
+              | 限定公開で保存
+            span v-show='publish_type == "draft_item"'
+              | 下書き保存
+          div data-uk-dropdown='{mode: "click"}'
+            a.uk-button href='#' class='{{publish_type == "public_item" ? "uk-button-primary" : publish_type == "private_item" ? "uk-button-success" : ""}}'
+              i.fa.fa-caret-up
+            .uk-dropdown.uk-dropdown-up
+              ul.uk-nav.uk-nav-dropdown
+                li
+                  a href='#' v-on:click='onClickSetSaveMode($event, "public_item")'
+                    | 全体公開で保存
+                li
+                  a href='#' v-on:click='onClickSetSaveMode($event, "private_item")'
+                    | 限定公開で保存
+                - unless @article.published_at
+                  li
+                    a href='#' v-on:click='onClickSetSaveMode($event, "draft_item")'
+                      | 下書き保存
 
 - content_for(:full_mode) { 'on' }

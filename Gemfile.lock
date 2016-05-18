@@ -132,6 +132,7 @@ GEM
     daemons (1.2.3)
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
+    diffy (3.1.0)
     docile (1.1.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
@@ -505,6 +506,7 @@ DEPENDENCIES
   carrierwave
   carrierwave-aws!
   compass-rails
+  diffy
   dotenv-rails
   draper
   faker

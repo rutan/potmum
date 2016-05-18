@@ -18,7 +18,10 @@
 class Article < ActiveRecord::Base
   belongs_to :user
   belongs_to :newest_revision, class_name: 'Revision'
-  has_many :revisions
+  has_many :revisions, -> {
+    order(published_at: :desc)
+  }
+
   has_many :link_article_tags
   has_many :tags, through: :link_article_tags
   has_many :stocks
@@ -46,6 +49,9 @@ class Article < ActiveRecord::Base
   scope :popular, -> {
     where(publish_type: 2).order(stock_count: :desc, view_count: :desc)
   }
+
+  validates :user,
+            presence: true
 
   validates :title,
             length: 1..64,

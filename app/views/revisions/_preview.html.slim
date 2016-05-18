@@ -1,0 +1,3 @@
+.uk-panel.uk-panel-box.markdown
+  = cache "article-markdown--#{@article.id}--#{@revision.id}" do
+    == @revision.decorate.markdown_html

@@ -1,0 +1,18 @@
+.uk-panel.uk-panel-box
+  h2 タイトル
+  - if @diff[:title].diff.present?
+    == @diff[:title]
+  - else
+    | 変更なし
+
+  h2 タグ
+  - if @diff[:tags].diff.present?
+    == @diff[:tags]
+  - else
+    | 変更なし
+
+  h2 本文
+  - if @diff[:body].diff.present?
+    == @diff[:body]
+  - else
+    | 変更なし

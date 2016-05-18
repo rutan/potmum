@@ -15,6 +15,7 @@ module.exports = (function () {
                 title: '',
                 tags: [],
                 body: '',
+                note: '',
                 preview_html: '',
                 publish_type: 'public_item',
                 tagFocus: false,
@@ -156,6 +157,10 @@ module.exports = (function () {
                         alert('本文を1〜100000文字で入力してください。');
                         return;
                     }
+                    if (this.$data.note.length > 1000) {
+                        alert('変更メッセージは1000文字以内で入力してください。');
+                        return;
+                    }
 
                     // send
                     var self = this;
@@ -167,6 +172,7 @@ module.exports = (function () {
                             title: this.$data.title,
                             tags_text: this.$data.tags.join(' '),
                             body: this.$data.body,
+                            note: this.$data.note,
                             publish_type: this.$data.publish_type
                         },
                         success: function (resp) {
