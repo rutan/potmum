@@ -231,6 +231,10 @@ q, blockquote {
   p {
     text-align: justify;
     text-justify: inter-ideograph;
+    word-break: break-all;
+    code.highlighter-rouge {
+      white-space: pre-wrap;
+    }
   }
 
   table {
