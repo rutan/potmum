@@ -1,0 +1,1 @@
+attributes :id, :user, :title, :publish_type, :published_at, :url, :view_count, :comment_count, :stock_count

@@ -31,6 +31,10 @@ class Article < ActiveRecord::Base
 
   enum publish_type: {draft_item: 0, private_item: 1, public_item: 2}
 
+  scope :published_items, -> {
+    where(publish_type: [1, 2]).order(published_at: :desc)
+  }
+
   scope :public_items, -> {
     where(publish_type: 2).order(published_at: :desc)
   }

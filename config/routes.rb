@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount PotmumAPI => '/api'
+  mount GrapeSwaggerRails::Engine => '/api/swagger'
+
   root 'lobbies#root'
   get '/newest' => 'lobbies#newest', as: :newest_articles
   get '/popular' => 'lobbies#popular', as: :popular_articles
@@ -41,11 +44,16 @@ Rails.application.routes.draw do
 
   resources :attachment_files, only: [:create]
 
+  resource :users, only: [:update], path: 'setting', as: :setting do
+    get '/' => 'users#edit'
+  end
+
+  namespace :users, path: 'setting' do
+    resources :access_tokens, only: [:index, :create, :update, :destroy], path: 'tokens'
+  end
+
   get '/register' => 'users#new', as: :register
   post '/register' => 'users#create'
-  get '/setting' => 'users#edit', as: :setting
-  put '/setting' => 'users#update'
-  patch '/setting' => 'users#update'
   resource :session, only: [:destroy]
 
   get '/auth/:provider/callback' => 'sessions#callback', as: :auth_callback

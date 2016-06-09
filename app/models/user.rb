@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
     order(created_at: :desc)
   }
   has_many :stock_articles, through: :stocks, source: 'article'
+  has_many :access_tokens
 
   validates :name,
             length: 3..16,

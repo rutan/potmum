@@ -38,5 +38,9 @@ module Potmum
     config.active_record.schema_format = :sql
 
     config.assets.paths << Emoji.images_path
+
+    config.middleware.use(Rack::Config) do |env|
+      env['api.tilt.root'] = Rails.root.join('app', 'views', 'apis')
+    end
   end
 end

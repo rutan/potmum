@@ -1,0 +1,53 @@
+- content_for(:title) do
+  | APIトークンの管理
+
+.uk-container.uk-container-center.uk-margin-top.uk-width-medium-2-3
+  = render('/users/setting_tabs', mode: :api_tokens)
+  .uk-panel.uk-panel-box
+    .uk-panel-title
+      | アクセストークンの追加
+
+    / form
+    = form_tag users_access_tokens_path, method: 'post', class: 'uk-form' do |f|
+      .uk-grid
+        .uk-width-medium-2-5
+          input.uk-width-1-1 type='text' name='title' placeholder='説明'
+        .uk-width-medium-1-5
+          select name='permit_type'
+            option value='permit_read_only'
+              | read
+            option value='permit_read_and_write'
+              | read / write
+        .uk-width-medium-1-5
+          button.uk-button.uk-button-primary.uk-width-1-1 type='submit'
+            | 登録
+
+    br
+
+    .uk-panel-title.uk-margin-top
+      | アクセストークンの管理
+
+    / list
+    - if current_user.access_tokens.exists?
+      ul.uk-list.uk-list-line
+        - current_user.access_tokens.each do |access_token|
+          li
+            .uk-grid.uk-form
+              .uk-width-2-5
+                .uk-form-row
+                  = access_token.title
+              .uk-width-1-5
+                input type='text' value=access_token.token readonly=true
+              .uk-width-1-5
+                .uk-form-row
+                  - case access_token.permit_type
+                  - when 'permit_read_only'
+                    | read
+                  - when 'permit_read_and_write'
+                    | read / write
+              .uk-width-1-5
+                a.uk-button.uk-button-danger.uk-display-block.uk-container-center href=users_access_token_path(access_token) data-method='delete'
+                  | 削除
+    - else
+      p.uk-text-center.uk-text-muted.uk-text-large.uk-margin-top.uk-margin-bottom
+        | 現在使用中のアクセストークンはありません

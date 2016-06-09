@@ -84,6 +84,10 @@ GEM
       jmespath (~> 1.0)
     aws-sdk-resources (2.3.4)
       aws-sdk-core (= 2.3.4)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -109,6 +113,8 @@ GEM
       ci_reporter (~> 2.0)
       rspec (>= 2.14, < 4)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     compass (1.0.3)
       chunky_png (~> 1.2)
       compass-core (~> 1.0.2)
@@ -131,6 +137,8 @@ GEM
     crass (1.0.2)
     daemons (1.2.3)
     debug_inspector (0.0.2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
     diffy (3.1.0)
     docile (1.1.5)
@@ -143,6 +151,8 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    enumerable-lazy (0.0.1)
+    equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.2.0.1)
     execjs (2.6.0)
@@ -172,6 +182,26 @@ GEM
     gemoji (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    grape (0.16.2)
+      activesupport
+      builder
+      hashie (>= 2.1.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      mustermann19 (~> 0.4.3)
+      rack (>= 1.3.0)
+      rack-accept
+      virtus (>= 1.0.0)
+    grape-rabl (0.4.2)
+      grape
+      i18n
+      rabl
+      tilt
+    grape-swagger (0.21.0)
+      grape (>= 0.12.0)
+    grape-swagger-rails (0.2.1)
+      grape-swagger (>= 0.7.2)
+      railties (>= 3.2.12)
     greenmat (3.2.2.1)
     growl (1.0.3)
     guard (2.13.0)
@@ -207,6 +237,7 @@ GEM
       html-pipeline (~> 2.4)
     http_accept_language (2.0.5)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     ikazuchi (0.1.7)
       awesome_print
       better_errors
@@ -276,6 +307,8 @@ GEM
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mustermann19 (0.4.3)
+      enumerable-lazy
     nenv (0.3.0)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
@@ -291,6 +324,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
+    oj (2.15.1)
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
@@ -336,7 +370,11 @@ GEM
       yajl-ruby (~> 1.2.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
+    rabl (0.12.0)
+      activesupport (>= 2.3.14)
     rack (1.6.4)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rack-mini-profiler (0.9.9.2)
       rack (>= 1.2.0)
     rack-test (0.6.3)
@@ -487,6 +525,11 @@ GEM
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.0.5)
     uniform_notifier (1.9.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     webmock (2.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -514,12 +557,17 @@ DEPENDENCIES
   font-awesome-sass
   foreman
   gemoji
+  grape
+  grape-rabl
+  grape-swagger
+  grape-swagger-rails
   html-pipeline-nico_link
   ikazuchi
   jquery-rails
   kaminari
   mini_magick
   nokogiri (= 1.6.5)
+  oj
   omniauth
   omniauth-github
   omniauth-google-oauth2!
@@ -529,6 +577,7 @@ DEPENDENCIES
   puma
   qiita-markdown!
   quiet_assets
+  rabl
   rails (= 4.2.5.1)
   rails-i18n
   rails_12factor
@@ -543,5 +592,8 @@ DEPENDENCIES
   thin
   uglifier (>= 1.3.0)
 
+RUBY VERSION
+   ruby 2.3.1p112
+
 BUNDLED WITH
-   1.11.2
+   1.12.1

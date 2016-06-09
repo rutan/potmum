@@ -4,6 +4,13 @@ ruby '2.3.1'
 gem 'rails', '4.2.5.1'
 gem 'rails-i18n'
 
+gem 'rabl'
+gem 'oj'
+gem 'grape'
+gem 'grape-rabl'
+gem 'grape-swagger'
+gem 'grape-swagger-rails'
+
 gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
 gem 'compass-rails'
