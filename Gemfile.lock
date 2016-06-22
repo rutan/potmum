@@ -12,15 +12,6 @@ GIT
       sanitize
 
 GIT
-  remote: git://github.com/sorentwo/carrierwave-aws.git
-  revision: 64f8d1e4af92b25b6a2e1e4bd4e97e8586174913
-  ref: 64f8d1e4af92b25b6a2e1e4bd4e97e8586174913
-  specs:
-    carrierwave-aws (1.0.0.pre.rc.1)
-      aws-sdk (~> 2.0)
-      carrierwave (~> 0.7)
-
-GIT
   remote: git://github.com/zquestz/omniauth-google-oauth2.git
   revision: 69c3e91f158337a3804e5d69291085125aa55a7e
   ref: 69c3e91f158337a3804e5d69291085125aa55a7e
@@ -53,8 +44,11 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    active_model_serializers (0.9.5)
-      activemodel (>= 3.2)
+    active_model_serializers (0.10.1)
+      actionpack (>= 4.1, < 6)
+      activemodel (>= 4.1, < 6)
+      jsonapi (~> 0.1.1.beta2)
+      railties (>= 4.1, < 6)
     activejob (4.2.5.1)
       activesupport (= 4.2.5.1)
       globalid (>= 0.3.0)
@@ -76,14 +70,14 @@ GEM
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
     arel (6.0.3)
-    ast (2.2.0)
-    awesome_print (1.6.1)
-    aws-sdk (2.3.4)
-      aws-sdk-resources (= 2.3.4)
-    aws-sdk-core (2.3.4)
+    ast (2.3.0)
+    awesome_print (1.7.0)
+    aws-sdk (2.3.15)
+      aws-sdk-resources (= 2.3.15)
+    aws-sdk-core (2.3.15)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.3.4)
-      aws-sdk-core (= 2.3.4)
+    aws-sdk-resources (2.3.15)
+      aws-sdk-core (= 2.3.15)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -94,24 +88,18 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    brakeman (3.3.0)
     builder (3.2.2)
-    bullet (5.0.0)
-      activesupport (>= 3.0.0)
-      uniform_notifier (~> 1.9.0)
-    byebug (8.2.5)
+    byebug (9.0.5)
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
-    chunky_png (1.3.5)
-    ci_reporter (2.0.0)
-      builder (>= 2.1.2)
-    ci_reporter_rspec (1.0.0)
-      ci_reporter (~> 2.0)
-      rspec (>= 2.14, < 4)
+    carrierwave-aws (1.0.1)
+      aws-sdk (~> 2.0)
+      carrierwave (~> 0.7)
+    chunky_png (1.3.6)
     coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -141,7 +129,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.2.5)
     diffy (3.1.0)
-    docile (1.1.5)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -155,7 +142,7 @@ GEM
     equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.2.0.1)
-    execjs (2.6.0)
+    execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.7.0)
@@ -176,9 +163,8 @@ GEM
     ffi (1.9.10)
     font-awesome-sass (4.6.2)
       sass (>= 3.2)
-    foreman (0.81.0)
+    foreman (0.82.0)
       thor (~> 0.19.1)
-    formatador (0.2.5)
     gemoji (2.1.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -203,31 +189,6 @@ GEM
       grape-swagger (>= 0.7.2)
       railties (>= 3.2.12)
     greenmat (3.2.2.1)
-    growl (1.0.3)
-    guard (2.13.0)
-      formatador (>= 0.2.4)
-      listen (>= 2.7, <= 4.0)
-      lumberjack (~> 1.0)
-      nenv (~> 0.1)
-      notiffany (~> 0.0)
-      pry (>= 0.9.12)
-      shellany (~> 0.0)
-      thor (>= 0.18.1)
-    guard-brakeman (0.8.3)
-      brakeman (>= 2.1.1)
-      guard (>= 2.0.0)
-    guard-bundler (2.1.0)
-      bundler (~> 1.0)
-      guard (~> 2.2)
-      guard-compat (~> 1.1)
-    guard-compat (1.2.1)
-    guard-rspec (4.6.5)
-      guard (~> 2.1)
-      guard-compat (~> 1.1)
-      rspec (>= 2.99.0, < 4.0)
-    guard-rubocop (1.2.0)
-      guard (~> 2.0)
-      rubocop (~> 0.20)
     hashdiff (0.3.0)
     hashie (3.4.4)
     html-pipeline (2.4.1)
@@ -235,42 +196,8 @@ GEM
       nokogiri (>= 1.4)
     html-pipeline-nico_link (0.1.0)
       html-pipeline (~> 2.4)
-    http_accept_language (2.0.5)
     i18n (0.7.0)
     ice_nine (0.11.2)
-    ikazuchi (0.1.7)
-      awesome_print
-      better_errors
-      binding_of_caller
-      brakeman
-      bullet
-      ci_reporter_rspec
-      factory_girl_rails
-      growl
-      guard
-      guard-brakeman
-      guard-bundler
-      guard-rspec
-      guard-rubocop
-      http_accept_language
-      kaminari
-      libnotify
-      pry
-      pry-byebug
-      pry-doc
-      pry-rails
-      pry-stack_explorer
-      quiet_assets
-      rack-mini-profiler
-      rspec-its
-      rspec-rails
-      rubocop
-      simplecov
-      simplecov-rcov
-      spring
-      spring-commands-rspec
-      tapp
-      webmock
     jmespath (1.2.4)
       json_pure (>= 1.8.1)
     jquery-rails (4.1.1)
@@ -279,44 +206,35 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     json_pure (1.8.3)
+    jsonapi (0.1.1.beta2)
+      json (~> 1.8)
     jwt (1.5.1)
-    kaminari (0.16.3)
+    kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    libnotify (0.9.1)
-      ffi (>= 1.0.11)
     libv8 (3.16.14.15)
-    listen (3.1.4)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
-    lumberjack (1.0.10)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     mem (0.1.5)
     method_source (0.8.2)
-    mime-types (3.0)
+    mime-types (3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types-data (3.2016.0521)
     mimemagic (0.3.1)
     mini_magick (4.5.1)
     mini_portile (0.6.2)
-    minitest (5.8.4)
-    multi_json (1.12.0)
+    minitest (5.9.0)
+    multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mustermann19 (0.4.3)
+    mustermann19 (0.4.4)
       enumerable-lazy
-    nenv (0.3.0)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     nokogumbo (1.4.7)
       nokogiri
-    notiffany (0.0.8)
-      nenv (~> 0.1)
-      shellany (~> 0.0)
     oauth (0.5.1)
     oauth2 (1.1.0)
       faraday (>= 0.8, < 0.10)
@@ -324,7 +242,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    oj (2.15.1)
+    oj (2.16.1)
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
@@ -342,7 +260,7 @@ GEM
     omniauth-twitter (1.2.1)
       json (~> 1.3)
       omniauth-oauth (~> 1.1)
-    parser (2.3.1.0)
+    parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
     polyamorous (1.3.0)
@@ -353,17 +271,11 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.3.0)
-      byebug (~> 8.0)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
       pry (~> 0.10)
-    pry-doc (0.8.0)
-      pry (~> 0.9)
-      yard (~> 0.8)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    pry-stack_explorer (0.4.9.2)
-      binding_of_caller (>= 0.7)
-      pry (>= 0.9.11)
     puma (3.4.0)
     pygments.rb (0.6.3)
       posix-spawn (~> 0.3.6)
@@ -375,8 +287,6 @@ GEM
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
-    rack-mini-profiler (0.9.9.2)
-      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5.1)
@@ -412,7 +322,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.1.2)
+    rake (11.2.2)
     ransack (1.7.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -424,18 +334,11 @@ GEM
       ffi (>= 0.5.0)
     ref (2.0.0)
     request_store (1.3.1)
-    rspec (3.4.0)
-      rspec-core (~> 3.4.0)
-      rspec-expectations (~> 3.4.0)
-      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.4)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
-    rspec-its (1.2.0)
-      rspec-core (>= 3.0.0)
-      rspec-expectations (>= 3.0.0)
     rspec-mocks (3.4.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
@@ -456,7 +359,6 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-prof (0.15.9)
     ruby-progressbar (1.8.1)
-    ruby_dep (1.3.1)
     safe_yaml (1.0.4)
     sanitize (4.0.1)
       crass (~> 1.0.2)
@@ -469,33 +371,20 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    shellany (0.0.1)
-    simplecov (0.11.2)
-      docile (~> 1.1.0)
-      json (~> 1.8)
-      simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
-    simplecov-rcov (0.2.3)
-      simplecov (>= 0.4.1)
     slack-api (1.2.3)
       faraday (>= 0.7, < 0.10)
       faraday_middleware (~> 0.8)
       faye-websocket (~> 0.9.2)
       multi_json (~> 1.0, >= 1.0.3)
-    slim (3.0.6)
-      temple (~> 0.7.3)
+    slim (3.0.7)
+      temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (3.0.1)
-      actionmailer (>= 3.1, < 5.0)
-      actionpack (>= 3.1, < 5.0)
-      activesupport (>= 3.1, < 5.0)
-      railties (>= 3.1, < 5.0)
+    slim-rails (3.1.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
       slim (~> 3.0)
     slop (3.6.0)
-    spring (1.7.1)
-    spring-commands-rspec (1.0.4)
-      spring (>= 0.9.1)
-    sprockets (3.6.0)
+    sprockets (3.6.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.0.4)
@@ -506,35 +395,32 @@ GEM
       activesupport (>= 3.1.0)
       rack
     sqlite3 (1.3.11)
-    tapp (1.5.0)
-      thor
-    temple (0.7.6)
+    temple (0.7.7)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
-    thin (1.6.4)
+    thin (1.7.0)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
-      rack (~> 1.0)
+      rack (>= 1, < 3)
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.3)
+    tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.0.5)
-    uniform_notifier (1.9.0)
+    unicode-display_width (1.1.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    webmock (2.0.1)
+    webmock (2.1.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    websocket-driver (0.6.3)
+    websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
     yajl-ruby (1.2.1)
@@ -546,12 +432,16 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate
+  awesome_print
+  better_errors
+  binding_of_caller
   carrierwave
-  carrierwave-aws!
+  carrierwave-aws
   compass-rails
   diffy
   dotenv-rails
   draper
+  factory_girl_rails
   faker
   fakes3
   font-awesome-sass
@@ -562,7 +452,6 @@ DEPENDENCIES
   grape-swagger
   grape-swagger-rails
   html-pipeline-nico_link
-  ikazuchi
   jquery-rails
   kaminari
   mini_magick
@@ -574,6 +463,8 @@ DEPENDENCIES
   omniauth-slack
   omniauth-twitter
   pg
+  pry-byebug
+  pry-rails
   puma
   qiita-markdown!
   quiet_assets
@@ -582,6 +473,8 @@ DEPENDENCIES
   rails-i18n
   rails_12factor
   ransack
+  rspec-rails
+  rubocop (= 0.40.0)
   ruby-prof
   sass-rails (~> 5.0)
   slack-api
@@ -591,6 +484,8 @@ DEPENDENCIES
   therubyracer
   thin
   uglifier (>= 1.3.0)
+  webmock
+  yard
 
 RUBY VERSION
    ruby 2.3.1p112
