@@ -72,6 +72,7 @@ module.exports = (function () {
 
                 // assign
                 this.title = $(this.$el).find('.js-title-text').val();
+                this.code.setValue($(this.$el).find('.js-body-text').val());
                 this.bodyField = this.code.getValue();
             },
             methods: {
