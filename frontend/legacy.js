@@ -7,6 +7,10 @@ require('codemirror/addon/edit/closetag');
 module.exports = (function () {
     const Potmum = {};
 
+    function getCsrfToken() {
+        return $('meta[name="csrf-token"]').attr('content');
+    }
+
     Potmum.createArtcleEditor = function (element) {
         return new Vue({
             el: element,
@@ -130,6 +134,9 @@ module.exports = (function () {
                     $.ajax({
                         url: this.$data.id ? '../preview.json' : '../items/preview.json',
                         type: 'post',
+                        headers: {
+                            'X-CSRF-Token': getCsrfToken()
+                        },
                         data: {
                             body: this.$data.body
                         },
@@ -169,6 +176,9 @@ module.exports = (function () {
                     $.ajax({
                         url: this.$data.id ? '../' + this.$data.id + '.json' : '../items.json',
                         type: this.$data.id ? 'put' : 'post',
+                        headers: {
+                            'X-CSRF-Token': getCsrfToken()
+                        },
                         data: {
                             title: this.$data.title,
                             tags_text: this.$data.tags.join(' '),
@@ -208,6 +218,9 @@ module.exports = (function () {
                         url: '/attachment_files.json',
                         method: 'post',
                         dataType: 'json',
+                        headers: {
+                            'X-CSRF-Token': getCsrfToken()
+                        },
                         data: formData,
                         processData: false,
                         contentType: false,
@@ -278,6 +291,9 @@ module.exports = (function () {
                     $.ajax({
                         url: '/comments/preview.json',
                         type: 'post',
+                        headers: {
+                            'X-CSRF-Token': getCsrfToken()
+                        },
                         data: {
                             body: this.$data.body
                         },
@@ -296,6 +312,9 @@ module.exports = (function () {
                     $.ajax({
                         url: this.$data.url,
                         type: 'post',
+                        headers: {
+                            'X-CSRF-Token': getCsrfToken()
+                        },
                         data: {
                             body: this.$data.body
                         },
@@ -333,6 +352,9 @@ module.exports = (function () {
                     $.ajax({
                         url: this.$data.url,
                         type: 'put',
+                        headers: {
+                            'X-CSRF-Token': getCsrfToken()
+                        },
                         data: {
                             stocked: this.$data.stocked ? 1 : 0
                         }

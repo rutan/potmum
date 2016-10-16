@@ -13,12 +13,10 @@ gem 'grape-swagger-rails'
 
 gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'
-gem 'compass-rails'
-gem 'font-awesome-sass'
-gem 'jquery-rails'
 gem 'gemoji'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
+gem 'konpow', github: 'rutan/konpow'
 
 gem 'active_model_serializers'
 gem 'draper'

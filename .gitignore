@@ -4,9 +4,13 @@
 .ruby-version
 /public/attachment_files
 /public/assets
+/public/asset_pack
 /public/js
 /vendor/assets/javascripts/bundle.*
+/npm-debug.log
+/webpack-manifest.json
 node_modules
+*.generated.*
 
 # Created by https://www.gitignore.io
 

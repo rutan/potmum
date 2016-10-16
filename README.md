@@ -11,16 +11,29 @@ Demo: https://potmum-demo.herokuapp.com/
 
 ## Usage
 
+development mode
+
 ```bash
+yarn install
 bundle install --path vendor/bundle
-bundle exec rake assets:precompile assets:environment db:create db:migrate
-bundle exec puma -C config/puma.rb
+bundle exec rake db:create db:migrate
+bundle exec foreman start -f Procfile.dev
+```
+
+production mode
+
+```bash
+yarn install
+bundle install --path vendor/bundle
+RAILS_ENV=production bundle exec rake db:create db:migrate assets:precompile
+RAILS_ENV=production bundle exec puma -C config/puma.rb
 ```
 
 ## Requirement
 
 - Ruby 2.3.1
 - PostgreSQL
+- Node (>= v.6.0) and [yarn](https://github.com/yarnpkg/yarn)
 
 I have assumed the use in Heroku or dokku.
 

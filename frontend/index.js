@@ -1,7 +1,9 @@
+import jQuery from 'jquery';
+import page from 'page';
 import { default as articleController } from './pages/article';
 
 (function () {
-    const page = require('page');
+    window.$ = window.jQuery = jQuery;
 
     // new edit
     page('/@:name/items/new', () => {
