@@ -313,7 +313,7 @@ q, blockquote {
   .footnotes {
     font-size: 14px;
 
-    p {
+    ol, p {
       margin: 0;
     }
   }
@@ -329,6 +329,26 @@ q, blockquote {
       display: block;
       text-align: center;
       margin: 1em auto;
+    }
+  }
+
+  .highlighter-rouge {
+    position: relative;
+
+    &.has-filename {
+      &:before {
+        position: absolute;
+        display: block;
+        content: attr(data-filename);
+        background: #ddd;
+        font-size: 12px;
+        line-height: 1;
+        padding: 3px 10px;
+      }
+
+      .highlight {
+        padding-top: 25px;
+      }
     }
   }
 }

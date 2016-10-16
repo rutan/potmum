@@ -11,6 +11,10 @@ module GlobalSetting
     ENV['USE_REDIRECTOR'].to_i != 0
   end
 
+  def self.use_external_widget?
+    ENV['USE_EXTERNAL_WIDGET'].to_i != 0
+  end
+
   def self.gravatar_url
     ENV['GRAVATAR_URL'] || 'https://www.gravatar.com/avatar'
   end

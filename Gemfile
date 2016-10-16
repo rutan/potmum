@@ -41,7 +41,7 @@ gem 'carrierwave'
 gem 'carrierwave-aws'
 
 gem 'nokogiri', '1.6.5'
-gem 'qiita-markdown', github: 'rutan/qiita-markdown', branch: 'remove_linguist'
+gem 'pot_markdown'
 gem 'html-pipeline-nico_link'
 
 gem 'dotenv-rails'
