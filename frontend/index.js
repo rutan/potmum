@@ -1,9 +1,10 @@
 import jQuery from 'jquery';
 import page from 'page';
+import jQueryRails from './libs/jquery-rails';
 import { default as articleController } from './pages/article';
 
 (function () {
-    window.$ = window.jQuery = jQuery;
+    jQueryRails();
 
     // new edit
     page('/@:name/items/new', () => {
