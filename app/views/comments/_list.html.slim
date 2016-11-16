@@ -22,7 +22,7 @@ ul.uk-list.comment-list
           a.comment-author href=user_path(comment.user)
             = comment.user.name
           .comment-contribute
-            = "#{comment.user.stock_count} contribution"
+            = "#{comment.user.like_count} contribution"
         .comment-date
           a href="#{article_path(comment.article, name: comment.article.user.name)}#comment-#{comment.id}"
             = l(comment.created_at, format: :short)

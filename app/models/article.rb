@@ -25,6 +25,7 @@ class Article < ActiveRecord::Base
   has_many :link_article_tags
   has_many :tags, through: :link_article_tags
   has_many :stocks
+  has_many :likes, as: :target
   has_many :comments, -> {
     order(created_at: :asc)
   }
@@ -96,7 +97,7 @@ class Article < ActiveRecord::Base
     published_at.present?
   end
 
-  def update_count
+  def update_stock_count
     old_count = stock_count
     new_count = stocks.count
     return if old_count == new_count
@@ -104,6 +105,16 @@ class Article < ActiveRecord::Base
     update_columns(stock_count: new_count)
     user_count = user.stock_count + (new_count - old_count)
     user.update_columns(stock_count: user_count) if user_count >= 0
+  end
+
+  def update_like_count
+    old_count = like_count
+    new_count = likes.count
+    return if old_count == new_count
+
+    update_columns(like_count: new_count)
+    user_count = user.like_count + (new_count - old_count)
+    user.update_columns(like_count: user_count) if user_count >= 0
   end
 
   def update_comment_count

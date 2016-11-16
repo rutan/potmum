@@ -1,7 +1,8 @@
 class ArticleDecorator < Draper::Decorator
   delegate_all
   include DecorateSerializer
-  define_attr :id, :user, :body, :markdown_html, :publish_type, :url, :view_count, :comment_count, :stock_count
+  define_attr :id, :user, :body, :markdown_html, :publish_type, :url,
+              :view_count, :comment_count, :stock_count, :like_count
 
   def user
     object.user.try(:decorate)

@@ -8,18 +8,23 @@ class StocksController < ApplicationController
     render_json(article_id: @article.id, stocked: !@stock.new_record?)
   end
 
-  # PUT /@user-name/items/:id/stock
-  # ストック状態の変更
-  def update
-    stocked = (params[:stocked].to_i != 0)
-    puts stocked.inspect
-    if stocked
-      @stock.save!
+  # POST /@:name/items/:id/stock
+  def create
+    stock = Stock.find_or_initialize_by(user_id: current_user.id, article_id: @article.id)
+    if stock.save
+      @article.update_stock_count
+      render_json(article_id: @article.id, stocked: true)
     else
-      @stock.destroy
+      render_json({article_id: @article.id}, status: 400)
     end
-    @article.update_count
-    render_json(article_id: @article.id, stocked: stocked)
+  end
+
+  # DELETE /@:name/items/:id/stock
+  def destroy
+    stock = Stock.find_or_initialize_by(user_id: current_user.id, article_id: @article.id)
+    stock.destroy
+    @article.update_stock_count
+    head :no_content
   end
 
   private

@@ -1,12 +1,12 @@
 CREATE TABLE "schema_migrations" ("version" varchar NOT NULL);
 CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version");
-CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(32) NOT NULL, "email" varchar, "stock_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(32) NOT NULL, "email" varchar, "stock_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "like_count" integer DEFAULT 0);
 CREATE UNIQUE INDEX "index_users_on_name" ON "users" ("name");
 CREATE INDEX "index_users_on_stock_count" ON "users" ("stock_count");
 CREATE TABLE "authentications" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "provider" varchar(32) NOT NULL, "uid" varchar(128) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE INDEX "index_authentications_on_user_id" ON "authentications" ("user_id");
 CREATE UNIQUE INDEX "index_authentications_on_provider_and_uid" ON "authentications" ("provider", "uid");
-CREATE TABLE "articles" ("id" VARCHAR(128) PRIMARY KEY NOT NULL, "user_id" integer, "title" varchar(128), "newest_revision_id" integer, "view_count" integer DEFAULT 0 NOT NULL, "stock_count" integer DEFAULT 0 NOT NULL, "comment_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "published_at" datetime, "publish_type" integer DEFAULT 0);
+CREATE TABLE "articles" ("id" VARCHAR(128) PRIMARY KEY NOT NULL, "user_id" integer, "title" varchar(128), "newest_revision_id" integer, "view_count" integer DEFAULT 0 NOT NULL, "stock_count" integer DEFAULT 0 NOT NULL, "comment_count" integer DEFAULT 0 NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "published_at" datetime, "publish_type" integer DEFAULT 0, "like_count" integer DEFAULT 0);
 CREATE INDEX "index_articles_on_user_id" ON "articles" ("user_id");
 CREATE UNIQUE INDEX "index_articles_on_id" ON "articles" ("id");
 CREATE INDEX "index_articles_on_view_count" ON "articles" ("view_count");
@@ -38,6 +38,10 @@ CREATE INDEX "index_revisions_on_published_at" ON "revisions" ("published_at");
 CREATE INDEX "index_revisions_on_revision_type" ON "revisions" ("revision_type");
 CREATE TABLE "access_tokens" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "token_type" integer DEFAULT 0, "permit_type" integer DEFAULT 0, "title" varchar(32), "token" varchar(128) NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE INDEX "index_access_tokens_on_user_id" ON "access_tokens" ("user_id");
+CREATE TABLE "likes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "target_type" varchar NOT NULL, "target_id" varchar NOT NULL, "user_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
+CREATE UNIQUE INDEX "index_likes_on_target_type_and_target_id_and_user_id" ON "likes" ("target_type", "target_id", "user_id");
+CREATE INDEX "index_articles_on_like_count" ON "articles" ("like_count");
+CREATE INDEX "index_users_on_like_count" ON "users" ("like_count");
 INSERT INTO schema_migrations (version) VALUES ('20150722154057');
 
 INSERT INTO schema_migrations (version) VALUES ('20150722154204');
@@ -61,4 +65,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150812165100');
 INSERT INTO schema_migrations (version) VALUES ('20160426162535');
 
 INSERT INTO schema_migrations (version) VALUES ('20160610180448');
+
+INSERT INTO schema_migrations (version) VALUES ('20161116164401');
 

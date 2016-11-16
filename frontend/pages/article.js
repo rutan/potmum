@@ -11,7 +11,8 @@ function editAction() {
 
 function showAction() {
     Potmum.createCommentForm('.js-comment-form');
-    Potmum.createStockButton('.js-stock-button');
+    Potmum.createCheckButton('.js-like-button');
+    Potmum.createCheckButton('.js-stock-button');
 
     renderMathjax($('.markdown'));
 }

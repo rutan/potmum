@@ -333,30 +333,31 @@ module.exports = (function () {
         });
     };
 
-    Potmum.createStockButton = function (element) {
+    Potmum.createCheckButton = function (element) {
         if ($(element).length == 0) return;
         return new Vue({
             el: element,
             data: {
                 url: '',
-                stocked: false
+                checked: false,
+                name: ''
             },
             ready: function () {
                 this.$data.url = $(this.$el).data('url');
-                this.$data.stocked = parseInt($(this.$el).data('stocked')) != 0;
+                this.$data.name = $(this.$el).data('name');
+                this.$data.checked = parseInt($(this.$el).data('checked')) != 0;
             },
             methods: {
                 onClick: function (e) {
                     e.preventDefault();
-                    this.$data.stocked = !this.$data.stocked;
                     $.ajax({
                         url: this.$data.url,
-                        type: 'put',
+                        type: this.$data.checked ? 'DELETE' : 'POST',
                         headers: {
                             'X-CSRF-Token': getCsrfToken()
                         },
-                        data: {
-                            stocked: this.$data.stocked ? 1 : 0
+                        success: () => {
+                            this.$data.checked = !this.$data.checked;
                         }
                     });
                 }

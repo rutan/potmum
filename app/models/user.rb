@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
     order(created_at: :desc)
   }
   has_many :stock_articles, through: :stocks, source: 'article'
+  has_many :likes, -> {
+    order(created_at: :desc)
+  }
   has_many :access_tokens
 
   validates :name,
@@ -44,6 +47,10 @@ class User < ActiveRecord::Base
 
   def link_to_auth!(auth)
     link_to_auth(auth) || raise('failed')
+  end
+
+  def liked?(article)
+    likes.where(target_type: 'Article', target_id: article.id).exists?
   end
 
   def stocked?(article)

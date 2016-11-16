@@ -35,13 +35,13 @@
               .article-score-name
                 | View
             li.article-score-item
+              = @article_d.like_count
+              .article-score-name
+                | いいね
+            li.article-score-item
               = @article_d.comment_count
               .article-score-name
                 | コメント
-            li.article-score-item
-              = @article_d.stock_count
-              .article-score-name
-                | ストック
           .uk-text-center.uk-margin-bottom
             - if current_user == @article.user
               .uk-button-group
@@ -51,13 +51,20 @@
                 a.uk-button.uk-button-large.uk-button-danger href=article_path(@article, name: @article.user.name) data-method='delete' data-confirm='削除してもよろしいでしょうか？'
                   | 削除
             - elsif current_user
-              .js-stock-button data-url=article_stock_path(article_id: @article, format: 'json') data-stocked=(current_user.stocked?(@article) ? 1 : 0)
-                button.uk-button.uk-button-large.uk-button-primary.uk-width-2-3 v-show='!stocked' v-on:click='onClick' style='display: none;'
-                  i.fa.fa-folder
-                  | &nbsp;ストックする
-                button.uk-button.uk-button-large.uk-width-2-3 v-show='stocked' v-on:click='onClick' style='display: none;'
-                  i.fa.fa-check
-                  | &nbsp;ストック済み
+              .uk-width-4-5.uk-container-center
+                .js-like-button.uk-width-3-4 data-url=article_like_path(article_id: @article, format: 'json') data-name="liked" data-checked=(current_user.liked?(@article) ? 1 : 0) style='float: left'
+                  button.uk-button.uk-button-large.uk-button-primary.uk-width-1-1 v-show='!checked' v-on:click='onClick' style='display: none;'
+                      i.fa.fa-heart-o
+                      | &nbsp;いいね
+                  button.uk-button.uk-button-large.uk-width-1-1.uk-button-success v-show='checked' v-on:click='onClick' style='display: none;'
+                      i.fa.fa-heart
+                      | &nbsp;いいね
+                .js-stock-button.uk-width-1-4 data-url=article_stock_path(article_id: @article, format: 'json') data-name="stocked" data-checked=(current_user.stocked?(@article) ? 1 : 0) style='float: right'
+                  button.uk-button.uk-button-large.uk-button-primary.uk-width-1-1 v-show='!checked' v-on:click='onClick' style='display: none;' title='ストックする'
+                    i.fa.fa-folder
+                  button.uk-button.uk-button-large.uk-width-1-1 v-show='checked' v-on:click='onClick' style='display: none;' title='ストック済み'
+                    i.fa.fa-check
+
     - if @article.private_item?
       .content-header-alert
         .uk-container.uk-container-center
@@ -115,7 +122,7 @@
                 .article-author-name
                   = @article_d.user.name
                 .article-author-text
-                  | #{@article_d.user.stock_count} Contributes
+                  | #{@article_d.user.like_count} Contributes
             .article-author-link.uk-margin-top
               h4 人気の投稿
               ul.uk-list.uk-list-line
