@@ -27,6 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def failure
+    redirect_to '/'
   end
 
   def destroy

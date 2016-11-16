@@ -25,7 +25,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   # Slack
   if ENV['USE_SLACK']
     options = {
-      scope: 'identify,read',
+      scope: 'team:read,users.profile:read,identify',
       team: ENV['SLACK_TEAM_ID']
     }.select { |_, v| v.present? }
     provider :slack, ENV['SLACK_KEY'], ENV['SLACK_SECRET'], options
@@ -35,4 +35,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   if ENV['USE_TWITTER']
     provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
   end
+end
+
+OmniAuth.config.on_failure = proc do |env|
+  SessionsController.action(:failure).call(env)
 end
