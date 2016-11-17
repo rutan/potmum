@@ -7,6 +7,9 @@ export default function () {
         const el = $(element);
         el.on('click', (e) => {
             e.preventDefault();
+
+            if (el.data('confirm') && !window.confirm(el.data('confirm'))) return;
+
             const form = document.createElement('form');
             form.action = el.attr('href');
             form.method = 'post';
