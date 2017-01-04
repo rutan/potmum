@@ -18,7 +18,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'konpow', github: 'rutan/konpow'
 
-#gem 'active_model_serializers'
 gem 'draper'
 
 gem 'omniauth'

@@ -85,8 +85,7 @@ class Article < ActiveRecord::Base
       new_tags.split(/\p{blank}+/)[0, 5].map { |n|
         tag = Tag.find_or_create_by_name(n)
         return nil unless tag
-        link = LinkArticleTag.find_or_create_by(article_id: id, tag_id: tag.id)
-        puts link.inspect
+        LinkArticleTag.find_or_create_by(article_id: id, tag_id: tag.id)
         tag.update_count
         tag
       }.compact

@@ -28,7 +28,7 @@ class ArticleBuilder
 
     unless @revision.valid?
       @errors = @revision.errors
-      puts @error.inspect
+      Rails.logger.debug @error.inspect
       raise Errors::BadRequest
     end
 
