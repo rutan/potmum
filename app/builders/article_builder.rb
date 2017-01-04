@@ -16,6 +16,7 @@ class ArticleBuilder
     @revision.title = params.delete(:title)
     @revision.body = params.delete(:body)
     @revision.note = params.delete(:note).to_s
+    @revision.tags_text = params.delete(:tags_text).to_s
     @revision.published_at = Time.zone.now
     @revision.revision_type =
       case params[:publish_type]
@@ -41,9 +42,8 @@ class ArticleBuilder
       @article.published_at ||= Time.zone.now if @revision.published?
       @article.save!
 
-      @article.tags_text = params.delete(:tags_text).to_s
+      @article.tags_text = @revision.tags_text
       @revision.article_id = @article.id
-      @revision.tags_text = params.delete(:tags_text).to_s
       @revision.save!
     end
 
