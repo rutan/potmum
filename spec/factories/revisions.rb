@@ -21,7 +21,7 @@ FactoryGirl.define do
     title { Faker.name }
     body { Faker::Lorem.paragraph }
     note { Faker::Lorem.sentence }
-    tags_text { Faker::Lorem.words }
+    tags_text { Faker::Lorem.words.join(' ') }
     revision_type 2
   end
 end
