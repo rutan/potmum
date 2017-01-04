@@ -1,6 +1,6 @@
 # Potmum
 
-[![Build Status](https://travis-ci.org/rutan/potmum.svg)](https://travis-ci.org/rutan/potmum)
+[![Build Status](https://travis-ci.org/rutan/potmum.svg?branch=master)](https://travis-ci.org/rutan/potmum)
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ![Potmum](./logo.png)
