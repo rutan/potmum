@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AttachmentFileDecorator < Draper::Decorator
   delegate_all
   include DecorateSerializer

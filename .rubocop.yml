@@ -1,4 +1,3 @@
-
 AllCops:
   Exclude:
     - config.ru
@@ -10,6 +9,7 @@ AllCops:
     - vendor/**/*
     - spec/spec_helper.rb
     - spec/rails_helper.rb
+  TargetRubyVersion: 2.3
 
 AsciiComments:
   Enabled: false

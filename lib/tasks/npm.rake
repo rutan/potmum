@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 namespace :npm do
   desc 'exec `npm run build`'
   task :build do

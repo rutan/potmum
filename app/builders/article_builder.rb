@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ArticleBuilder
   def initialize(article)
     @article = article

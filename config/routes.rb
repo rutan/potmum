@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
   root 'lobbies#root'
 
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   get '/search' => 'lobbies#search', as: :search
   get '/redirect' => 'lobbies#redirector', as: :redirector
   get '/browserconfig' => 'lobbies#browserconfig'
+
+  resource :queries, only: [:create], path: 'graphql'
 
   scope '/@:name' do
     get '/' => 'users#show', as: :user

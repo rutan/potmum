@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'html/pipeline/nico_link'
 
 module MarkdownRenderable

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CommentBuilder
   def initialize(article)
     @article = article

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ArticlesController < ApplicationController
   before_action :set_user!
   before_action :set_article!, only: [:show, :edit, :update, :destroy, :create_like, :destroy_like]

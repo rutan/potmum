@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # == Schema Information
 #
 # Table name: access_tokens
@@ -32,9 +33,25 @@ class AccessToken < ActiveRecord::Base
             presence: true,
             uniqueness: true
 
+  validate :check_token_type
+
   after_initialize :after_initialize
+
+  def self.generate_master(user)
+    new(
+      user_id: user.id,
+      token_type: 'system_token',
+      permit_type: 'permit_read_and_write'
+    )
+  end
+
+  private
 
   def after_initialize
     self.token ||= SecureRandom.hex(32)
+  end
+
+  def check_token_type
+    errors.add(:invalid) if system_token?
   end
 end

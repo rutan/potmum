@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UsersController < ApplicationController
   before_action :check_register_mode!, only: [:new, :create]
   before_action :require_login!, only: [:edit, :update]

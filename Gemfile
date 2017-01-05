@@ -1,8 +1,12 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 ruby '2.3.1'
 
 gem 'rails', '4.2.5.1'
 gem 'rails-i18n'
+
+gem 'graphql'
+gem 'pundit'
 
 gem 'slim-rails'
 gem 'sass-rails', '~> 5.0'

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class LobbiesController < ApplicationController
   before_action :set_page
 

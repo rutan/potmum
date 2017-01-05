@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class StocksController < ApplicationController
   before_action :set_article!
   before_action :set_stock

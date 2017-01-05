@@ -1,4 +1,7 @@
+# frozen_string_literal: true
 class ApplicationController < ActionController::Base
+  include Pundit
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -17,6 +20,14 @@ class ApplicationController < ActionController::Base
   def current_user
     return nil unless session[:user_id]
     @current_user ||= User.find_by(id: session[:user_id].to_i)
+  end
+
+  def current_access_token
+    AccessToken.generate_master(current_user) if current_user
+  end
+
+  def pundit_user
+    current_access_token
   end
 
   def render_json(target, status: 200, message: '')
@@ -41,11 +52,13 @@ class ApplicationController < ActionController::Base
 
   rescue_from Exception, with: :render_500 unless Rails.env.development?
   rescue_from Errors::BadRequest, with: :render_400
-  rescue_from Errors::Forbidden, with: :render_403
   rescue_from Errors::Unauthorized, with: :render_401
+  rescue_from Errors::Forbidden, with: :render_403
+  rescue_from Pundit::NotAuthorizedError, with: :render_403
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
   rescue_from ActionController::RoutingError, with: :render_404 unless Rails.env.development?
   rescue_from Errors::NotFound, with: :render_404
+  rescue_from Errors::UnprocessableEntity, with: :render_422
 
   def render_error(status, message = '')
     @status = status
@@ -70,6 +83,10 @@ class ApplicationController < ActionController::Base
 
   def render_404
     render_error(404, 'Not Found')
+  end
+
+  def render_422
+    render_error(422, 'Unprocessable Entity')
   end
 
   def render_500

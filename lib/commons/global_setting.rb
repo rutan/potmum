@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module GlobalSetting
   def self.private_mode?
     ENV['PRIVATE_MODE'].to_i != 0
