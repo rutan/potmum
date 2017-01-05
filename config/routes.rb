@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  mount PotmumAPI => '/api'
-  mount GrapeSwaggerRails::Engine => '/api/swagger'
-
   root 'lobbies#root'
+
   get '/newest' => 'lobbies#newest', as: :newest_articles
   get '/popular' => 'lobbies#popular', as: :popular_articles
   get '/comments' => 'lobbies#comments', as: :newest_comments
