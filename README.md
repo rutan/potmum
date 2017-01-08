@@ -31,7 +31,7 @@ RAILS_ENV=production bundle exec puma -C config/puma.rb
 
 ## Requirement
 
-- Ruby 2.3.1
+- Ruby 2.3.3
 - PostgreSQL
 - Node (>= v.6.0) and [yarn](https://github.com/yarnpkg/yarn)
 
