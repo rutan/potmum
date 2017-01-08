@@ -11,6 +11,6 @@
 #  updated_at :datetime         not null
 #
 
-class Authentication < ActiveRecord::Base
+class Authentication < ApplicationRecord
   belongs_to :user
 end

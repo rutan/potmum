@@ -19,7 +19,15 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'POST :create' do
-    subject { post :create, name: article.user.name, article_id: article.id, body: body, format: 'json'; response }
+    subject do
+      post :create, params: {
+        name: article.user.name,
+        article_id: article.id,
+        body: body
+      }, format: 'json'
+      response
+    end
+
     let(:article) { create(:article_with_published_at) }
 
     context 'not login' do
@@ -47,7 +55,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'DELETE :destroy' do
-    subject { delete :destroy, id: comment.id, format: 'json'; response }
+    subject { delete :destroy, params: {id: comment.id}, format: 'json'; response }
     let(:article) { create(:article_with_published_at) }
     let :comment do
       build(:comment).tap do |c|

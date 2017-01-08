@@ -20,7 +20,7 @@ require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
   describe 'POST :create' do
-    subject { post :create, **params, format: 'json' }
+    subject { post :create, params: params, format: 'json' }
 
     before(:each) { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
     let(:current_user) { create(:user) }

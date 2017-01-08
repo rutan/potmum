@@ -16,7 +16,7 @@
 #  note          :text
 #
 
-class Revision < ActiveRecord::Base
+class Revision < ApplicationRecord
   belongs_to :article
   belongs_to :user
 

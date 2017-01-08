@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class AttachmentFile < ActiveRecord::Base
+class AttachmentFile < ApplicationRecord
   belongs_to :user
   mount_uploader :file, PictureUploader
 

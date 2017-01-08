@@ -12,7 +12,7 @@
 #  updated_at    :datetime         not null
 #
 
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
   has_many :link_article_tags
   has_many :articles, through: :link_article_tags
 

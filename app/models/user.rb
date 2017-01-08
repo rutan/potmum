@@ -12,7 +12,7 @@
 #  role        :integer          default(0)
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :authentications
   has_many :articles
   has_many :comments, -> {

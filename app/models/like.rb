@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Like < ActiveRecord::Base
+class Like < ApplicationRecord
   belongs_to :target, polymorphic: true
   belongs_to :user
 end

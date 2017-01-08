@@ -13,7 +13,7 @@
 #  updated_at  :datetime         not null
 #
 
-class AccessToken < ActiveRecord::Base
+class AccessToken < ApplicationRecord
   belongs_to :user
 
   enum token_type: {

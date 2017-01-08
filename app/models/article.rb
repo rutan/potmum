@@ -16,7 +16,7 @@
 #  publish_type       :integer          default(0)
 #
 
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   belongs_to :user
   belongs_to :newest_revision, class_name: 'Revision'
   has_many :revisions, -> {

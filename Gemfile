@@ -2,20 +2,21 @@
 source 'https://rubygems.org'
 ruby '2.3.1'
 
-gem 'rails', '4.2.5.1'
-gem 'rails-i18n'
+gem 'puma'
+
+gem 'rails', '5.0.1'
+gem 'rails-i18n', '~> 5.0.0'
 
 gem 'graphql'
 gem 'pundit'
 
 gem 'slim-rails'
-gem 'sass-rails', '~> 5.0'
-gem 'gemoji'
+gem 'gemoji', '~> 2.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'konpow', github: 'rutan/konpow'
 
-gem 'draper'
+gem 'draper', '3.0.0.pre1'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2',
@@ -42,14 +43,12 @@ gem 'dotenv-rails'
 gem 'foreman'
 
 group :production do
-  gem 'puma'
   gem 'pg'
   gem 'sprockets-redirect'
   gem 'rails_12factor'
 end
 
 group :development, :test do
-  gem 'thin'
   gem 'sqlite3'
 
   gem 'pry-rails'
@@ -60,11 +59,12 @@ group :development, :test do
 
   gem 'yard'
   gem 'annotate'
-  gem 'quiet_assets'
   gem 'ruby-prof'
 
-  gem 'rspec-rails'
   gem 'rubocop', '0.40.0'
+
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'faker'
   gem 'factory_girl_rails'
   gem 'webmock'

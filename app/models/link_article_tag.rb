@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class LinkArticleTag < ActiveRecord::Base
+class LinkArticleTag < ApplicationRecord
   belongs_to :article
   belongs_to :tag
 end

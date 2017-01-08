@@ -10,7 +10,7 @@
 #  updated_at :datetime         not null
 #
 
-class Stock < ActiveRecord::Base
+class Stock < ApplicationRecord
   belongs_to :article
   belongs_to :user
 end

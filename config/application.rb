@@ -31,9 +31,6 @@ module Potmum
     config.i18n.default_locale = :ja
     Faker::Config.locale = :en if defined?(Faker)
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
     config.autoload_paths += %W(#{config.root}/lib/commons)
 
     config.active_record.schema_format = :sql

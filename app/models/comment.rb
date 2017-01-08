@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
   belongs_to :article
   belongs_to :user
 
