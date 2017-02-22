@@ -54,14 +54,17 @@ Rails.application.routes.draw do
 
   namespace :users, path: 'setting' do
     resources :access_tokens, only: [:index, :create, :update, :destroy], path: 'tokens'
+    resources :authentications, only: [:index, :new, :create, :destroy]
   end
 
   get '/register' => 'users#new', as: :register
   post '/register' => 'users#create'
   resource :session, only: [:destroy]
 
-  get '/auth/:provider/callback' => 'sessions#callback', as: :auth_callback
-  get '/auth/failure' => 'sessions#failure', as: :auth_failure
+  scope :auth do
+    get '/:provider/callback' => 'sessions#callback', as: :auth_callback
+    get '/failure' => 'sessions#failure', as: :auth_failure
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

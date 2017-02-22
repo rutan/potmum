@@ -37,10 +37,10 @@ html
                   | ログイン
                 .uk-dropdown.uk-dropdown-navbar
                   ul.uk-nav.uk-nav-navbar
-                    - GlobalSetting.auth_methods.each do |method|
+                    - Authentication.enable_services.each do |provider, name|
                       li
-                        a href="/auth/#{method[:path]}"
-                          = "#{method[:name]} でログイン"
+                        a href="/auth/#{provider}"
+                          = "#{name} でログイン"
 
     = yield
 

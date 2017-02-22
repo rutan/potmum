@@ -28,46 +28,6 @@ module GlobalSetting
     ENV['GLOBAL_ALERT'] || ''
   end
 
-  def self.auth_methods
-    @auth_methods ||= begin
-      methods = []
-
-      # Google OAuth
-      if ENV['USE_GOOGLE'].to_i != 0
-        methods << {
-          name: ENV['GOOGLE_APPS_DOMAIN'].present? ? ENV['GOOGLE_APPS_DOMAIN'] : 'Google',
-          path: 'google_oauth2'
-        }
-      end
-
-      # GitHub
-      if ENV['USE_GITHUB'].to_i != 0
-        methods << {
-          name: ENV['GITHUB_ENTERPRISE_URL'] ? 'GitHub:e' : 'GitHub',
-          path: 'github'
-        }
-      end
-
-      # Slack
-      if ENV['USE_SLACK'].to_i != 0
-        methods << {
-          name: "Slack#{ENV['SLACK_TEAM_NAME'] ? "(#{ENV['SLACK_TEAM_NAME']})" : ''}",
-          path: 'slack'
-        }
-      end
-
-      # Twitter
-      if ENV['USE_TWITTER'].to_i != 0
-        methods << {
-          name: 'Twitter',
-          path: 'twitter'
-        }
-      end
-
-      methods
-    end
-  end
-
   def self.notify_slack?
     notify_slack_channel.present?
   end

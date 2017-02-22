@@ -1,0 +1,27 @@
+- content_for(:title) do
+  | ログイン情報の管理
+
+.uk-container.uk-container-center.uk-margin-top.uk-width-medium-2-3
+  = render('/users/setting_tabs', mode: :authentications)
+  .uk-panel.uk-panel-box
+    .uk-panel-title
+      | ログイン情報の管理
+
+    ul.uk-list.uk-list-line
+      - current_user.authentications.each do |authentication|
+        li
+          .uk-grid.uk-form
+            .uk-width-4-5
+              .uk-text-large
+                = authentication.provider_name
+            .uk-width-1-5
+              - if current_user.authentications.size > 1
+                a.uk-button.uk-button-danger.uk-display-block.uk-container-center href=users_authentication_path(authentication) data-method='delete'
+                  | 削除
+
+    ul.uk-list
+      - Authentication.enable_services.each do |provider, name|
+        - next if current_user.authentications.map(&:provider).include?(provider)
+        li.uk-margin-top
+          a.uk-button.uk-button-success href="/auth/#{provider}"
+            | #{name} アカウントを追加

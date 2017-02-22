@@ -881,3 +881,19 @@ q, blockquote {
     margin-bottom: 0;
   }
 }
+
+.user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__avatar {
+    display: inline-block;
+  }
+
+  &__name {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 20px;
+  }
+}

@@ -2,6 +2,9 @@ ul.uk-tab
   li class=('uk-active' if mode == :setting)
     a href=setting_path
       | ユーザー設定
+  li class=('uk-active' if mode == :authentications)
+    a href=users_authentications_path
+      | ログイン情報の管理
   li class=('uk-active' if mode == :api_tokens)
     a href=users_access_tokens_path
       | アクセストークンの管理

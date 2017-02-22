@@ -6,24 +6,28 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     redirect_to '/' unless auth
 
+    user = User.find_by_auth(auth)
+
     if current_user
-      # TODO: ログイン中は既存アカウントとのヒモ付処理へ
+      # 既存アカウントとのヒモ付処理へ
+      session[:auth] = {
+        provider: auth[:provider],
+        uid: auth[:uid],
+        user_id: user.try(:id)
+      }
+      redirect_to new_users_authentication_path
+    elsif user
+      # ログインへ
+      session[:user_id] = user.id
       redirect_to '/'
     else
-      # 非ログイン: ログインの開始
-      user = User.find_by_auth(auth)
-      if user
-        session[:user_id] = user.id
-        redirect_to '/'
-      else
-        # アカウント新規登録画面へ
-        session[:auth] = {
-          provider: auth[:provider],
-          uid: auth[:uid],
-          info: { nickname: auth[:info][:nickname] }
-        }
-        redirect_to register_path
-      end
+      # アカウント新規登録画面へ
+      session[:auth] = {
+        provider: auth[:provider],
+        uid: auth[:uid],
+        info: { nickname: auth[:info][:nickname] }
+      }
+      redirect_to register_path
     end
   end
 
