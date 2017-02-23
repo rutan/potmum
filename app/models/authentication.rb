@@ -24,7 +24,7 @@ class Authentication < ApplicationRecord
       services.delete(:google_oauth2) unless ENV['USE_GOOGLE'].to_i != 0
       services.delete(:github) unless ENV['USE_GITHUB'].to_i != 0
       services.delete(:slack) unless ENV['USE_SLACK'].to_i != 0
-      services.delete(:slack) unless ENV['USE_TWITTER'].to_i != 0
+      services.delete(:twitter) unless ENV['USE_TWITTER'].to_i != 0
       services
     end
   end
