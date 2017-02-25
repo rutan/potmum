@@ -16,7 +16,7 @@ class TakeoverBuilder
 
       # delete
       [AccessToken, Authentication, Like, Stock].each do |klass|
-        klass.delete_all(user_id: from_user.id)
+        klass.where(user_id: from_user.id).delete_all
       end
 
       from_user.destroy!
