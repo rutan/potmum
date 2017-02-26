@@ -11,7 +11,7 @@ class TakeoverBuilder
     ActiveRecord::Base.transaction do
       # takeover
       [Article, AttachmentFile, Comment, Revision].each do |klass|
-        klass.update_all(user_id: @user.id)
+        klass.where(user_id: from_user.id).update_all(user_id: @user.id)
       end
 
       # delete
