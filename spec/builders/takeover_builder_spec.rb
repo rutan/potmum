@@ -26,5 +26,18 @@ RSpec.describe TakeoverBuilder, type: :model do
         expect(@other_user.articles).to eq [@article2]
       end
     end
+
+    describe "delete from_user's stocks" do
+      before do
+        other_user = create(:user)
+        article    = create(:article, user: other_user)
+        @stock     = create(:stock, user: @from_user, article: article)
+      end
+
+      it "from_user's stocks are destroyed" do
+        subject
+        expect { @stock.reload }.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
   end
 end
