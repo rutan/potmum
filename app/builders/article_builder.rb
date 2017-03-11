@@ -38,8 +38,8 @@ class ArticleBuilder
     @revision.user_id = params.delete(:user_id)
     @revision.title = params.delete(:title)
     @revision.body = params.delete(:body)
-    @revision.note = params.delete(:note).to_s
-    @revision.tags_text = params.delete(:tags_text).to_s
+    @revision.note = params.delete(:note)
+    @revision.tags_text = params.delete(:tags_text)
     @revision.published_at = Time.zone.now
     @revision.revision_type =
       case params[:publish_type]
