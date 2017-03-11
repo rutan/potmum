@@ -35,11 +35,11 @@ class ArticleBuilder
   end
 
   def build_revision(params)
-    @revision.user_id = params.delete(:user_id)
-    @revision.title = params.delete(:title)
-    @revision.body = params.delete(:body)
-    @revision.note = params.delete(:note)
-    @revision.tags_text = params.delete(:tags_text)
+    @revision.user_id = params[:user_id]
+    @revision.title = params[:title]
+    @revision.body = params[:body]
+    @revision.note = params[:note]
+    @revision.tags_text = params[:tags_text]
     @revision.published_at = Time.zone.now
     @revision.revision_type =
       case params[:publish_type]
