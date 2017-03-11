@@ -57,10 +57,10 @@ class ArticleBuilder
   end
 
   def build_article(params)
-    @article.user_id ||= @revision.user_id
-    @article.title = @revision.title
+    @article.user_id ||= params[:user_id]
+    @article.title = params[:title]
     @article.publish_type = params[:publish_type]
-    @article.published_at ||= Time.zone.now if @revision.published?
+    @article.published_at ||= Time.zone.now if @article.public_item?
   end
 
   def notify(article)
