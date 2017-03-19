@@ -28,15 +28,16 @@ class TagsController < ApplicationController
   # GET /tags/:content/edit
   # タグ情報編集
   def edit
+    @tag_for_input = Tag.find(@tag.id)
   end
 
   # PUT /tags/:content
   # タグ情報更新
   def update
-    if @tag.update(tag_params)
-      redirect_to tag_path(@tag)
+    @tag_for_input = Tag.find(@tag.id)
+    if @tag_for_input.update(tag_params)
+      redirect_to tag_path(@tag_for_input)
     else
-      @tag.reload
       render :edit
     end
   end

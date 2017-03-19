@@ -11,22 +11,25 @@
   .uk-panel.uk-panel-box
     .uk-panel-title
       | タグ情報の設定
-    - if @tag.errors
-      - @tag.errors.full_messages.each do |message|
+    - if @tag_for_input.errors
+      - @tag_for_input.errors.full_messages.each do |message|
         p.uk-text-danger
           = message
-    = form_for(@tag, html: {class: 'uk-form uk-form-horizontal'}) do |f|
+    / When name becomes validation error, tag_path(@tag_for_input) has changed.
+    / so use before-changed url here.
+    = form_for(@tag_for_input, url: tag_path(@tag), html: {class: 'uk-form uk-form-horizontal'}) do |f|
       .uk-form-row
         label.uk-form-label
           | URL
         .uk-form-controls
           p.wrap
+            / display before-changed url too.
             = tag_url(@tag)
       .uk-form-row
         label.uk-form-label
           | タグ名
         .uk-form-controls
-          input.uk-width-1-1 type='text' name='tag[name]' value=@tag.name
+          input.uk-width-1-1 type='text' name='tag[name]' value=@tag_for_input.name
           .uk-text-muted.uk-margin-small-top
             | 画面に表示される際の文字列です。URLは変更されません。<br>
             | アルファベットの大文字小文字などの修正にご利用ください。<br>
@@ -36,10 +39,10 @@
         .uk-form-controls
           .uk-grid
             label.uk-width-1-2.uk-width-medium-1-3
-              input type='radio' name='tag[is_menu]' value=1 checked=@tag.menu?
+              input type='radio' name='tag[is_menu]' value=1 checked=@tag_for_input.menu?
               | &nbsp;表示する
             label.uk-width-1-2.uk-width-medium-1-3
-              input type='radio' name='tag[is_menu]' value=0 checked=!@tag.menu?
+              input type='radio' name='tag[is_menu]' value=0 checked=!@tag_for_input.menu?
               | &nbsp;表示しない
           .uk-text-muted.uk-margin-small-top
             | サイドバーメニューに固定するタグに設定できます。
