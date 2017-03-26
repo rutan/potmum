@@ -62,7 +62,7 @@ Rails.application.routes.draw do
   resource :session, only: [:destroy]
 
   scope :auth do
-    get '/:provider/callback' => 'sessions#callback', as: :auth_callback
+    match '/:provider/callback' => 'sessions#callback', via: [:get, :post], as: :auth_callback
     get '/failure' => 'sessions#failure', as: :auth_failure
   end
 
