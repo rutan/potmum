@@ -36,6 +36,11 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   if ENV['USE_TWITTER']
     provider :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET']
   end
+
+  # Developer
+  if ENV['USE_DEVELOPER']
+    provider :developer, fields: [:nickname], uid_field: :nickname
+  end
 end
 
 OmniAuth.config.on_failure = proc do |env|

@@ -25,6 +25,7 @@ class Authentication < ApplicationRecord
       services.delete(:github) unless ENV['USE_GITHUB'].to_i != 0
       services.delete(:slack) unless ENV['USE_SLACK'].to_i != 0
       services.delete(:twitter) unless ENV['USE_TWITTER'].to_i != 0
+      services.delete(:developer) unless ENV['USE_DEVELOPER'].to_i != 0
       services
     end
   end
@@ -33,6 +34,7 @@ class Authentication < ApplicationRecord
     google_oauth2: ENV['GOOGLE_APPS_DOMAIN'].present? ? ENV['GOOGLE_APPS_DOMAIN'] : 'Google',
     github: ENV['GITHUB_ENTERPRISE_URL'] ? 'GitHub:e' : 'GitHub',
     slack: "Slack#{ENV['SLACK_TEAM_NAME'] ? "(#{ENV['SLACK_TEAM_NAME']})" : ''}",
-    twitter: 'Twitter'
+    twitter: 'Twitter',
+    developer: 'Developer'
   }.with_indifferent_access
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:callback]
   skip_before_action :private_mode!, only: [:callback, :failure] if GlobalSetting.private_mode?
 
   def callback
