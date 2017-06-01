@@ -4,7 +4,7 @@ ruby '2.4.1'
 
 gem 'puma'
 
-gem 'rails', '5.0.1'
+gem 'rails', '5.1.1'
 gem 'rails-i18n', '~> 5.0.0'
 
 gem 'graphql'
@@ -34,7 +34,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 
-gem 'nokogiri', '1.6.5'
+gem 'nokogiri', '~> 1.7.2'
 gem 'pot_markdown'
 gem 'html-pipeline-nico_link'
 
