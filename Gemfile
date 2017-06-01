@@ -34,7 +34,8 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 
-gem 'nokogiri', '~> 1.7.2'
+gem 'nokogiri', '1.7.2'
+gem 'nokogumbo', '1.4.10'
 gem 'pot_markdown'
 gem 'html-pipeline-nico_link'
 
