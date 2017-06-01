@@ -167,7 +167,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
-    nokogumbo (1.4.12)
+    nokogumbo (1.4.10)
       nokogiri
     oauth (0.5.3)
     oauth2 (1.3.1)
@@ -373,7 +373,8 @@ DEPENDENCIES
   kaminari
   konpow!
   mini_magick
-  nokogiri (~> 1.7.2)
+  nokogiri (= 1.7.2)
+  nokogumbo (= 1.4.10)
   omniauth
   omniauth-github
   omniauth-google-oauth2
