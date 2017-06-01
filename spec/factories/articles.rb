@@ -23,6 +23,7 @@ FactoryGirl.define do
     newest_revision { create(:revision) }
 
     factory :article_with_published_at do
+      publish_type 2
       published_at Time.zone.now
     end
   end

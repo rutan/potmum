@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   before_action :private_mode! if GlobalSetting.private_mode?
 
+  def pundit_user
+    current_access_token
+  end
+
   private
 
   def check_session
@@ -24,10 +28,6 @@ class ApplicationController < ActionController::Base
 
   def current_access_token
     AccessToken.generate_master(current_user) if current_user
-  end
-
-  def pundit_user
-    current_access_token
   end
 
   def render_json(target, status: 200, message: '')
