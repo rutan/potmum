@@ -18,7 +18,7 @@
 
 class Article < ApplicationRecord
   belongs_to :user
-  belongs_to :newest_revision, class_name: 'Revision'
+  belongs_to :newest_revision, class_name: 'Revision', optional: true
   has_many :revisions, -> {
     order(published_at: :desc)
   }

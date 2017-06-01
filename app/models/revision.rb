@@ -17,7 +17,7 @@
 #
 
 class Revision < ApplicationRecord
-  belongs_to :article
+  belongs_to :article, optional: true
   belongs_to :user
 
   validates :user,

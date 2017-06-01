@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 source 'https://rubygems.org'
-ruby '2.3.3'
+ruby '2.4.1'
 
 gem 'puma'
 
-gem 'rails', '5.0.1'
+gem 'rails', '5.1.1'
 gem 'rails-i18n', '~> 5.0.0'
 
 gem 'graphql'
@@ -19,8 +19,7 @@ gem 'konpow', github: 'rutan/konpow'
 gem 'draper', '3.0.0.pre1'
 
 gem 'omniauth'
-gem 'omniauth-google-oauth2',
-    github: 'zquestz/omniauth-google-oauth2', ref: '69c3e91f158337a3804e5d69291085125aa55a7e' # multi domains
+gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem 'omniauth-slack'
 gem 'omniauth-twitter'
@@ -35,7 +34,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-aws'
 
-gem 'nokogiri', '1.6.5'
+gem 'nokogiri', '~> 1.7.2'
 gem 'pot_markdown'
 gem 'html-pipeline-nico_link'
 
