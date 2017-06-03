@@ -60,7 +60,7 @@ class ArticleBuilder
     @article.user_id ||= params[:user_id]
     @article.title = params[:title]
     @article.publish_type = params[:publish_type]
-    @article.published_at ||= Time.zone.now if @article.public_item?
+    @article.published_at ||= Time.zone.now unless @article.draft_item?
   end
 
   def notify(article)
