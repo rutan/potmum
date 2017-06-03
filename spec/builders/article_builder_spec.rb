@@ -12,12 +12,13 @@ RSpec.describe ArticleBuilder, type: :model do
         tags_text:    'tag_a tag_b',
         body:         'Body text',
         note:         'Note text',
-        publish_type: 'public_item'
+        publish_type: publish_type
       }.merge(user_id: @user.id)
     end
 
     context 'Create a new article' do
       let(:article) { Article.new }
+      let(:publish_type) { 'public_item' }
 
       it { is_expected.to be_truthy }
 
@@ -51,8 +52,26 @@ RSpec.describe ArticleBuilder, type: :model do
       end
     end
 
+    context 'Create a new private article' do
+      let(:article) { Article.new }
+      let(:publish_type) { 'private_item' }
+
+      it { is_expected.to be_truthy }
+
+      it 'article has correctly saved' do
+        subject
+        aggregate_failures 'testing article' do
+          expect(article.user_id).to eq @user.id
+          expect(article.title).to eq 'Title string'
+          expect(article.published_at).to be_truthy
+          expect(article.publish_type).to eq 'private_item'
+        end
+      end
+    end
+
     context 'Update an existing article' do
       let(:article) { create(:article, user_id: @user.id) }
+      let(:publish_type) { 'public_item' }
 
       it { is_expected.to be_truthy }
 
