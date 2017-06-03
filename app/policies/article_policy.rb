@@ -10,4 +10,15 @@ class ArticlePolicy < ApplicationPolicy
       raise 'unknown publish type'
     end
   end
+
+  def add_comment?
+    return false unless access_token.try(:permit_read_and_write?)
+
+    case record.publish_type
+    when 'private_item', 'public_item'
+      true
+    else
+      false
+    end
+  end
 end

@@ -19,5 +19,20 @@ FactoryGirl.define do
     permit_type 1
     title { Faker.name }
     token { SecureRandom.hex(32) }
+
+    trait :system do
+      token_type 0
+      permit_type 1
+    end
+
+    trait :readable do
+      token_type 1
+      permit_type 0
+    end
+
+    trait :writable do
+      token_type 1
+      permit_type 1
+    end
   end
 end

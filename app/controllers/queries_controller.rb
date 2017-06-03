@@ -5,13 +5,13 @@ class QueriesController < ApplicationController
 
   # POST /graphql.json
   def create
+    I18n.locale = :en
     query = params[:query].to_s
     render json: Graph::Schema.execute(
       query,
+      variables: param_variables,
       context: {
-        variables: param_variables,
-        access_token: current_access_token,
-        pundit: self
+        access_token: current_access_token
       }
     )
   end

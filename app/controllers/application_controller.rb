@@ -22,12 +22,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id].to_i)
   end
 
-  def current_access_token
-    AccessToken.generate_master(current_user) if current_user
-  end
-
   def pundit_user
     current_access_token
+  end
+
+  def current_access_token
+    AccessToken.generate_master(current_user) if current_user
   end
 
   def render_json(target, status: 200, message: '')

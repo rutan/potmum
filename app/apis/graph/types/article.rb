@@ -7,6 +7,7 @@ module Graph
 
       field :id, types.String
       field :title, types.String
+      field :publishType, types.String, property: :publish_type
       field :body, types.String do
         resolve -> (obj, _args, _context) do
           obj.newest_revision.body
@@ -20,6 +21,11 @@ module Graph
       field :tags, types[Types::Tag] do
         resolve -> (obj, _args, _context) do
           obj.tags
+        end
+      end
+      field :comments, types[Types::Comment] do
+        resolve -> (obj, _args, _context) do
+          obj.comments
         end
       end
       field :user, -> { Types::User }
