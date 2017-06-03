@@ -90,7 +90,7 @@
     },
     "buildpacks": [
         {
-            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git#yarn"
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs.git"
         },
         {
             "url": "https://github.com/heroku/heroku-buildpack-ruby.git"
