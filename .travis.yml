@@ -21,4 +21,4 @@ deploy:
   on:
     repo: rutan/potmum
   run:
-    - budnle exec rake db:migrate
+    - bundle exec rake db:migrate
