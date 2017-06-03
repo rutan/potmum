@@ -13,7 +13,7 @@ module Graph
 
         resolve -> (_object, args, context) do
           ::Article.find(args[:id]).tap do |article|
-            context[:pundit].authorize(article, :show?)
+            Pundit.authorize(context[:access_token], article, :show?)
           end.decorate
         end
       end
@@ -40,7 +40,7 @@ module Graph
 
         resolve -> (_object, args, context) do
           ::User.find(args[:id]).tap do |user|
-            context[:pundit].authorize(user, :show?)
+            Pundit.authorize(context[:access_token], user, :show?)
           end.decorate
         end
       end

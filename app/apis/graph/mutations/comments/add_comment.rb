@@ -19,7 +19,7 @@ module Graph
           params = args[:input]
 
           AddCommentService.new.call(
-            access_token: context[:pundit].pundit_user,
+            access_token: context[:access_token],
             article_id: params[:articleId],
             body: params[:body]
           ).decorate
