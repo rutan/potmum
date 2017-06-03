@@ -8,6 +8,9 @@
   },
   "author": "ru_shalm",
   "license": "MIT",
+  "engines": {
+    "yarn": "0.24.5"
+  },
   "dependencies": {
     "babel-core": "^6.7.6",
     "babel-loader": "^6.2.4",
