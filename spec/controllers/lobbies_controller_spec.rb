@@ -39,7 +39,7 @@ RSpec.describe LobbiesController, type: :controller do
     it { expect(subject.status).to eq 200 }
     it do
       subject
-      expect(assigns(:search_word)).to eq 'search-word'
+      expect(assigns(:search_result).query).to eq 'search-word'
     end
   end
 
