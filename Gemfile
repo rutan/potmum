@@ -16,7 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer', platforms: :ruby
 gem 'konpow', github: 'rutan/konpow'
 
-gem 'draper', '3.0.0.pre1'
+gem 'draper'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
