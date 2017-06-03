@@ -5,17 +5,17 @@
         h1
           i.fa.fa-search
           | &nbsp;
-          = @search_word
+          = @search_result.query
         p
-          | 検索結果: #{@articles.total_count} 件
+          | 検索結果: #{@search_result.total_count} 件
 
 .uk-container.uk-container-center.uk-margin-top
   .uk-grid
     .uk-width-7-10
       .uk-panel.uk-panel-box
-        = render('/articles/list', articles: @articles)
+        = render('/articles/list', articles: @search_result.articles)
     .uk-width-3-10
       = render('/tags/menu')
 
 - content_for(:title) do
-  | #{@search_word} の検索結果
+  | #{@search_result.query} の検索結果
