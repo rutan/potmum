@@ -9,6 +9,7 @@ module Graph
       field :article, field: Graph::Queries::Articles::Show
       field :search, field: Graph::Queries::Articles::Search
 
+      field :users, field: Graph::Queries::Users::Index
       field :user, field: Graph::Queries::Users::Show
     end
   end
