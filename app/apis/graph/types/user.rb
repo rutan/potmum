@@ -9,7 +9,7 @@ module Graph
       field :name, types.String
       field :url, types.String
       field :avatarURL, types.String, property: :avatar_url
-      field :stockCount, types.Int, property: :stock_count
+      field :contribute, types.Int, property: :stock_count
 
       field :articles, types[Types::Article] do
         argument :size, types.Int, 'get size', default_value: 10
