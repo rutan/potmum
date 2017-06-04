@@ -89,7 +89,8 @@ class ApplicationController < ActionController::Base
     render_error(422, 'Unprocessable Entity')
   end
 
-  def render_500
+  def render_500(e = nil)
+    Rails.logger.error "#{e.message}\n#{e.backtrace.join("\n")}" if e
     render_error(500, 'Internal Server Error')
   end
 end
