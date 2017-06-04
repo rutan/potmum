@@ -25,6 +25,36 @@ module Graph
         end
       end
 
+      field :stockArticles, types[Types::Article] do
+        argument :size, types.Int, 'get size', default_value: 10
+        argument :page, types.Int, 'page', default_value: 1
+
+        resolve Graph::Handler.new -> (obj, args, context) do
+          Pundit.authorize(context[:access_token], obj, :show_stocks?)
+          size = [[args[:size], 25].min, 1].max
+          page = [[args[:page], 100].min, 1].max
+          context[:access_token].user
+                                .stock_articles
+                                .page(page)
+                                .per(size)
+        end
+      end
+
+      field :likeArticles, types[Types::Article] do
+        argument :size, types.Int, 'get size', default_value: 10
+        argument :page, types.Int, 'page', default_value: 1
+
+        resolve Graph::Handler.new -> (obj, args, context) do
+          Pundit.authorize(context[:access_token], obj, :show_likes?)
+          size = [[args[:size], 25].min, 1].max
+          page = [[args[:page], 100].min, 1].max
+          context[:access_token].user
+                                .like_articles
+                                .page(page)
+                                .per(size)
+        end
+      end
+
       field :drafts, types[Types::Revision] do
         resolve Graph::Handler.new -> (obj, _args, context) do
           Pundit.authorize(context[:access_token], obj, :show_drafts?)
