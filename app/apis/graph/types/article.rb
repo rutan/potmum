@@ -23,6 +23,9 @@ module Graph
           obj.tags
         end
       end
+      field :publishedAt, types.Int do
+        resolve -> (obj, _args, _context) { obj.published_at ? obj.published_at.to_i : nil }
+      end
       field :comments, types[Types::Comment] do
         resolve -> (obj, _args, _context) do
           obj.comments

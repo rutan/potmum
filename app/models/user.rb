@@ -15,6 +15,7 @@
 class User < ApplicationRecord
   has_many :authentications
   has_many :articles
+  has_many :revisions
   has_many :comments, -> {
     order(created_at: :desc)
   }
