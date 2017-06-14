@@ -20,6 +20,9 @@ Documentation:
 DoubleNegation:
   Enabled: false
 
+EmptyCaseCondition:
+  Enabled: false
+
 Semicolon:
   Exclude:
     - spec/**/*

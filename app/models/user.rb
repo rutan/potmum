@@ -15,6 +15,7 @@
 class User < ApplicationRecord
   has_many :authentications
   has_many :articles
+  has_many :revisions
   has_many :comments, -> {
     order(created_at: :desc)
   }
@@ -25,6 +26,7 @@ class User < ApplicationRecord
   has_many :likes, -> {
     order(created_at: :desc)
   }
+  has_many :like_articles, through: :likes, source: :target, source_type: 'Article'
   has_many :access_tokens
 
   validates :name,
