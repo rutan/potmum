@@ -22,7 +22,7 @@ module Graph
 
           return unless user
           Pundit.authorize(context[:access_token], user, :show?)
-          user.decorate
+          user
         end
       end
     end

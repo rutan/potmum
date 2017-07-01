@@ -5,11 +5,11 @@ module Graph
       name 'RootQuery'
       description 'The query root'
 
-      field :articles, field: Graph::Queries::Articles::Index
+      connection :articles, field: Graph::Queries::Articles::Index
+      connection :search, field: Graph::Queries::Articles::Search
       field :article, field: Graph::Queries::Articles::Show
-      field :search, field: Graph::Queries::Articles::Search
 
-      field :users, field: Graph::Queries::Users::Index
+      connection :users, field: Graph::Queries::Users::Index
       field :user, field: Graph::Queries::Users::Show
     end
   end

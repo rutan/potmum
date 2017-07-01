@@ -8,6 +8,8 @@ module Graph
 
     def call(obj, args, context)
       @resolve_func.call(obj, args, context)
+    rescue GraphQL::ExecutionError => e
+      raise e
     rescue ActiveRecord::RecordInvalid => e
       GraphQL::ExecutionError.new(e.record.errors.full_messages.join(', '))
     rescue ActiveRecord::RecordNotFound => e

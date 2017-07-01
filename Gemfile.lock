@@ -125,7 +125,7 @@ GEM
     gemoji (2.1.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    graphql (1.6.1)
+    graphql (1.6.4)
     hashdiff (0.3.4)
     hashie (3.5.5)
     html-pipeline (2.6.0)
@@ -407,4 +407,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.0
+   1.15.1

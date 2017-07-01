@@ -11,7 +11,7 @@ module Graph
         field.resolve Graph::Handler.new -> (_obj, args, context) do
           ::Article.find(args[:id]).tap do |article|
             Pundit.authorize(context[:access_token], article, :show?)
-          end.decorate
+          end
         end
       end
     end
