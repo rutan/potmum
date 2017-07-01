@@ -5,12 +5,16 @@ module Graph
       name 'Article'
       description 'A blog entry'
 
-      field :id, types.String
+      implements GraphQL::Relay::Node.interface
+
+      field :id, !types.ID, property: :uuid
+      field :objectId, types.String, property: :id
       field :title, types.String
       field :publishType, types.String, property: :publish_type
       field :user, -> { Types::User }
       field :tags, -> { types[Types::Tag] }
-      field :comments, -> { types[Types::Comment] }
+      field :viewCount, types.Int, property: :view_count
+      field :stockCount, types.Int, property: :stock_count
 
       field :body, types.String do
         resolve Graph::Handler.new -> (obj, _args, _context) do
@@ -39,6 +43,14 @@ module Graph
       field :isLiked, types.Boolean do
         resolve Graph::Handler.new -> (obj, _args, context) do
           !!context[:access_token].try(:user).try(:liked?, obj)
+        end
+      end
+
+      connection :comments, -> { Connections::Comment }
+
+      connection :revisions, -> { Connections::Revision } do
+        resolve Graph::Handler.new -> (obj, _args, _context) do
+          obj.revisions.published
         end
       end
     end

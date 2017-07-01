@@ -13,14 +13,47 @@ RSpec.describe Graph::Schema do
   end
   let(:variables) { {} }
 
+  describe 'node query' do
+    let(:access_token) { create(:access_token, :readable) }
+    let(:query_string) do
+      <<"EOS"
+        {
+          node(id: "#{id}") {
+            id
+          }
+        }
+EOS
+    end
+
+    context 'Article' do
+      let(:id) { "Article::#{article.id}" }
+
+      let(:article) { create(:article_with_published_at) }
+      it do
+        result = subject
+        expect(result['data']['node']['id']).to eq "Article::#{article.id}"
+      end
+    end
+
+    context 'User' do
+      let(:user) { create(:user) }
+      let(:id) { "User::#{user.id}" }
+      it do
+        result = subject
+        expect(result['data']['node']['id']).to eq "User::#{user.id}"
+      end
+    end
+  end
+
   describe 'article query' do
     let(:article) { create(:article_with_published_at) }
     let(:access_token) { create(:access_token, :readable) }
     let(:query_string) do
       <<"EOS"
         {
-          article(id: "#{article.id}") {
+          article(id: "Article::#{article.id}") {
             id
+            objectId
             body
           }
         }
@@ -29,7 +62,8 @@ EOS
 
     it do
       result = subject
-      expect(result['data']['article']['id']).to eq article.id
+      expect(result['data']['article']['id']).to eq "Article::#{article.id}"
+      expect(result['data']['article']['objectId']).to eq article.id
       expect(result['data']['article']['body']).to eq article.newest_revision.body
     end
   end

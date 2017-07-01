@@ -8,6 +8,10 @@ module DecorateSerializer
           [n, public_send(n)]
         end.to_h
       end
+
+      def uuid
+        "#{object.class.name}::#{object.id}"
+      end
     end
   end
 

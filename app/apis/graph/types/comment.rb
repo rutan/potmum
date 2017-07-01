@@ -5,7 +5,10 @@ module Graph
       name 'Comment'
       description 'A comment of an article'
 
-      field :id, types.String
+      implements GraphQL::Relay::Node.interface
+
+      field :id, !types.ID, property: :uuid
+      field :objectId, types.Int, property: :id
       field :body, types.String
       field :html, types.String do
         resolve -> (obj, _args, _context) do

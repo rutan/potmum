@@ -26,5 +26,9 @@ FactoryGirl.define do
       publish_type 2
       published_at Time.zone.now
     end
+
+    trait :draft do
+      publish_type 0
+    end
   end
 end
