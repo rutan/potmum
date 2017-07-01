@@ -6,8 +6,12 @@ module Graph
       @resolve_func = resolve_func
     end
 
-    def call(obj, args, context)
-      @resolve_func.call(obj, args, context)
+    def call(obj, args, context = nil)
+      if context.nil?
+        @resolve_func.call(obj, args)
+      else
+        @resolve_func.call(obj, args, context)
+      end
     rescue GraphQL::ExecutionError => e
       raise e
     rescue ActiveRecord::RecordInvalid => e

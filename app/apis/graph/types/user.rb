@@ -5,7 +5,10 @@ module Graph
       name 'User'
       description 'A user'
 
-      field :id, types.Int
+      implements GraphQL::Relay::Node.interface
+
+      field :id, !types.ID, property: :uuid
+      field :objectId, types.Int, property: :id
       field :name, types.String
       field :url, types.String
       field :avatarURL, types.String, property: :avatar_url

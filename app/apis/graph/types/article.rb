@@ -5,7 +5,10 @@ module Graph
       name 'Article'
       description 'A blog entry'
 
-      field :id, types.String
+      implements GraphQL::Relay::Node.interface
+
+      field :id, !types.ID, property: :uuid
+      field :objectId, types.String, property: :id
       field :title, types.String
       field :publishType, types.String, property: :publish_type
       field :user, -> { Types::User }

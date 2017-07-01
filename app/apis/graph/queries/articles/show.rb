@@ -6,10 +6,12 @@ module Graph
         field.type -> { Types::Article }
         field.description 'Get an article'
 
-        field.argument :id, types.String
+        field.argument :id, !types.ID
 
         field.resolve Graph::Handler.new -> (_obj, args, context) do
-          ::Article.find(args[:id]).tap do |article|
+          article_id = args[:id].match(/\AArticle::(.+)\z/).try(:[], 1)
+
+          ::Article.find(article_id).tap do |article|
             Pundit.authorize(context[:access_token], article, :show?)
           end
         end

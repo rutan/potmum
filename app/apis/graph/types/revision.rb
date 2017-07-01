@@ -5,7 +5,10 @@ module Graph
       name 'Revision'
       description 'A revision of a blog entry'
 
-      field :id, types.String
+      implements GraphQL::Relay::Node.interface
+
+      field :id, !types.ID, property: :uuid
+      field :objectId, types.Int, property: :id
       field :title, types.String
       field :revisionType, types.String, property: :revision_type
       field :body, types.String

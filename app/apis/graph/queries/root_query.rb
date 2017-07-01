@@ -5,6 +5,8 @@ module Graph
       name 'RootQuery'
       description 'The query root'
 
+      field :node, GraphQL::Relay::Node.field
+
       connection :articles, field: Graph::Queries::Articles::Index
       connection :search, field: Graph::Queries::Articles::Search
       field :article, field: Graph::Queries::Articles::Show
