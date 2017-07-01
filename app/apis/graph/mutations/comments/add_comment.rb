@@ -2,27 +2,23 @@
 module Graph
   module Mutations
     module Comments
-      AddCommentType = GraphQL::InputObjectType.define do
-        name 'AddCommentType'
+      AddComment = GraphQL::Relay::Mutation.define do
+        description 'Create a post'
 
-        argument :articleId, !types.String
-        argument :body, !types.String
-      end
+        input_field :subjectId, !types.ID
+        input_field :body, !types.String
 
-      AddComment = GraphQL::Field.define do |field|
-        field.type Graph::Types::Comment
-        field.description 'Create a post'
+        return_field :comment, Graph::Types::Comment
 
-        field.argument :input, AddCommentType
+        resolve Graph::Handler.new -> (_obj, inputs, context) do
+          id = inputs[:subjectId].match(/\AArticle::(.+)\z/).try(:[], 1)
 
-        field.resolve Graph::Handler.new -> (_obj, args, context) do
-          params = args[:input]
-
-          AddCommentService.new.call(
+          comment = AddCommentService.new.call(
             access_token: context[:access_token],
-            article_id: params[:articleId],
-            body: params[:body]
+            article_id: id,
+            body: inputs[:body]
           ).decorate
+          { comment: comment }
         end
       end
     end

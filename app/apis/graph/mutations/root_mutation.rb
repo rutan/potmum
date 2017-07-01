@@ -5,7 +5,7 @@ module Graph
       name 'RootMutation'
       description 'The mutation root'
 
-      field :addComment, field: Graph::Mutations::Comments::AddComment
+      field :addComment, field: Graph::Mutations::Comments::AddComment.field
     end
   end
 end
