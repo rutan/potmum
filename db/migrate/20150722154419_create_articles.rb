@@ -1,4 +1,4 @@
-class CreateArticles < ActiveRecord::Migration
+class CreateArticles < ActiveRecord::Migration[4.2]
   def change
     create_table :articles, id: false do |t|
       t.column :id, 'VARCHAR(128) PRIMARY KEY NOT NULL' # ✝闇✝

@@ -1,4 +1,4 @@
-class AddColumnToArticle < ActiveRecord::Migration
+class AddColumnToArticle < ActiveRecord::Migration[4.2]
   def up
     add_column :articles, :publish_type, :integer, default: 0
     add_index :articles, :publish_type

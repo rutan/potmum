@@ -1,4 +1,4 @@
-class AddColumnToRevisions < ActiveRecord::Migration
+class AddColumnToRevisions < ActiveRecord::Migration[4.2]
   def up
     add_column :revisions, :title, :string, default: ''
     add_column :revisions, :tags_text, :text, default: ''
