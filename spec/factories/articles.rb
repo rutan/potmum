@@ -28,6 +28,16 @@ FactoryGirl.define do
       published_at Time.zone.now
     end
 
+    trait :public_item do
+      publish_type 2
+      published_at Time.zone.now
+    end
+
+    trait :private_item do
+      publish_type 1
+      published_at Time.zone.now
+    end
+
     trait :draft do
       publish_type 0
     end

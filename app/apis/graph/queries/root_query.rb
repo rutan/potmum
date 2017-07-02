@@ -16,6 +16,9 @@ module Graph
 
       connection :tags, field: Graph::Queries::Tags::Index
       field :tag, field: Graph::Queries::Tags::Show
+
+      connection :comments, field: Graph::Queries::Comments::Index
+      field :comment, field: Graph::Queries::Comments::Show
     end
   end
 end

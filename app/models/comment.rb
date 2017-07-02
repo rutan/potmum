@@ -9,6 +9,7 @@
 #  body       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  key        :string(128)
 #
 
 class Comment < ApplicationRecord
@@ -18,6 +19,14 @@ class Comment < ApplicationRecord
   validates :body,
             length: 1..2048,
             format: /[^\p{blank}\n]/
+
+  validates :key,
+            presence: true,
+            uniqueness: true
+
+  after_initialize do
+    self.key ||= SecureRandom.uuid.remove('-')
+  end
 
   scope :recent, -> (author = nil) {
     published_articles = Article.arel_table[:publish_type].eq(2)
@@ -30,4 +39,10 @@ class Comment < ApplicationRecord
       end
     joins(:article).where(recent_scope).order(created_at: :desc)
   }
+
+  class << self
+    def find_by_uuid_value(uuid_value)
+      find_by(key: uuid_value)
+    end
+  end
 end

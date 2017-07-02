@@ -31,7 +31,7 @@ CREATE UNIQUE INDEX "index_link_article_tags_on_article_id_and_tag_id" ON "link_
 CREATE TABLE "stocks" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" varchar(128) NOT NULL, "user_id" integer NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL);
 CREATE UNIQUE INDEX "index_stocks_on_article_id_and_user_id" ON "stocks" ("article_id", "user_id");
 CREATE INDEX "index_stocks_on_created_at" ON "stocks" ("created_at");
-CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" varchar(128) NOT NULL, "user_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_03de2dc08c"
+CREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" varchar(128) NOT NULL, "user_id" integer, "body" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "key" varchar(128), CONSTRAINT "fk_rails_03de2dc08c"
 FOREIGN KEY ("user_id")
   REFERENCES "users" ("id")
 );
@@ -58,6 +58,7 @@ CREATE UNIQUE INDEX "index_likes_on_target_type_and_target_id_and_user_id" ON "l
 CREATE INDEX "index_articles_on_like_count" ON "articles" ("like_count");
 CREATE INDEX "index_users_on_like_count" ON "users" ("like_count");
 CREATE UNIQUE INDEX "index_tags_on_key" ON "tags" ("key");
+CREATE UNIQUE INDEX "index_comments_on_key" ON "comments" ("key");
 INSERT INTO "schema_migrations" (version) VALUES
 ('20150722154057'),
 ('20150722154204'),
@@ -72,6 +73,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160426162535'),
 ('20160610180448'),
 ('20161116164401'),
-('20170702044607');
+('20170702044607'),
+('20170702114546');
 
 
