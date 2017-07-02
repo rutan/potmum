@@ -6,6 +6,10 @@ class CommentDecorator < Draper::Decorator
   define_attr :id, :user, :body, :markdown_html, :url
   markdown_column :body
 
+  def uuid
+    "#{object.class.name}::#{object.key}"
+  end
+
   def user
     object.user.try(:decorate)
   end

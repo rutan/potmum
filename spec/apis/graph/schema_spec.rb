@@ -43,6 +43,15 @@ EOS
         expect(result['data']['node']['id']).to eq "User::#{user.id}"
       end
     end
+
+    context 'Comment' do
+      let(:comment) { create(:comment) }
+      let(:id) { "Comment::#{comment.key}" }
+      it do
+        result = subject
+        expect(result['data']['node']['id']).to eq "Comment::#{comment.key}"
+      end
+    end
   end
 
   describe 'article query' do

@@ -9,6 +9,7 @@
 #  body       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  key        :string(128)
 #
 
 require 'rails_helper'

@@ -9,12 +9,15 @@
 #  body       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  key        :string(128)
 #
 
 FactoryGirl.define do
   factory :comment do
+    article { create(:article, :public_item) }
     user { create(:user) }
     body { Faker::Lorem.paragraph }
+    key { SecureRandom.hex.remove('-') }
 
     factory :comment_with_article do
       article { create(:article_with_published_at) }
