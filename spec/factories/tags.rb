@@ -10,6 +10,7 @@
 #  is_menu       :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  key           :string(128)
 #
 
 FactoryGirl.define do
@@ -17,5 +18,6 @@ FactoryGirl.define do
     content { Faker::Name.first_name }
     article_count 0
     is_menu false
+    key { SecureRandom.hex.remove('-') }
   end
 end

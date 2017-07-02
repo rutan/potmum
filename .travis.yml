@@ -8,6 +8,7 @@ before_install:
   - gem install bundler
 script:
   - bundle exec rubocop
+  - bundle exec rake db:create db:migrate
   - bundle exec rspec spec
 notifications:
   slack:

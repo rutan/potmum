@@ -16,21 +16,17 @@ module Graph
         Types::Comment
       when ::Revision
         Types::Revision
+      when ::Tag
+        Types::Tag
       end
     }
 
+    OBJECT_CLASSES = [Article, User, Comment, Revision, Tag].freeze
+
     object_from_id Graph::Handler.new ->(id, context) {
       class_name, item_id = id.split('::', 2)
-      case class_name
-      when Article.name
-        Article.find_by(id: item_id)
-      when User.name
-        User.find_by(id: item_id)
-      when Comment.name
-        Comment.find_by(id: item_id)
-      when Revision.name
-        Revision.find_by(id: item_id)
-      end.tap do |record|
+      return unless OBJECT_CLASSES.map(&:name).include?(class_name)
+      class_name.constantize.find_by_uuid_value(item_id).tap do |record|
         Pundit.authorize(context[:access_token], record, :show?) if record
       end
     }

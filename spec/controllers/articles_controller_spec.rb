@@ -13,7 +13,8 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  published_at       :datetime
-#  publish_type       :integer          default(0)
+#  publish_type       :integer          default("draft_item")
+#  like_count         :integer          default(0)
 #
 
 require 'rails_helper'
