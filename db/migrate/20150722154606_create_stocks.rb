@@ -1,4 +1,4 @@
-class CreateStocks < ActiveRecord::Migration
+class CreateStocks < ActiveRecord::Migration[4.2]
   def change
     create_table :stocks do |t|
       t.string :article_id, null: false, limit: 128

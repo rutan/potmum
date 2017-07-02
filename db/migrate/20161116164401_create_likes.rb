@@ -1,4 +1,4 @@
-class CreateLikes < ActiveRecord::Migration
+class CreateLikes < ActiveRecord::Migration[4.2]
   def up
     create_table :likes do |t|
       t.string :target_type, null: false

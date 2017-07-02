@@ -12,7 +12,7 @@
 #  tags_text     :text             default("")
 #  user_id       :integer
 #  published_at  :datetime
-#  revision_type :integer          default(0)
+#  revision_type :integer          default("unknown")
 #  note          :text
 #
 

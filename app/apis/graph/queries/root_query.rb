@@ -13,6 +13,9 @@ module Graph
 
       connection :users, field: Graph::Queries::Users::Index
       field :user, field: Graph::Queries::Users::Show
+
+      connection :tags, field: Graph::Queries::Tags::Index
+      field :tag, field: Graph::Queries::Tags::Show
     end
   end
 end

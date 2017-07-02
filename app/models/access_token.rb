@@ -5,8 +5,8 @@
 #
 #  id          :integer          not null, primary key
 #  user_id     :integer
-#  token_type  :integer          default(0)
-#  permit_type :integer          default(0)
+#  token_type  :integer          default("system_token")
+#  permit_type :integer          default("permit_read_only")
 #  title       :string(32)
 #  token       :string(128)      not null
 #  created_at  :datetime         not null

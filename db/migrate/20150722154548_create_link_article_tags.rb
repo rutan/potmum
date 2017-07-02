@@ -1,4 +1,4 @@
-class CreateLinkArticleTags < ActiveRecord::Migration
+class CreateLinkArticleTags < ActiveRecord::Migration[4.2]
   def change
     create_table :link_article_tags do |t|
       t.string :article_id, limit: 128

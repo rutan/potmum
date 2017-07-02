@@ -10,7 +10,10 @@
 #  is_menu       :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  key           :string(128)
 #
+
+require 'nkf'
 
 class Tag < ApplicationRecord
   has_many :link_article_tags
@@ -20,6 +23,10 @@ class Tag < ApplicationRecord
             length: 1..40,
             uniqueness: true,
             format: /\A[^\p{blank}\n]+\z/
+
+  validates :key,
+            presence: true,
+            uniqueness: true
 
   scope :enabled, -> {
     where('article_count > ?', 0)
@@ -36,6 +43,10 @@ class Tag < ApplicationRecord
   scope :menu, -> {
     where(is_menu: true).order(name: :asc)
   }
+
+  after_initialize do
+    self.key ||= SecureRandom.uuid.remove('-')
+  end
 
   def to_param
     content
@@ -59,14 +70,19 @@ class Tag < ApplicationRecord
     update(article_count: articles.public_items.count)
   end
 
-  def self.find_or_create_by_name(str)
-    tag = find_or_initialize_by(content: normalize(str))
-    tag.name = str if tag.new_record?
-    tag.save ? tag : nil
-  end
+  class << self
+    def find_by_uuid_value(uuid_value)
+      find_by(key: uuid_value)
+    end
 
-  require 'nkf'
-  def self.normalize(str)
-    NKF.nkf('-m0Z1 -W -w', str.downcase)
+    def find_or_create_by_name(str)
+      tag = find_or_initialize_by(content: normalize(str))
+      tag.name = str if tag.new_record?
+      tag.save ? tag : nil
+    end
+
+    def normalize(str)
+      NKF.nkf('-m0Z1 -W -w', str.downcase)
+    end
   end
 end
