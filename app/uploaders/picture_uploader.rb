@@ -6,7 +6,7 @@ class PictureUploader < CarrierWave::Uploader::Base
     model.class.to_s.pluralize.underscore.to_s
   end
 
-  def extension_white_list
+  def extension_whitelist
     %w(jpg jpeg gif png)
   end
 
