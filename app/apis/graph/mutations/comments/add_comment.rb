@@ -3,6 +3,7 @@ module Graph
   module Mutations
     module Comments
       AddComment = GraphQL::Relay::Mutation.define do
+        name 'AddCommentMutation'
         description 'Create a post'
 
         input_field :subjectId, !types.ID
