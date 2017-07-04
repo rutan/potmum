@@ -11,13 +11,16 @@ class StocksController < ApplicationController
 
   # POST /@:name/items/:id/stock
   def create
-    stock = Stock.find_or_initialize_by(user_id: current_user.id, article_id: @article.id)
-    if stock.save
-      @article.update_stock_count
-      render_json(article_id: @article.id, stocked: true)
-    else
-      render_json({article_id: @article.id}, status: 400)
-    end
+    AddStockService.new.call(
+      access_token: AccessToken.generate_master(current_user),
+      article_id: @article.id
+    )
+    render_json(article_id: @article.id, stocked: true)
+  rescue ActiveRecord::RecordInvalid => e
+    render_json({
+                  article_id: @article.id,
+                  message: e.record.errors.full_messages.join(', ')
+                }, status: 400)
   end
 
   # DELETE /@:name/items/:id/stock
