@@ -6,6 +6,7 @@ module Graph
       description 'The mutation root'
 
       field :addComment, field: Graph::Mutations::Comments::AddComment.field
+      field :removeComment, field: Graph::Mutations::Comments::RemoveComment.field
 
       field :addStock, field: Graph::Mutations::Stocks::AddStock.field
       field :removeStock, field: Graph::Mutations::Stocks::RemoveStock.field
