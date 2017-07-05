@@ -48,11 +48,11 @@ module Graph
 
       connection :comments, -> { Connections::Comment } do
         argument :order, types.String, default_value: 'desc'
-        ORDER_TYPES = %w(asc desc).freeze
+        order_types = %w(asc desc).freeze
 
         resolve Graph::Handler.new -> (obj, args, _context) do
           order = args[:order]
-          raise GraphQL::ExecutionError, 'Invalid order format' unless ORDER_TYPES.include?(order)
+          raise GraphQL::ExecutionError, 'Invalid order format' unless order_types.include?(order)
 
           obj.object.comments.except(:order).order(created_at: order)
         end
