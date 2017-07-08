@@ -1,0 +1,12 @@
+FROM ruby:2.4-slim
+ENV LANG C.UTF-8
+
+WORKDIR /app
+ENV BUNDLE_PATH /bundle
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+            build-essential git curl openssl libssl-dev libpq-dev libsqlite3-dev
+
+RUN gem install bundler --force --no-rdoc --no-ri
+

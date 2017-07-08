@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    build:
+      context: '.'
+      dockerfile: './docker/app-Dockerfile-dev'
+    command: bundle exec rails s
+    ports:
+      - '3000:3000'
+    environment:
+      TEST: '1'
+    volumes:
+      - '.:/app'
+      - 'bundle:/bundle'
+volumes:
+  bundle:
+
