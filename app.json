@@ -86,7 +86,7 @@
         }
     },
     "scripts": {
-        "postdeploy": "bundle exec rake db:create db:migrate"
+        "postdeploy": "bundle exec rake db:migrate"
     },
     "buildpacks": [
         {
