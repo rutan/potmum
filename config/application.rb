@@ -25,7 +25,7 @@ module Potmum
     config.i18n.default_locale = :ja
     Faker::Config.locale = :en if defined?(Faker)
 
-    config.autoload_paths += %W(#{config.root}/lib/commons)
+    config.paths.add 'lib/commons', eager_load: true
 
     config.active_record.schema_format = :sql
 
