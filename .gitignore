@@ -2,6 +2,7 @@
 /.env.*
 .rbenv-version
 .ruby-version
+.node-version
 /public/attachment_files
 /public/assets
 /public/asset_pack
