@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class ArticlesController < ApplicationController
   before_action :set_user!
-  before_action :set_article!, only: [:show, :edit, :update, :destroy, :create_like, :destroy_like]
+  before_action :set_article!, only: [:show, :edit, :update, :destroy]
   before_action :check_owner!, only: [:new, :edit, :update, :destroy]
 
   # GET /@:name/items
@@ -62,33 +62,6 @@ class ArticlesController < ApplicationController
     redirect_to user_path(name: current_user.name)
   end
 
-  # POST /@:name/items/:id/like
-  def create_like
-    like = Like.find_or_initialize_by(
-      user_id: current_user.id,
-      target_type: 'Article',
-      target_id: @article.id
-    )
-    if like.save
-      @article.update_like_count
-      render_json(article_id: @article.id, liked: true)
-    else
-      render_json({article_id: @article.id}, status: 400)
-    end
-  end
-
-  # DELETE /@:name/items/:id/like
-  def destroy_like
-    like = Like.find_or_initialize_by(
-      user_id: current_user.id,
-      target_type: 'Article',
-      target_id: @article.id
-    )
-    like.destroy
-    @article.update_like_count
-    head :no_content
-  end
-
   # POST /@:name/items/preview.json
   def preview
     revision = Revision.new(
@@ -112,7 +85,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_article!
-    @article = @user.articles.find(params[:id] || params[:article_id])
+    @article = @user.articles.find(params[:id])
     @article_d = @article.decorate
   end
 
