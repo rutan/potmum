@@ -27,9 +27,7 @@ Rails.application.routes.draw do
       end
       resources :comments, only: [:create]
       resource :stock, only: [:show, :create, :destroy]
-
-      post '/like' => 'articles#create_like'
-      delete '/like' => 'articles#destroy_like'
+      resource :like, only: [:create, :destroy]
     end
   end
   get '/users/:name' => redirect('@%{name}')
