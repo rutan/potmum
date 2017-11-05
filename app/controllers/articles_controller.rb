@@ -37,7 +37,8 @@ class ArticlesController < ApplicationController
     view_countup
 
     respond_to do |format|
-      format.html { render }
+      format.html
+      format.md
       format.json { render_json @article }
     end
   end
