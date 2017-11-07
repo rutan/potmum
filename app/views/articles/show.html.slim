@@ -119,10 +119,11 @@
             .article-author.uk-margin-bottom
               a href=user_path(name: @article.user)
                 img.avatar-image src=@article_d.user.avatar_url
-                .article-author-name
+              .article-author-name
+                a href=user_path(name: @article.user)
                   = @article_d.user.name
-                .article-author-text
-                  | #{@article_d.user.like_count} Contributes
+              .article-author-text
+                | #{@article_d.user.like_count} Contributes
             .article-author-link.uk-margin-top
               h4 人気の投稿
               ul.uk-list.uk-list-line
