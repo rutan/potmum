@@ -25,6 +25,15 @@
             li
               a href=tag_path(tag)
                 = tag.name
+        ul.article-status-box
+          li
+            i.fa.fa-heart-o
+            |&nbsp;
+            = article.like_count
+          li
+            i.fa.fa-comment-o
+            |&nbsp;
+            = article.comment_count
 
   = paginate articles
 

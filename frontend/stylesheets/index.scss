@@ -680,6 +680,7 @@ q, blockquote {
     margin: 0;
     padding: 15px 0;
     border-top: 1px solid #ccc;
+    position: relative;
 
     &:first-child {
       border-top: 0;
@@ -745,6 +746,31 @@ q, blockquote {
           border-right-width: 8px;
           border-right-color: #eee;
         }
+      }
+    }
+    .article-status-box {
+      position: absolute;
+      bottom: 15px; // .article-list > li padding-bottom
+      right: 0;
+      li {
+        display: inline-block;
+        font-size: 12px;
+        line-height: 16px;
+        height: 16px;
+        &:before {
+          display: inline-block;
+          content: '\002022';
+          color: rgba(0, 0, 0, .2);
+          margin: 0 5px;
+        }
+        &:first-child:before {
+          display: none;
+        }
+      }
+    }
+    &:last-child {
+      .article-status-box {
+        bottom: 0;
       }
     }
   }
