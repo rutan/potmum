@@ -17,15 +17,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     ActiveRecord::Base.transaction do
-      raise 'validation' unless @user.valid?
       @user.save!
       @user.link_to_auth!(session['auth'])
     end
     session['user_id'] = @user.id
     session['auth'] = nil
     redirect_to '/'
-  rescue => e
-    Rails.logger.error e.inspect
+  rescue ActiveRecord::RecordInvalid => _e
     render :new
   end
 
