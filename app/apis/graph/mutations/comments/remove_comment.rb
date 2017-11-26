@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Mutations
     module Comments
@@ -10,7 +11,7 @@ module Graph
 
         return_field :article, Graph::Types::Article
 
-        resolve Graph::Handler.new -> (_obj, inputs, context) do
+        resolve Graph::Handler.new ->(_obj, inputs, context) do
           key = inputs[:commentId].match(/\AComment::(.+)\z/).try(:[], 1)
 
           article = RemoveCommentService.new.call(

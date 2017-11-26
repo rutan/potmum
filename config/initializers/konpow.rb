@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Konpow.configure do |config|
   config.base_path = 'asset_pack'
   config.manifest_path = Rails.root.join('webpack-manifest.json')

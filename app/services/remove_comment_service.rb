@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RemoveCommentService
   def call(access_token:, comment_id: nil, comment_key: nil)
     comment =

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -28,7 +29,7 @@ class Comment < ApplicationRecord
     self.key ||= SecureRandom.uuid.remove('-')
   end
 
-  scope :recent, -> (author = nil) {
+  scope :recent, ->(author = nil) {
     published_articles = Article.arel_table[:publish_type].eq(2)
     recent_scope =
       if author

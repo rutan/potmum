@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Articles
@@ -8,7 +9,7 @@ module Graph
 
         field.argument :id, !types.ID
 
-        field.resolve Graph::Handler.new -> (_obj, args, context) do
+        field.resolve Graph::Handler.new ->(_obj, args, context) do
           article_id = args[:id].match(/\AArticle::(.+)\z/).try(:[], 1)
 
           ::Article.find(article_id).tap do |article|

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Mutations
     module Stocks
@@ -10,7 +11,7 @@ module Graph
 
         return_field :article, Graph::Types::Article
 
-        resolve Graph::Handler.new -> (_obj, inputs, context) do
+        resolve Graph::Handler.new ->(_obj, inputs, context) do
           id = inputs[:subjectId].match(/\AArticle::(.+)\z/).try(:[], 1)
 
           article = RemoveStockService.new.call(

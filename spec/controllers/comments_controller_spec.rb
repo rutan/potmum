@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -56,7 +57,7 @@ RSpec.describe CommentsController, type: :controller do
   end
 
   describe 'DELETE :destroy' do
-    subject { delete :destroy, params: {id: comment.id}, format: 'json'; response }
+    subject { delete :destroy, params: { id: comment.id }, format: 'json'; response }
     let(:article) { create(:article_with_published_at) }
     let :comment do
       build(:comment).tap do |c|

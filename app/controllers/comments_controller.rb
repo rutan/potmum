@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :require_login!
   before_action :set_user_and_article!, only: [:create]

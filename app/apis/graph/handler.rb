@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   # referenced https://github.com/rmosolgo/graphql-ruby/issues/323
   class Handler

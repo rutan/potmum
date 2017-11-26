@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Users
   class AccessTokensController < ::ApplicationController
     before_action :require_login!

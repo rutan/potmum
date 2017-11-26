@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class SearchArticleService
   def call(query:, access_token: nil, page: 0, size: 20)
     page = [[page, 100].min, 1].max

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'html/pipeline/nico_link'
 require_relative './redirect_url_filter.rb'
 

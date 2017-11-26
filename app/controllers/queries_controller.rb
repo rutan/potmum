@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class QueriesController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :check_csrf
@@ -39,7 +40,7 @@ class QueriesController < ApplicationController
   end
 
   def safe_host
-    GlobalSetting.root_url.match(/\/(?<host>[^\/]+)(?:\/|\z)/).try(:[], :host)
+    GlobalSetting.root_url.match(%r{/(?<host>[^/]+)(?:/|\z)}).try(:[], :host)
   end
 
   def param_variables

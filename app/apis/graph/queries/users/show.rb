@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Users
@@ -9,7 +10,7 @@ module Graph
         field.argument :id, types.ID
         field.argument :name, types.String
 
-        field.resolve Graph::Handler.new -> (_obj, args, context) do
+        field.resolve Graph::Handler.new ->(_obj, args, context) do
           user =
             case
             when args[:id]

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.routes.draw do
   root 'lobbies#root'
 
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tags, only: [:index, :show, :edit, :update], id: %r{.+?}, format: /json|html/ do
+  resources :tags, only: [:index, :show, :edit, :update], id: /.+?/, format: /json|html/ do
     member do
       get 'popular'
     end

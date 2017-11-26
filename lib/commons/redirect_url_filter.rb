@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'cgi'
 
 class RedirectURLFilter < HTML::Pipeline::Filter
@@ -8,7 +9,7 @@ class RedirectURLFilter < HTML::Pipeline::Filter
       next unless url
 
       next if url.start_with?('#') # OK: #hoge
-      next if url =~ /\A\/[^\/]/ # OK: /hoge
+      next if url.match?(%r{\A/[^/]}) # OK: /hoge
       if GlobalSetting.root_url.present?
         next if url.start_with?("#{GlobalSetting.root_url}/") # OK: http://podmum-url/hoge
         next if url.start_with?("//#{GlobalSetting.root_url.sub(/\Ahttps?:/, '')}/") # OK: //podmum-url/hoge

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Types
     Tag = GraphQL::ObjectType.define do
@@ -16,7 +17,7 @@ module Graph
       field :articleCount, types.Int, property: :article_count
 
       connection :articles, -> { Connections::Article } do
-        resolve Graph::Handler.new -> (obj, _args, context) do
+        resolve Graph::Handler.new ->(obj, _args, context) do
           obj.articles.public_or_mine(context[:access_token].try(:user))
         end
       end

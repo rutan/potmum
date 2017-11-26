@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   # Google
   if ENV['USE_GOOGLE']
@@ -12,7 +13,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   # GitHub
   if ENV['USE_GITHUB']
     if ENV['GITHUB_ENTERPRISE_URL']
-      url = ENV['GITHUB_ENTERPRISE_URL'].sub(/\/\z/, '')
+      url = ENV['GITHUB_ENTERPRISE_URL'].sub(%r{/\z}, '')
       provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], client_options: {
         site: "#{url}/api/v3",
         authorize_url: "#{url}/login/oauth/authorize",

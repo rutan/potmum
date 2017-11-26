@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Connections
     Article = ::Graph::Types::Article.define_connection do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'slack'
 
 module Notifiers
@@ -29,7 +30,7 @@ module Notifiers
           text: target.try(:summary)
         }.delete_if { |_, v| v.nil? }].to_json,
         icon_url: @icon.start_with?('http') ? @icon : nil,
-        icon_emoji: @icon =~ /\A:.+:\z/ ? @icon : nil
+        icon_emoji: @icon.match?(/\A:.+:\z/) ? @icon : nil
       }.delete_if { |_, v| v.nil? })
     end
 

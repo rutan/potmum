@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class UsersController < ApplicationController
   skip_before_action :private_mode!, only: [:new, :create] if GlobalSetting.private_mode?
   before_action :check_register_mode!, only: [:new, :create]

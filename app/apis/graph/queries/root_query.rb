@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     RootQuery = GraphQL::ObjectType.define do

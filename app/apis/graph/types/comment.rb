@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Types
     Comment = GraphQL::ObjectType.define do
@@ -11,7 +12,7 @@ module Graph
       field :objectId, types.Int, property: :id
       field :body, types.String
       field :html, types.String do
-        resolve -> (obj, _args, _context) do
+        resolve ->(obj, _args, _context) do
           obj.markdown_html
         end
       end
