@@ -100,4 +100,3 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 10
 
-inherit_from: .rubocop_todo.yml
