@@ -98,6 +98,6 @@ module GlobalSetting
 
   def self.attachment_file_s3_force_path_style
     n = ENV['ATTACHMENT_FILE_S3_FORCE_PATH_STYLE']
-    n ? (n.to_i > 0) : nil
+    n ? (n.to_i != 0) : nil
   end
 end
