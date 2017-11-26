@@ -65,7 +65,10 @@ RSpec.describe CommentsController, type: :controller do
         article.update_comment_count
       end
     end
-    before(:each) { allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user) }
+    before(:each) do
+      comment
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+    end
 
     context 'login with comment-author' do
       let(:current_user) { comment.user }
@@ -79,7 +82,7 @@ RSpec.describe CommentsController, type: :controller do
       let(:current_user) { create(:user) }
 
       it { expect(subject.status).to eq 403 }
-      it { expect { subject }.to change { article.comments.reload.count } }
+      it { expect { subject }.to change { article.comments.reload.count }.by(0) }
     end
   end
 end
