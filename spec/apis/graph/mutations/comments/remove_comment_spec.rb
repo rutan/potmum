@@ -12,13 +12,13 @@ RSpec.describe 'RemoveComment Mutation' do
     )
   end
   let(:query_string) do
-    <<"EOS"
+    <<"QUERY"
         mutation {
           removeComment(input: {clientMutationId: "rspec", commentId: "#{id}"}) {
             clientMutationId
           }
         }
-EOS
+QUERY
   end
   let(:variables) { {} }
   let(:id) { "Comment::#{comment.key}" }

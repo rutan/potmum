@@ -12,7 +12,7 @@ RSpec.describe 'AddStock Mutation' do
     )
   end
   let(:query_string) do
-    <<"EOS"
+    <<"QUERY"
         mutation {
           addStock(input: {subjectId: "#{id}"}) {
             article {
@@ -22,7 +22,7 @@ RSpec.describe 'AddStock Mutation' do
             }
           }
         }
-EOS
+QUERY
   end
   let(:variables) { {} }
   let(:access_token) { create(:access_token, :writable) }

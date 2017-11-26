@@ -12,7 +12,7 @@ RSpec.describe 'AddComment Mutation' do
     )
   end
   let(:query_string) do
-    <<"EOS"
+    <<"QUERY"
         mutation {
           addComment(input: {subjectId: "#{id}", body: "#{body}"}) {
             comment {
@@ -24,7 +24,7 @@ RSpec.describe 'AddComment Mutation' do
             }
           }
         }
-EOS
+QUERY
   end
   let(:variables) { {} }
   let(:access_token) { create(:access_token, :writable) }
