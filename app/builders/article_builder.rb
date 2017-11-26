@@ -54,6 +54,8 @@ class ArticleBuilder
       Rails.logger.debug @error.inspect
       raise Errors::BadRequest
     end
+
+    true
   end
 
   def build_article(params)
