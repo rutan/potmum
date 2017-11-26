@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RevisionDecorator < Draper::Decorator
   delegate_all
   include DecorateSerializer

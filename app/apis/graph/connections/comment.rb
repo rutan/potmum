@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Connections
     Comment = ::Graph::Types::Comment.define_connection do

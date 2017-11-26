@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'RemoveStock Mutation' do
@@ -12,7 +13,7 @@ RSpec.describe 'RemoveStock Mutation' do
     )
   end
   let(:query_string) do
-    <<"EOS"
+    <<"QUERY"
         mutation {
           removeStock(input: {subjectId: "#{id}"}) {
             article {
@@ -22,7 +23,7 @@ RSpec.describe 'RemoveStock Mutation' do
             }
           }
         }
-EOS
+QUERY
   end
   let(:variables) { {} }
   let(:access_token) { create(:access_token, :writable) }

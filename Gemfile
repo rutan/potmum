@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 source 'https://rubygems.org'
 ruby '2.4.1'
 
@@ -10,63 +11,63 @@ gem 'rails-i18n', '~> 5.0.0'
 gem 'graphql'
 gem 'pundit'
 
-gem 'slim-rails'
 gem 'gemoji', '~> 2.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'therubyracer', platforms: :ruby
 gem 'konpow', github: 'rutan/konpow'
+gem 'slim-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier', '>= 1.3.0'
 
 gem 'draper'
 
 gem 'omniauth'
-gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-slack'
 gem 'omniauth-twitter'
 
 gem 'slack-api'
 
+gem 'diffy'
 gem 'kaminari'
 gem 'ransack'
-gem 'diffy'
 
-gem 'mini_magick'
 gem 'carrierwave'
 gem 'carrierwave-aws'
+gem 'mini_magick'
 
+gem 'html-pipeline-nico_link'
 gem 'nokogiri', '1.7.2'
 gem 'nokogumbo', '1.4.10'
 gem 'pot_markdown'
-gem 'html-pipeline-nico_link'
 
 gem 'dotenv-rails'
 gem 'foreman'
 
 group :production do
   gem 'pg'
-  gem 'sprockets-redirect'
   gem 'rails_12factor'
+  gem 'sprockets-redirect'
 end
 
 group :development, :test do
   gem 'sqlite3'
 
-  gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'pry-byebug'
+  gem 'pry-rails'
 
-  gem 'yard'
   gem 'annotate'
   gem 'ruby-prof'
+  gem 'yard'
 
-  gem 'rubocop', '0.40.0'
+  gem 'rubocop'
 
-  gem 'rspec-rails'
-  gem 'rails-controller-testing'
-  gem 'faker'
   gem 'factory_girl_rails'
-  gem 'webmock'
+  gem 'faker'
   gem 'fakes3'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'webmock'
 end

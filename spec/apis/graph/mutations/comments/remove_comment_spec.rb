@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'RemoveComment Mutation' do
@@ -12,13 +13,13 @@ RSpec.describe 'RemoveComment Mutation' do
     )
   end
   let(:query_string) do
-    <<"EOS"
+    <<"QUERY"
         mutation {
           removeComment(input: {clientMutationId: "rspec", commentId: "#{id}"}) {
             clientMutationId
           }
         }
-EOS
+QUERY
   end
   let(:variables) { {} }
   let(:id) { "Comment::#{comment.key}" }

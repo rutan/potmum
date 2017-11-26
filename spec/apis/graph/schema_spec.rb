@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Graph::Schema do
@@ -16,13 +17,13 @@ RSpec.describe Graph::Schema do
   describe 'node query' do
     let(:access_token) { create(:access_token, :readable) }
     let(:query_string) do
-      <<"EOS"
+      <<"QUERY"
         {
           node(id: "#{id}") {
             id
           }
         }
-EOS
+QUERY
     end
 
     context 'Article' do
@@ -58,7 +59,7 @@ EOS
     let(:article) { create(:article_with_published_at) }
     let(:access_token) { create(:access_token, :readable) }
     let(:query_string) do
-      <<"EOS"
+      <<"QUERY"
         {
           article(id: "Article::#{article.id}") {
             id
@@ -66,7 +67,7 @@ EOS
             body
           }
         }
-EOS
+QUERY
     end
 
     it do

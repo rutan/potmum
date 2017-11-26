@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :set_user_and_article!, only: [:create, :destroy]
 
@@ -13,7 +14,7 @@ class LikesController < ApplicationController
       @article.update_like_count
       render_json(article_id: @article.id, liked: true)
     else
-      render_json({article_id: @article.id}, status: 400)
+      render_json({ article_id: @article.id }, status: 400)
     end
   end
 

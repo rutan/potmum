@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: articles
@@ -32,7 +33,7 @@ class Article < ApplicationRecord
     order(created_at: :asc)
   }
 
-  enum publish_type: {draft_item: 0, private_item: 1, public_item: 2}
+  enum publish_type: { draft_item: 0, private_item: 1, public_item: 2 }
 
   scope :published_items, -> {
     where(publish_type: [1, 2]).order(published_at: :desc)
@@ -42,7 +43,7 @@ class Article < ApplicationRecord
     where(publish_type: 2).order(published_at: :desc)
   }
 
-  scope :public_or_mine, -> (author) {
+  scope :public_or_mine, ->(author) {
     return public_items unless author
     published_articles = Article.arel_table[:publish_type].eq(2)
     mine_articles = Article.arel_table[:user_id].eq(author.id).and(Article.arel_table[:publish_type].not_eq(0))

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Users
@@ -6,7 +7,7 @@ module Graph
         field.type -> { Connections::User }
         field.description 'Get users'
 
-        field.resolve Graph::Handler.new -> (_obj, _args, _context) do
+        field.resolve Graph::Handler.new ->(_obj, _args, _context) do
           ::User.all
         end
       end

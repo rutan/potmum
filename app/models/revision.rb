@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: revisions
@@ -32,7 +33,7 @@ class Revision < ApplicationRecord
             format: /[^\p{blank}\n]/
 
   validates :revision_type,
-            inclusion: { in: %w(draft published) }
+            inclusion: { in: %w[draft published] }
 
   validates :note,
             length: 0..1000

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Comments
@@ -8,7 +9,7 @@ module Graph
 
         field.argument :id, types.ID
 
-        field.resolve Graph::Handler.new -> (_obj, args, context) do
+        field.resolve Graph::Handler.new ->(_obj, args, context) do
           ::Comment.find_by!(key: args[:id].match(/\AComment::(.+)\z/).try(:[], 1)).tap do |comment|
             Pundit.authorize(context[:access_token], comment, :show?) if comment
           end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ApplicationPolicy
   attr_reader :access_token, :record
 

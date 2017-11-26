@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   Schema = GraphQL::Schema.define do
     query Graph::Queries::RootQuery
@@ -6,7 +7,7 @@ module Graph
     max_depth 7
     default_max_page_size 50
 
-    resolve_type Graph::Handler.new -> (obj, _ctx) {
+    resolve_type Graph::Handler.new ->(obj, _ctx) {
       case obj
       when ::Article
         Types::Article

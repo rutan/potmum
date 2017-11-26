@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class LobbiesController < ApplicationController
   before_action :set_page
 
@@ -46,7 +47,7 @@ class LobbiesController < ApplicationController
   # リダイレクタ
   def redirector
     @url = params[:url].to_s.strip[0, 255]
-    raise Errors::BadRequest unless @url =~ /\Ahttps?:\/\/.+/
+    raise Errors::BadRequest unless @url.match?(%r{\Ahttps?://.+})
   end
 
   # GET /browserconfig.xml

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class TakeoverBuilder
   def initialize(user)
     @user = user

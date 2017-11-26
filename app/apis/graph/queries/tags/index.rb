@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Tags
@@ -10,10 +11,10 @@ module Graph
         field.argument :order, types.String, default_value: 'desc'
         field.argument :filter, types[types.String]
 
-        SORT_TYPES = %w(name articleCount).freeze
-        ORDER_TYPES = %w(asc desc).freeze
+        SORT_TYPES = %w[name articleCount].freeze
+        ORDER_TYPES = %w[asc desc].freeze
 
-        field.resolve Graph::Handler.new -> (_obj, args, _context) do
+        field.resolve Graph::Handler.new ->(_obj, args, _context) do
           sort = args[:sort]
           order = args[:order]
           filter = args[:filter] || []

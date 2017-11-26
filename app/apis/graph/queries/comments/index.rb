@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Comments
@@ -8,9 +9,9 @@ module Graph
 
         field.argument :order, types.String, default_value: 'desc'
 
-        ORDER_TYPES = %w(asc desc).freeze
+        ORDER_TYPES = %w[asc desc].freeze
 
-        field.resolve Graph::Handler.new -> (_obj, args, _context) do
+        field.resolve Graph::Handler.new ->(_obj, args, _context) do
           order = args[:order]
           raise GraphQL::ExecutionError, 'Invalid order format' unless ORDER_TYPES.include?(order)
 

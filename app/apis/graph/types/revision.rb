@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Types
     Revision = GraphQL::ObjectType.define do
@@ -15,7 +16,7 @@ module Graph
       field :note, types.String
       field :tagsText, types.String, property: :tags_text
       field :publishedAt, types.Int do
-        resolve -> (obj, _args, _context) { obj.published_at ? obj.published_at.to_i : nil }
+        resolve ->(obj, _args, _context) { obj.published_at ? obj.published_at.to_i : nil }
       end
       field :html, types.String, property: :markdown_html
       field :user, -> { Types::User }

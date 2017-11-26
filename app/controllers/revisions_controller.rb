@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RevisionsController < ApplicationController
   before_action :set_user!
   before_action :set_article!

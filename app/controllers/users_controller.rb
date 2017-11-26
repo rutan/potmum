@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class UsersController < ApplicationController
   skip_before_action :private_mode!, only: [:new, :create] if GlobalSetting.private_mode?
   before_action :check_register_mode!, only: [:new, :create]
@@ -17,15 +18,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     ActiveRecord::Base.transaction do
-      raise 'validation' unless @user.valid?
       @user.save!
       @user.link_to_auth!(session['auth'])
     end
     session['user_id'] = @user.id
     session['auth'] = nil
     redirect_to '/'
-  rescue => e
-    Rails.logger.error e.inspect
+  rescue ActiveRecord::RecordInvalid => _e
     render :new
   end
 

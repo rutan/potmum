@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Queries
     module Articles
@@ -10,10 +11,10 @@ module Graph
         field.argument :sort, types.String, default_value: 'published_at'
         field.argument :order, types.String, default_value: 'desc'
 
-        SORT_TYPES = %w(publishedAt viewCount stockCount commentCount).freeze
-        ORDER_TYPES = %w(asc desc).freeze
+        SORT_TYPES = %w[publishedAt viewCount stockCount commentCount].freeze
+        ORDER_TYPES = %w[asc desc].freeze
 
-        field.resolve Graph::Handler.new -> (_obj, args, context) do
+        field.resolve Graph::Handler.new ->(_obj, args, context) do
           query = args[:query]
           sort = args[:sort]
           order = args[:order]

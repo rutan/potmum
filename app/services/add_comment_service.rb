@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AddCommentService
   def call(access_token:, article_id:, body:)
     article = ::Article.find(article_id)

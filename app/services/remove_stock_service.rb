@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class RemoveStockService
   def call(access_token:, article_id:)
     article = ::Article.find(article_id)

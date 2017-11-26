@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Graph
   module Mutations
     RootMutation = GraphQL::ObjectType.define do

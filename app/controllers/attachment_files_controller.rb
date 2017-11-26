@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class AttachmentFilesController < ApplicationController
   before_action :require_login!
 
