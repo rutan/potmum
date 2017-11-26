@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       resource :like, only: [:create, :destroy]
     end
   end
-  get '/users/:name' => redirect('@%{name}')
+  get '/users/:name' => redirect('@%<name>')
 
   resources :comments, only: [:destroy] do
     collection do
