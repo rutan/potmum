@@ -8,6 +8,8 @@ gem 'puma'
 gem 'rails', '5.1.1'
 gem 'rails-i18n', '~> 5.0.0'
 
+gem 'pg'
+
 gem 'graphql'
 gem 'pundit'
 
@@ -44,14 +46,11 @@ gem 'dotenv-rails'
 gem 'foreman'
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
   gem 'sprockets-redirect'
 end
 
 group :development, :test do
-  gem 'sqlite3'
-
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
