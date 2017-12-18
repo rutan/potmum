@@ -4,7 +4,7 @@
     "repository": "https://github.com/rutan/potmum",
     "logo": "https://raw.githubusercontent.com/rutan/potmum/master/logo.png",
     "keywords": ["note"],
-    "addons": ["heroku-postgresql:hobby-dev"],
+    "addons": ["heroku-postgresql:hobby-dev", "heroku-redis:hobby-dev"],
     "env": {
         "RAILS_ENV": "production",
         "SECRET_KEY_BASE": {
