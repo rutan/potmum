@@ -72,6 +72,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    boffin (0.3.0)
+      redis (>= 2.2)
     builder (3.2.3)
     byebug (9.0.6)
     carrierwave (1.1.0)
@@ -362,6 +364,7 @@ DEPENDENCIES
   awesome_print
   better_errors
   binding_of_caller
+  boffin
   carrierwave
   carrierwave-aws
   diffy

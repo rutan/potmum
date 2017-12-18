@@ -31,6 +31,7 @@ gem 'omniauth-twitter'
 
 gem 'slack-api'
 
+gem 'boffin'
 gem 'diffy'
 gem 'kaminari'
 gem 'ransack'

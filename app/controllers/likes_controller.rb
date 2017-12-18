@@ -12,6 +12,7 @@ class LikesController < ApplicationController
     )
     if like.save
       @article.update_like_count
+      @article.hit(:likes, unique: [current_user])
       render_json(article_id: @article.id, liked: true)
     else
       render_json({ article_id: @article.id }, status: 400)

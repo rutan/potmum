@@ -16,6 +16,7 @@ class StocksController < ApplicationController
       access_token: AccessToken.generate_master(current_user),
       article_id: @article.id
     )
+    @article.hit(:stocks, unique: [current_user])
     render_json(article_id: @article.id, stocked: true)
   rescue ActiveRecord::RecordInvalid => e
     render_json({

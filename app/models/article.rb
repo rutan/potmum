@@ -19,6 +19,9 @@
 #
 
 class Article < ApplicationRecord
+  include Boffin::Trackable
+  boffin.hit_types = [:views, :stocks, :likes]
+
   belongs_to :user
   belongs_to :newest_revision, class_name: 'Revision', optional: true
   has_many :revisions, -> {
@@ -56,6 +59,11 @@ class Article < ApplicationRecord
 
   scope :popular, -> {
     where(publish_type: 2).order(stock_count: :desc, view_count: :desc)
+  }
+
+  scope :hot_entries, -> {
+    ids = Article.top_ids({ views: 1, likes: 1, stocks: 2 }, days: 7).take(200)
+    where(publish_type: 2, id: ids).order(order_by_ids(ids))
   }
 
   validates :user,

@@ -21,7 +21,7 @@ class LobbiesController < ApplicationController
   # 人気順
   def popular
     @mode = :popular
-    @articles = Article.popular.includes(:user, :tags).page(@page)
+    @articles = Article.hot_entries.includes(:user, :tags).page(@page)
     render :root
   end
 

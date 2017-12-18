@@ -13,3 +13,12 @@ Redis.current =
       )
     )
   end
+
+Boffin.config do |c|
+  c.redis = Redis.current
+  c.namespace = 'tracking'
+  c.hours_window_secs = 3.days
+  c.days_window_secs = 3.months
+  c.months_window_secs = 6.months
+  c.cache_expire_secs = 15.minutes
+end
