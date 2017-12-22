@@ -101,7 +101,10 @@ class ArticlesController < ApplicationController
 
   def view_countup
     list = session['visited_list'] || []
-    @article.increment!(:view_count) unless list.include?(@article.id)
+    unless list.include?(@article.id)
+      @article.increment!(:view_count)
+      @article.hit(:views)
+    end
     session['visited_list'] = list.unshift(@article.id).uniq[0, 50]
   end
 end

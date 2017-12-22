@@ -33,6 +33,7 @@ RAILS_ENV=production bundle exec puma -C config/puma.rb
 
 - Ruby 2.4.1
 - PostgreSQL
+- Redis
 - Node (>= v.6.0) and [yarn](https://github.com/yarnpkg/yarn)
 
 I have assumed the use in Heroku or dokku.
@@ -42,6 +43,8 @@ I have assumed the use in Heroku or dokku.
 |ENV Name|Type|Requirement|Description|
 |:---|:---|:---|:---|
 |ENV['DATABASE_URL']|String|x|PostgreSQL URL|
+|ENV['REDIS_URL']|String|x|Redis URL|
+|ENV['REDIS_NAMESPACE']|String||Redis NameSpace<br>ex) potmum_production|
 |ENV['ROOT_URL']|String|x|Root page URL.<br>ex) http://example.com|
 |ENV['COLOR_THEME']|String||default: 'blue'|
 |ENV['USE_REDIRECTOR']|Boolean||Use redirector with external link|

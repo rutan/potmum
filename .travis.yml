@@ -6,6 +6,8 @@ services:
   - postgresql
 env:
   - RAILS_ENV=test
+services:
+  - redis-server
 before_install:
   - gem install bundler
 script:

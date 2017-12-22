@@ -52,4 +52,25 @@ RSpec.describe Article, type: :model do
       end
     end
   end
+
+  describe '.hot_entries' do
+    context 'empty' do
+      subject { Article.hot_entries }
+      it { is_expected.to be_empty }
+    end
+
+    context 'has items' do
+      subject { Article.hot_entries.first }
+
+      before do
+        @article1 = create(:article, :public_item)
+        @article1.hit(:views)
+        @article2 = create(:article, :public_item)
+        @article2.hit(:views)
+        @article2.hit(:likes)
+      end
+
+      it { is_expected.to eq @article2 }
+    end
+  end
 end
