@@ -12,7 +12,7 @@ gem 'pg'
 gem 'redis'
 gem 'redis-namespace'
 
-gem 'graphql'
+gem 'graphql', '1.6.4'
 gem 'pundit'
 
 gem 'gemoji', '~> 2.0'
