@@ -18,7 +18,7 @@
 #  like_count         :integer          default(0)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :article do
     user { create(:user) }
     title { Faker.name }

@@ -13,7 +13,7 @@
 #  key        :string(128)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :comment do
     article { create(:article, :public_item) }
     user { create(:user) }

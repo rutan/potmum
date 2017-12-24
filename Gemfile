@@ -65,7 +65,7 @@ group :development, :test do
 
   gem 'rubocop'
 
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'fakes3'
   gem 'rails-controller-testing'
