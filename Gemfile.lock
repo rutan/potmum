@@ -161,14 +161,14 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_magick (4.7.0)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.2)
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nio4r (2.1.0)
-    nokogiri (1.7.2)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     nokogumbo (1.4.10)
       nokogiri
     oauth (0.5.3)
@@ -379,8 +379,7 @@ DEPENDENCIES
   kaminari
   konpow!
   mini_magick
-  nokogiri (= 1.7.2)
-  nokogumbo (= 1.4.10)
+  nokogiri (~> 1.8.1)
   omniauth
   omniauth-github
   omniauth-google-oauth2
