@@ -78,6 +78,10 @@ Style/Semicolon:
 Style/SymbolArray:
   Enabled: false
 
+# incompatible DSL
+Layout/EmptyLinesAroundArguments:
+  Enabled: false
+
 # challenge!
 Metrics/AbcSize:
   Max: 20
