@@ -12,7 +12,7 @@
 #  updated_at  :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :like do
     target { create(:article, :public_item) }
     user { create(:user) }

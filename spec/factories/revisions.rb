@@ -17,7 +17,7 @@
 #  note          :text
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :revision do
     user { create(:user) }
     title { Faker.name }

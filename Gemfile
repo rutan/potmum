@@ -12,7 +12,7 @@ gem 'pg'
 gem 'redis'
 gem 'redis-namespace'
 
-gem 'graphql'
+gem 'graphql', '1.6.4'
 gem 'pundit'
 
 gem 'gemoji', '~> 2.0'
@@ -41,8 +41,7 @@ gem 'carrierwave-aws'
 gem 'mini_magick'
 
 gem 'html-pipeline-nico_link'
-gem 'nokogiri', '1.7.2'
-gem 'nokogumbo', '1.4.10'
+gem 'nokogiri', '~> 1.8.1'
 gem 'pot_markdown'
 
 gem 'dotenv-rails'
@@ -66,7 +65,7 @@ group :development, :test do
 
   gem 'rubocop'
 
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'fakes3'
   gem 'rails-controller-testing'

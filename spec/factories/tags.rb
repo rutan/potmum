@@ -14,7 +14,7 @@
 #  key           :string(128)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :tag do
     content { Faker::Name.first_name }
     article_count 0

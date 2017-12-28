@@ -13,7 +13,7 @@
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :access_token do
     user { create(:user) }
     token_type 1
