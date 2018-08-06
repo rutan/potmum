@@ -11,7 +11,7 @@ class AddCommentService
       user_id: access_token.user.id
     ).tap do |comment|
       article.update_comment_count
-      notify_for_slack(comment)
+      notify_for_slack(comment) if article.public_item?
     end
   end
 

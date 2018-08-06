@@ -35,6 +35,24 @@ RSpec.describe AddCommentService, type: :model do
             expect(comment.body).to eq 'comment body'
           end
         end
+
+        context 'to public item' do
+          let(:article) { create(:article_with_published_at, :public_item) }
+
+          it 'call notify slack' do
+            expect(GlobalSetting).to receive(:notify_slack?).once
+            subject
+          end
+        end
+
+        context 'to private item' do
+          let(:article) { create(:article_with_published_at, :private_item) }
+
+          it 'not call notify slack' do
+            expect(GlobalSetting).not_to receive(:notify_slack?)
+            subject
+          end
+        end
       end
 
       context 'to draft article' do
